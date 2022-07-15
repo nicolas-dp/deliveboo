@@ -17,7 +17,7 @@ class CreateDishesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('restaurant_id')->nullable();
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->cascadeOnDelete();
-            $table->string('name', 50)->unique();
+            $table->string('name', 50);
             $table->string('slug', 100);
             $table->text('description')->nullable();
             $table->text('ingredients')->nullable();
