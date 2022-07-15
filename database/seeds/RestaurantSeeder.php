@@ -15,14 +15,14 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         factory(Restaurant::class, 20)
-        ->make()
-        ->each(function($restaurant) {
-        $categories = Category::inRandomOrder()->limit(rand(1,3))->get();
-        $restaurant->categories()->attach($categories);
+            ->make()
+            ->each(function ($restaurant) {
+                $restaurant->slug = Str::slug($restaurant->name) . '-' . rand(1, 1000000);
 
-        $restaurant->slug = Str::slug($restaurant->name);
+                $restaurant->save();
 
-        $restaurant->save();
-        });
+                $categories = Category::inRandomOrder()->limit(rand(1, 3))->get();
+                $restaurant->categories()->attach($categories);
+            });
     }
 }

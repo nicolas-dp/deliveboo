@@ -17,7 +17,7 @@ class CreateRestaurantsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->string('name', 50)->unique();
+            $table->string('name', 50);
             $table->string('slug', 100);
             $table->text('description')->nullable();
             $table->string('address');
