@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -13,10 +16,20 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+         public function index()
     {
         //
-    }
+
+         $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+
+
+
+        //dd($restaurant);
+
+        return view('admin.restaurants.index', compact('restaurant'));
+    } 
+
+
 
     /**
      * Show the form for creating a new resource.

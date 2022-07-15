@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
+    // admin dashboard
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // admin Restaurants
+    Route::resource('restaurants', 'RestaurantController')->parameters([
+        'restaurants' => 'restaurant:slug'
+    ]); 
+});
+
+
+
+
+
+
+Route::get("{any?}", function () {
+    return view("guest.home");
+})->where("any", ".*");
