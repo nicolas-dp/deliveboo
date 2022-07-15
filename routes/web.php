@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -25,8 +23,18 @@ Auth::routes();
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
     // admin dashboard
     Route::get('/', 'HomeController@index')->name('dashboard');
-    // admin posts
-   /*  Route::resource('posts', 'PostController')->parameters([
-        'posts' => 'post:slug'
-    ]); */
+    
+    // admin Restaurants
+    Route::resource('restaurants', 'RestaurantController')->parameters([
+        'restaurants' => 'restaurant:slug'
+    ]); 
 });
+
+
+
+
+
+
+Route::get("{any?}", function () {
+    return view("guest.home");
+})->where("any", ".*");
