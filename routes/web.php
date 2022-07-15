@@ -22,8 +22,8 @@ Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
     // admin dashboard
-    Route::get('/', 'HomeController@index')->name('dashboard');
-    
+    Route::get('/', 'HomeController@index')->name('home');
+
     // admin Restaurants
     Route::resource('restaurants', 'RestaurantController')->parameters([
         'restaurants' => 'restaurant:slug'
