@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +21,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
+    // admin dashboard
+    Route::get('/', 'HomeController@index')->name('dashboard');
+    // admin posts
+   /*  Route::resource('posts', 'PostController')->parameters([
+        'posts' => 'post:slug'
+    ]); */
+});
