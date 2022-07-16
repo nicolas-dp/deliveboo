@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Restaurant extends Model
 {
+    protected $fillable = ['name', 'slug', 'user_id', 'description', 'address', 'phone_number',  'delivery_cost', 'opening_hours', 'closing_hours', 'cover_image', 'PIVA'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

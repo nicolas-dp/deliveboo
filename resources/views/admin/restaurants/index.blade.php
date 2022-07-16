@@ -14,7 +14,9 @@
 
 @else
 
-<h1>non hai un ristorante. Vuoi crearne uno? </h1>
+<h1>Crea qui il tuo ristorante</h1>
+
+<a class="btn btn-primary" href="{{route('admin.restaurants.create')}}">Crea</a>
 
 @endif
 
