@@ -39,7 +39,7 @@
                                             <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary">Show</a>
                                             <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success">Edit</a>
 
-                                            <form action="{{ route('admin.dishes.destroy', $dish) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('admin.dishes.destroy', $dish->slug) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
