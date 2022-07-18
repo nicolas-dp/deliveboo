@@ -14,9 +14,8 @@
 
             <div class="mb-2">
                 <label for="name">Nome *</label>
-                <input type="text" name="name" id="name"
-                    class="form-control @error('name') is-invalid @enderror" placeholder="Mario Rossi"
-                    aria-describedby="nameHelper" value="{{ old('name') }}">
+                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Mario Rossi" aria-describedby="nameHelper" value="{{ old('name') }}">
                 <small id="nameHelper" class="text-muted">Inserisci il nome del ristorante (massimo 50
                     caratteri)</small>
                 @include('partials.single_error', ['variable' => 'name'])
@@ -60,16 +59,17 @@
 
             <div class="mb-3">
                 <label for="category_id" class="form-label">Categorie *</label>
-                <select multiple class="form-control @error('category_id') is-invalid @enderror" name="category_id"
+                <select multiple class="form-control @error('category_id[]') is-invalid @enderror" name="category_id[]"
                     id="category_id">
-                    <option value="">Seleziona categoria</option>
+                    <option disabled value="">Seleziona categoria</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}" {{ old('category_id[]') == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}</option>
                     @endforeach
                 </select>
 
-                @include('partials.single_error', ['variable' => 'category_id'])
+
+                @include('partials.single_error', ['variable' => 'category_id[]'])
             </div>
 
             <div class="mb-2">
