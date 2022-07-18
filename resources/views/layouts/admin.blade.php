@@ -38,7 +38,7 @@
                 <div class="nav justify-content-center">
                     <a class="nav-link active" href="{{route('admin.home')}}">Home</a>
                     <a class="nav-link" href="{{route('admin.restaurants.index')}}">Restaurant</a>
-                    <a class="nav-link " href="#">Dishes</a>
+                    <a class="nav-link " href="{{route('admin.dishes.index')}}">Dishes</a>
                     <a class="nav-link " href="#">Orders</a>
                     <a class="nav-link" href="#">Link</a>
                     <a class="nav-link disabled" href="#">Disabled link</a>

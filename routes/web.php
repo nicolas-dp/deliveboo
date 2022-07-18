@@ -28,6 +28,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('restaurants', 'RestaurantController')->parameters([
         'restaurants' => 'restaurant:slug'
     ]); 
+
+    Route::resource('dishes', 'DishController')->parameters([
+        'dishes' => 'dish:slug'
+    ]);
 });
 
 
