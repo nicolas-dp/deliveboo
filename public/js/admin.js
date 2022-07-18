@@ -53424,3 +53424,19 @@ module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Final-Project\deliveboo\
 /***/ })
 
 /******/ });
+
+
+
+function validatePhoneNumber(inputPhone)
+{
+  const phoneFormat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{7})$/;
+  if(inputPhone.value.match(phoneFormat))
+     {
+	   return true;
+	 }
+   else
+     {
+	   alert("Not a valid Phone Number");
+	   return false;
+     }
+}
