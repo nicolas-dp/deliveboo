@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DishRequest;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class DishController extends Controller
 {
@@ -17,8 +20,10 @@ class DishController extends Controller
      */
     public function index()
     {
-     
-        $dishes = Dish::where('restaurant_id', Auth::id())->get();
+
+        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+
+        $dishes = Dish::where('restaurant_id', '=', $restaurants->id)->get();
         // dd($dishes);
 
         return view('admin.dishes.index', compact('dishes'));
@@ -31,18 +36,50 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+        $restaurants_id = $restaurants->id;
+        return view('admin.dishes.create', compact('restaurants_id'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\DishRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DishRequest $request)
     {
-        //
+        // dd($request->all());
+        // validazione dati 
+        $val_data = $request->validated();
+
+        // genera slug
+        $slug = Str::slug($request->name) . '-' . rand(1, 1000000);
+        $val_data['slug'] = $slug;
+
+        //assegna ai piatti il restaurante a cui appartengono
+        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+        $val_data['restaurant_id'] = $restaurants->id;
+
+        if ($request->hasFile('cover_image')) {
+            // validare il file
+            $request->validate([
+                'cover_image' => 'nullable|image|max:300'
+            ]);
+            // salvo il file nel filesystem
+            // recupero il percorso
+            //ddd($request->all());
+            $path = Storage::put('dish_images', $request->cover_image);
+            // passo il percorso all'array di dati validati per salvare la risorsa
+            $val_data['cover_image'] = $path;
+        }
+
+        // dd($val_data);
+
+        Dish::create($val_data);
+
+        // dd($val_data);
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto creato con successo');
     }
 
     /**
@@ -70,11 +107,11 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\DishRequest   $request
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(DishRequest $request, Dish $dish)
     {
         //
     }

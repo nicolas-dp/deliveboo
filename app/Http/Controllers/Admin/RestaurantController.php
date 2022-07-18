@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Restaurant;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Dish;
 use App\Http\Requests\RestaurantRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -42,8 +43,9 @@ class RestaurantController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $dishes = Dish::all();
 
-        return view('admin.restaurants.create', compact('categories'));
+        return view('admin.restaurants.create', compact('categories', 'dishes'));
     }
 
     /**
