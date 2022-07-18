@@ -101,7 +101,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
@@ -113,7 +113,28 @@ class DishController extends Controller
      */
     public function update(DishRequest $request, Dish $dish)
     {
-        //
+        $val_data = $request->validated();
+
+        // genera slug
+        $slug = Str::slug($request->name) . '-' . rand(1, 1000000);
+        $val_data['slug'] = $slug;
+
+        if ($request->hasFile('cover_image')) {
+            // validare il file
+            $request->validate([
+                'cover_image' => 'nullable|image|max:300'
+            ]);
+            // salvo il file nel filesystem
+            // recupero il percorso
+            //ddd($request->all());
+            $path = Storage::put('dish_images', $request->cover_image);
+            // passo il percorso all'array di dati validati per salvare la risorsa
+            $val_data['cover_image'] = $path;
+        }
+
+        $dish->update($val_data);
+
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto aggiornato con successo');
     }
 
     /**
@@ -124,6 +145,8 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        Storage::delete($dish->cover_image);
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto eliminato con successo');
     }
 }
