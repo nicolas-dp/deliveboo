@@ -1,3 +1,3 @@
 @error($variable)
-<div class="alert alert-danger">{{ $message }}</div>
+<div class="alert alert-danger mt-2">{{ $message }}</div>
 @enderror

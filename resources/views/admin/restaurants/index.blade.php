@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('partials.session_message')
+
 @if ($restaurant)
     
 <h1>RISTORANTEEE</h1>
