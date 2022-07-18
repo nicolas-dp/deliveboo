@@ -1,25 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
-    {{-- @include('partials.errors') --}}
 
     <div class="container">
         <h2>Crea un nuovo ristorante</h2>
 
         @include('partials.errors')
 
-        <form action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
+        <form name="formRestaurant" action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
 
             @csrf
 
             <div class="mb-2">
                 <label for="name">Nome *</label>
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Mario Rossi" aria-describedby="nameHelper" value="{{ old('name') }}">
+                <input required="required" type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Pizzeria Mia" aria-describedby="nameHelper" value="{{ old('name') }}">
                 <small id="nameHelper" class="text-muted">Inserisci il nome del ristorante (massimo 50
                     caratteri)</small>
+                </div>
                 @include('partials.single_error', ['variable' => 'name'])
-            </div>
 
             <div class="mb-2">
                 <label for="address">Indirizzo *</label>
@@ -32,10 +31,11 @@
 
             <div class="mb-2">
                 <label for="phone_number">Numero di telefono *</label>
-                <input type="text" name="phone_number" id="phone_number"
-                    class="form-control @error('phone_number') is-invalid @enderror" placeholder="34********"
+                <input type="tel" name="phone_number" id="phone_number"
+                    class="form-control @error('phone_number') is-invalid @enderror" pattern="[0-9]{3}[-. ]?[0-9]{7}" placeholder="347-0000000"
                     aria-describedby="phone_numberHelper" value="{{ old('phone_number') }}">
                 <small id="phone_numberHelper" class="text-muted">Inserisci il numero di telefono del ristorante</small>
+
                 @include('partials.single_error', ['variable' => 'phone_number'])
             </div>
 
@@ -82,7 +82,7 @@
             <div class="mb-2">
                 <label for="delivery_cost">Prezzo consegna *</label>
                 <input type="number" step=".01" name="delivery_cost" id="delivery_cost"
-                    class="form-control @error('delivery_cost') is-invalid @enderror" placeholder="pippo"
+                    class="form-control @error('delivery_cost') is-invalid @enderror" placeholder="0.00"
                     aria-describedby="delivery_costHelper" value="{{ old('delivery_cost') }}">
                 <small id="delivery_costHelper" class="text-muted">Inserisci il prezzo della consegna</small>
                 @include('partials.single_error', ['variable' => 'delivery_cost'])
@@ -90,8 +90,8 @@
 
             <div class="mb-2">
                 <label for="PIVA">Partita IVA *</label>
-                <input type="text" name="PIVA" id="PIVA" maxlenght="11"
-                    class="form-control @error('PIVA') is-invalid @enderror" placeholder="pippo"
+                <input type="tel" name="PIVA" id="PIVA" maxlenght="11"
+                    class="form-control @error('PIVA') is-invalid @enderror" pattern="[0-9]{11}" placeholder="inserisci un numero a 11 cifre"
                     aria-describedby="PIVAHelper" value="{{ old('PIVA') }}">
                 <small id="PIVAHelper" class="text-muted">Inserisci la Partita IVA</small>
                 @include('partials.single_error', ['variable' => 'PIVA'])
