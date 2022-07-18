@@ -41,7 +41,7 @@
 
             <div class="mb-2">
                 <label for="opening_hours">Orario di Apertura</label>
-                <input type="time" min="08:00" max="13:00" name="opening_hours" id="opening_hours"
+                <input type="time" min="05:00" max="13:00" name="opening_hours" id="opening_hours"
                     class="form-control" placeholder="pippo" aria-describedby="opening_hoursHelper"
                     value="{{ old('opening_hours') }}">
                 <small id="opening_hoursHelper" class="text-muted">Inserisci l'orario di apertura</small>
@@ -50,7 +50,7 @@
 
             <div class="mb-2">
                 <label for="closing_hours">Orario di Chiusura</label>
-                <input type="time" min="13:00" max="23:00" name="closing_hours" id="closing_hours"
+                <input type="time" min="13:00" max="23:59" name="closing_hours" id="closing_hours"
                     class="form-control" placeholder="pippo" aria-describedby="closing_hoursHelper"
                     value="{{ old('closing_hours') }}">
                 <small id="closing_hoursHelper" class="text-muted">Inserisci l'orario di chiusura</small>
