@@ -18,19 +18,19 @@
         
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $dish->name) }}</textarea>
+            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $dish->description) }}</textarea>
             @include('partials.single_error',['variable' => 'description'])
         </div>
         
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" step=".01" class="form-control" id="price" name="price" value="{{ old('price', $dish->name) }}">
+            <input type="number" step=".01" class="form-control" id="price" name="price" value="{{ old('price', $dish->price) }}">
             @include('partials.single_error',['variable' => 'price'])
         </div>
 
         <div class="form-group">
             <label for="ingredients">Ingredients</label>
-            <textarea class="form-control" id="ingredients" name="ingredients" rows="3">{{ old('ingredients', $dish->name) }}</textarea>
+            <textarea class="form-control" id="ingredients" name="ingredients" rows="3">{{ old('ingredients', $dish->ingredients) }}</textarea>
             @include('partials.single_error',['variable' => 'ingredients'])
         </div>
 
