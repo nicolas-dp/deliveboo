@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('dishes', 'DishController')->parameters([
         'dishes' => 'dish:slug'
     ]);
+
+    Route::resource('orders', 'OrderController')->parameters([
+        'orders' => 'order:slug'
+    ])->except('create', 'store', 'edit', 'update');
 });
 
 
