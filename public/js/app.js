@@ -5133,7 +5133,38 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Restaurant'
+  name: "Restaurant",
+  data: function data() {
+    return {
+      restaurant: "",
+      loading: true
+    };
+  },
+  methods: {
+    getRestaurant: function getRestaurant() {
+      var _this = this;
+
+      axios.get("/api/restaurants/".concat(this.$route.params.slug)).then(function (response) {
+        //console.log(response.data);
+        if (response.data.status_code == 404) {
+          //this.loading = false;
+          _this.$router.push({
+            name: "not-found"
+          });
+        } else {
+          _this.restaurant = response.data; //this.postResponse = response.data;
+          //console.log(this.posts);
+
+          _this.loading = false;
+        }
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getRestaurant();
+  }
 });
 
 /***/ }),
@@ -5233,10 +5264,81 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("\n  Restaurant\n")]);
+  return _c("div", {
+    staticClass: "my-4"
+  }, [_c("h1", {
+    staticClass: "text-center mb-3"
+  }, [_vm._v(_vm._s(_vm.restaurant.name))]), _vm._v(" "), _c("div", {
+    staticClass: "p-5 bg-light container-fluid"
+  }, [_c("div", {
+    staticClass: "row g-3"
+  }, [_c("div", {
+    staticClass: "col-12 col-lg-8"
+  }, [_c("div", {
+    staticClass: "text-center"
+  }, [_c("p", {
+    staticClass: "lead"
+  }, [_vm._v(_vm._s(_vm.restaurant.description))]), _vm._v(" "), _c("img", {
+    staticClass: "img-fluid rounded rounded-4",
+    attrs: {
+      src: _vm.restaurant.cover_image,
+      alt: _vm.restaurant.name
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-4"
+  }, [_c("div", {
+    staticClass: "risto-info text-center"
+  }, [_c("h4", {
+    staticClass: "d-flex justify-content-center align-items-center mb-4"
+  }, _vm._l(_vm.restaurant.categories, function (category) {
+    return _c("span", {
+      key: category.id,
+      staticClass: "py-1 px-4 mx-1 rounded-pill border-2 border border-primary"
+    }, [_vm._v("\n              " + _vm._s(category.name) + "\n            ")]);
+  }), 0), _vm._v(" "), _c("p", [_vm._v("Telefono: " + _vm._s(_vm.restaurant.phone_number))]), _vm._v(" "), _c("p", [_vm._v("Indirizzo: " + _vm._s(_vm.restaurant.address))]), _vm._v(" "), _c("p", [_vm._v("Costo di consegna: " + _vm._s(_vm.restaurant.delivery_cost) + " €")]), _vm._v(" "), _vm.restaurant.opening_hours ? _c("p", [_vm._v("\n            Apertura: h " + _vm._s(_vm.restaurant.opening_hours) + "\n          ")]) : _vm._e(), _vm._v(" "), _vm.restaurant.closing_hours ? _c("p", [_vm._v("\n            Apertura: h " + _vm._s(_vm.restaurant.closing_hours) + "\n          ")]) : _vm._e(), _vm._v(" "), _vm._m(0)])])])]), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row g-3"
+  }, [_c("div", {
+    staticClass: "col-12 col-lg-8"
+  }, [_c("h2", {
+    staticClass: "text-center mb-3",
+    attrs: {
+      id: "menu"
+    }
+  }, [_vm._v("Menù")]), _vm._v(" "), _c("div", {
+    staticClass: "row row-cols-2 row-cols-md-3 row-cols-xl-4 g-1"
+  }, _vm._l(_vm.restaurant.dishes, function (dish) {
+    return _c("div", {
+      key: dish.id,
+      staticClass: "col"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("img", {
+      attrs: {
+        src: dish.cover_image,
+        alt: ""
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", [_vm._v("Prezzo: " + _vm._s(dish.price) + " €")])])])]);
+  }), 0)])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "lead"
+  }, [_c("a", {
+    staticClass: "btn btn-primary btn",
+    attrs: {
+      href: "#menu",
+      role: "button"
+    }
+  }, [_vm._v("Vai al Menù")])]);
+}];
 render._withStripped = true;
 
 
