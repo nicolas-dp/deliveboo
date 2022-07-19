@@ -1,10 +1,26 @@
 <template>
-  <div class="jumbotron text-center pt-5">
-    <h1 class="display-4">Work In Progress</h1>
-    <p class="lead">Website coming soon</p>
-    <hr class="my-4" />
-    <p>Content</p>
+<div>
+
+  <div class="header">
+    <nav class="nav justify-content-center">
+      <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
+      <router-link class="nav-link" :to="{name: 'about'}">About</router-link>
+      <router-link class="nav-link" :to="{name: 'restaurants'}">Restaurants</router-link>
+      <!-- <router-link class="nav-link" :to="{name: 'restaurant'}">Restaurant</router-link> -->
+    </nav>
   </div>
+  <!-- /.header -->
+
+  <div class="main">
+    <router-view></router-view>
+  </div>
+  <!-- /.main -->
+
+  <div class="footer">
+    footer
+  </div>
+  <!-- /.footer -->
+</div>
 </template>
 
 <script>
