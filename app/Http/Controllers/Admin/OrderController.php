@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +17,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+        $orders = Order::where('restaurant_id', '=', $restaurants->id)->get();
+        // dd($orders);
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -47,7 +52,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -81,6 +86,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('admin.orders.index')->with('message', "Ordine cancellato con successo");
     }
 }
