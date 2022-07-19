@@ -53418,51 +53418,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\Project\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\final-project\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })
 
 /******/ });
-
-
-
-/* function validatePhoneNumber(inputPhone, event)
-{
-  //const phoneFormat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{7})$/;
-  let phoneFormat = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-  if(inputPhone.value.match(phoneFormat))
-     {
-	   return true;
-	 }
-   else
-     {
-      event.preventDefault()
-	   alert("Not a valid Phone Number");
-	   return false;
-     }
-}
-
-function validatePhoneNumber(inputPhone) {
-  if ((isNaN(inputPhone)) || (inputPhone == "") || (inputPhone == "undefined")) {
-    //alert("Devi inserire il telefono, attenzione deve essere numerico!");
-    document.getElementById('phoneWarning').classList.remove('d-none');
-    document.getElementById('phoneWarning').classList.add('d-block');
-    document.formRestaurant.phone_number.value = "";
-    document.formRestaurant.phone_number.focus();
-    return false;
- }
-} */
-
-/* function validateForm(event) {
-  var phone = document.getElementById('myform_phone').value;
-  if (!validatePhoneNumber(phone)) {
-      document.getElementById('phone_error').classList.remove('hidden');
-  } else {
-      document.getElementById('phone_error').classList.add('hidden');
-      alert("validation success")
-  }
-  event.preventDefault();
-}
-
-document.getElementById('myform').addEventListener('submit', validateForm); */
