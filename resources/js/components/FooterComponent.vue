@@ -1,121 +1,125 @@
 <template>
     <div class="footer">
         <div class="container">
-            <div class="row row-cols-3 row-cols-md-2 row-cols-lg-6 gap-3">
-                <div class="col list_style">
+            <div
+                class="row row-cols-3 row-cols-md-2 row-cols-lg-6 gap-3 pt-5 pb-5"
+            >
+                <div class="col list_style text-center p-3">
                     <h3>Scopri Deliveroo</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Investitori</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Chi siamo</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Ristoranti</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Altro</a
-                            >
+                            <a href="#" class="nav-link text-white-50">Altro</a>
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Pressroom</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Il nostro blog</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Programmazione</a
                             >
                         </li>
-                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                        <li>
+                            <a href="#" class="nav-link text-white-50"
                                 >Design</a
                             >
                         </li>
-                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                        <li>
+                            <a href="#" class="nav-link text-white-50"
                                 >Lavora con noi</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Diventa nostro partner</a
                             >
                         </li>
                     </ul>
                 </div>
-                <div class="col list_style">
+                <div class="col list_style text-center p-3">
                     <h3>Note legali</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Termini & Condizioni</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Informativa sulla privacy</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
+                            <a href="#" class="nav-link text-white-50"
                                 >Cookies</a
                             >
                         </li>
                     </ul>
                 </div>
-                <div class="col list_style">
-                    <h3>Scopri Deliveroo</h3>
+                <div class="col list_style text-center p-3">
+                    <h3>Aiuto</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
+                            <a href="#" class="nav-link text-white-50"
+                                >Contatti</a
                             >
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
-                            >
+                            <a href="#" class="nav-link text-white-50">FAQ</a>
                         </li>
                         <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
-                            >
-                        </li>
-                        <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
-                            >
-                        </li>
-                        <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
-                            >
-                        </li>
-                        <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
-                            >
-                        </li>
-                        <li>
-                            <a href="https://corporate.deliveroo.co.uk"
-                                >Investitori</a
+                            <a href="#" class="nav-link text-white-50"
+                                >Tipi di cucina</a
                             >
                         </li>
                     </ul>
+                </div>
+                <div class="col list_style text-center p-3">
+                    <h3>Porta Deliveroo con te</h3>
+                    <div>
+                        <a
+                            href="#"
+                            target="_blank"
+                            
+                        >
+                            <img class="img-fluid"
+                                src="/../img/badge_apple.png"
+                                alt="badge apple"
+                            />
+                        </a>
+
+                        <a
+                            href="#"
+                            target="_blank"
+                            
+                        >
+                            <img class="img-fluid"
+                                src="/../img/badge_google.png"
+                                alt="badge google"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -128,7 +132,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .footer {
     background-image: url("/../img/bg-footer.webp");
     background-repeat: no-repeat;
@@ -136,7 +140,7 @@ export default {
 }
 
 .list_style {
-    background-color: rgba(78, 76, 76, 0.445);
-    border-radius: 1rem;
+    background-color: #444444ad;
+    border-radius: 0.25rem;
 }
 </style>
