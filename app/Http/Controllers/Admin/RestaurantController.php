@@ -25,12 +25,12 @@ class RestaurantController extends Controller
         //
 
          $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
-
+         $categories = Category::all();
 
 
         //dd($restaurant);
 
-        return view('admin.restaurants.index', compact('restaurant'));
+        return view('admin.restaurants.index', compact('restaurant', 'categories'));
     } 
 
 
@@ -168,8 +168,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        $restaurant->delete();
-        Storage::delete($restaurant->cover_image);
-        return redirect()->route('admin.restaurants.index')->with('message', 'Ristorante eliminato con successo');
+      //
     }
 }
