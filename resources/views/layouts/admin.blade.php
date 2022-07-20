@@ -22,7 +22,6 @@
 <body>
     <div id="app">
 
-
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="/">
@@ -38,7 +37,7 @@
                 <div class="nav justify-content-center">
                     <a class="nav-link active" href="{{route('admin.home')}}">Home</a>
                     <a class="nav-link" href="{{route('admin.restaurants.index')}}">Restaurant</a>
-                    <a class="nav-link " href="{{route('admin.dishes.index')}}">Dishes</a>
+                    <a class="nav-link " href="{{route('admin.dishes.index')}} ">Dishes</a>
                     <a class="nav-link " href="{{route('admin.orders.index')}}">Orders</a>
                   </div>
 
@@ -87,8 +86,6 @@
 
 
         </nav>
-
-
 
         <main class="py-4">
             @yield('content')
