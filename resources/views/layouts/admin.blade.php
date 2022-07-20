@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,79 +18,100 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
+
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                {{-- QUI NAVBAR LINKS DASHBOARD --}}
-                <div class="nav justify-content-center">
-                    <a class="nav-link active" href="{{route('admin.home')}}">Home</a>
-                    <a class="nav-link" href="{{route('admin.restaurants.index')}}">Restaurant</a>
-                    <a class="nav-link " href="{{route('admin.dishes.index')}} ">Dishes</a>
-                    <a class="nav-link " href="{{route('admin.orders.index')}}">Orders</a>
-                  </div>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+        <div class="sidebar">
+            <div class="logo-details">
+                <i class='bx bxl-c-plus-plus icon'></i>
+                <div class="logo_name">Deliveboo</div>
+                <i class='bx bx-menu' id="btn"></i>
             </div>
+            <ul class="nav-list">
+                <li>
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                    <span class="tooltip">Search</span>
+                </li>
+                <li>
+                    <a href="{{route('admin.home')}}">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+                <li>
+                    <a href="{{route('admin.restaurants.index')}}">
+                        <i class='bx bx-user'></i>
+                        <span class="links_name">User</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
+                <li>
+                    <a href="{{route('admin.restaurants.index')}}">
+                        <i class='bx bx-chat'></i>
+                        <span class="links_name">Restaurant</span>
+                    </a>
+                    <span class="tooltip">Restaurant</span>
+                </li>
+                <li>
+                    <a href="{{route('admin.dishes.index')}}">
+                        <i class='bx bx-folder'></i>
+                        <span class="links_name">Dishes</span>
+                    </a>
+                    <span class="tooltip">Dishes</span>
+                </li>
+                <li>
+                    <a href="{{route('admin.orders.index')}}">
+                        <i class='bx bx-chat'></i>
+                        <span class="links_name"> Orders</span>
+                    </a>
+                    <span class="tooltip">Orders</span>
+                </li>
 
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cog'></i>
+                        <span class="links_name">Setting</span>
+                    </a>
+                    <span class="tooltip">Setting</span>
+                </li>
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="https://flyclipart.com/thumb2/boss-circle-man-person-profile-staff-user-icon-133441.png" alt="profileImg">
+                        <div class="name_job">
+                            <div class="name">{{ Auth::user()->name }}</div>
+                            <div class="job">Web designer</div>
+                        </div>
+                    </div>
 
-        </nav>
+                    <a href="{{ route('logout') }}" class="mt-5" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class='bx bx-log-out' id="log_out"></i>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
 
-        <main class="py-4">
+                </li>
+            </ul>
+        </div>
+        <section class="home-section">
             @yield('content')
-        </main>
+        </section>
+
+
+        <!-- <main class="py-4">
+        </main> -->
     </div>
+
 </body>
+
 </html>
