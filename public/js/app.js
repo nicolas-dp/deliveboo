@@ -5103,7 +5103,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'About'
+  name: "About"
 });
 
 /***/ }),
@@ -5221,7 +5221,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("\n  about\n")]);
+  return _c("h1", [_vm._v("about")]);
 };
 
 var staticRenderFns = [];
@@ -5471,7 +5471,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "header"
   }, [_c("nav", {
-    staticClass: "navbar navbar-expand-lg"
+    staticClass: "navbar navbar-expand-md shadow-sm navbar-dark"
   }, [_c("div", {
     staticClass: "container"
   }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
@@ -5508,7 +5508,31 @@ var render = function render() {
         name: "restaurants"
       }
     }
-  }, [_vm._v("Restaurants")])], 1)]), _vm._v(" "), _vm._m(2)])])])]);
+  }, [_vm._v("Restaurants")])], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "my-2 my-lg-0"
+  }, [_c("ul", {
+    staticClass: "navbar-nav ml-auto"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link",
+    attrs: {
+      href: "#"
+    }
+  }, [_c("svg", {
+    staticClass: "bi bi-cart-fill",
+    attrs: {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "25",
+      height: "25",
+      fill: "currentColor",
+      viewBox: "0 0 16 16"
+    }
+  }, [_c("path", {
+    attrs: {
+      d: "M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    }
+  })])])]), _vm._v(" "), _vm._m(2)])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5548,18 +5572,14 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "my-2 my-lg-0"
-  }, [_c("ul", {
-    staticClass: "navbar-nav ml-auto"
-  }, [_c("li", {
+  return _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
       href: "/admin"
     }
-  }, [_vm._v("Accedi")])])])]);
+  }, [_vm._v("Accedi")])]);
 }];
 render._withStripped = true;
 
@@ -5582,7 +5602,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_c("HeaderComponent"), _vm._v(" "), _c("div", {
-    staticClass: "main"
+    staticClass: "main py-4"
   }, [_c("router-view")], 1), _vm._v(" "), _c("FooterComponent")], 1);
 };
 
@@ -10648,7 +10668,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "*[data-v-153bfd55] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.navbar[data-v-153bfd55] {\n  background-color: #ffa700;\n}\n.navbar a[data-v-153bfd55] {\n  color: white;\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".navbar[data-v-153bfd55] {\n  background-color: #ffa700;\n}\n.navbar a[data-v-153bfd55] {\n  color: white !important;\n  font-weight: bold;\n}\n.navbar a[data-v-153bfd55]:hover {\n  filter: drop-shadow(2px 4px 6px black);\n}", ""]);
 
 // exports
 
