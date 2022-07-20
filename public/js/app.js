@@ -5132,12 +5132,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../state */ "./resources/js/state.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Restaurant",
   data: function data() {
     return {
       restaurant: "",
-      loading: true
+      //number: 0,
+      loading: true,
+      myCart: _state__WEBPACK_IMPORTED_MODULE_0__["default"].cart,
+      dish_amounts: ""
     };
   },
   methods: {
@@ -5160,10 +5165,45 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.error(e);
       });
+    },
+    addOne: function addOne(id) {
+      console.log(document.querySelector(".dish-".concat(id)).innerHTML);
+      var amount = parseInt(document.querySelector(".dish-".concat(id)).innerHTML);
+      amount = amount + 1;
+      document.querySelector(".dish-".concat(id)).innerHTML = amount;
+    },
+    subtractOne: function subtractOne(id) {
+      var amount = parseInt(document.querySelector(".dish-".concat(id)).innerHTML);
+
+      if (amount > 0) {
+        //console.log(document.querySelector(`.dish-${id}`).innerHTML);
+        amount = amount - 1;
+        document.querySelector(".dish-".concat(id)).innerHTML = amount;
+      }
+    },
+    addItemToCart: function addItemToCart(dishObject, dishAmount) {
+      //se esiste gìa nel carrello aggiunto altri elementi
+      //if () {} 
+      //sennò lo creo
+      //else {
+      var newDish = dishObject;
+      newDish['amount'] = dishAmount;
+      this.myCart.list_dishes.push(newDish); //console.log(this.myCart.list_dishes);
+
+      this.myCart.makeTotal();
+      console.log('totale carrello');
+      console.log(this.myCart.total_amount); //}
     }
+    /*     addDish(id) {
+      let amount = document.querySelector(`dish-${id}`).value;
+        } */
+
   },
   mounted: function mounted() {
     this.getRestaurant();
+    /*  this.restaurant.dishes.forEach(element => {
+       
+     }); */
   }
 });
 
@@ -5321,8 +5361,116 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "card-body"
-    }, [_c("h5", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", [_vm._v("Prezzo: " + _vm._s(dish.price) + " €")])])])]);
-  }), 0)])])])]);
+    }, [_c("h5", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", [_vm._v("Prezzo: " + _vm._s(dish.price) + " €")])]), _vm._v(" "), _c("div", {
+      staticClass: "card-footer"
+    }, [_c("button", {
+      staticClass: "btn btn-primary btn-sm",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#exampleModal-".concat(dish.id)
+      }
+    }, [_vm._v("\n                  Info Piatto\n                ")]), _vm._v(" "), _c("div", {
+      staticClass: "modal fade",
+      attrs: {
+        id: "exampleModal-".concat(dish.id),
+        tabindex: "-1",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    }, [_c("div", {
+      staticClass: "modal-dialog"
+    }, [_c("div", {
+      staticClass: "modal-content"
+    }, [_c("div", {
+      staticClass: "modal-header"
+    }, [_c("h5", {
+      staticClass: "modal-title",
+      attrs: {
+        id: "exampleModalLabel"
+      }
+    }, [_vm._v("\n                          " + _vm._s(dish.name) + "\n                        ")]), _vm._v(" "), _c("button", {
+      staticClass: "btn-close",
+      attrs: {
+        type: "button",
+        "data-bs-dismiss": "modal",
+        "aria-label": "Close"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "modal-body"
+    }, [_c("img", {
+      staticClass: "img-fluid",
+      attrs: {
+        src: dish.cover_image,
+        alt: dish.name
+      }
+    }), _vm._v(" "), _c("p", [_vm._v("Dettagli: " + _vm._s(dish.description))]), _vm._v(" "), _c("p", [_vm._v("Ingredienti: " + _vm._s(dish.ingredients))]), _vm._v(" "), _c("p", [_vm._v("Prezzo: " + _vm._s(dish.price) + " €")]), _vm._v(" "), _c("p", [dish.is_available ? _c("span", {
+      staticClass: "text-success"
+    }, [_vm._v("Disponibile")]) : _c("span", {
+      staticClass: "text-danger"
+    }, [_vm._v("Non disponibile")])])]), _vm._v(" "), dish.is_available ? _c("div", {
+      staticClass: "modal-footer"
+    }, [_c("div", {
+      staticClass: "btn-group",
+      attrs: {
+        role: "group",
+        "aria-label": "Basic example"
+      }
+    }, [_c("button", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.subtractOne(dish.id);
+        }
+      }
+    }, [_vm._v("\n                            -\n                          ")]), _vm._v(" "), _c("span", {
+      staticClass: "bg-light px-3 d-flex align-items-center",
+      "class": "dish-".concat(dish.id)
+    }, [_vm._v("\n                            1\n                          ")]), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addOne(dish.id);
+        }
+      }
+    }, [_vm._v("\n                            +\n                          ")])]), _vm._v(" "), dish.is_available ? _c("button", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addItemToCart(dish, 1);
+        }
+      }
+    }, [_vm._v("\n                          Aggiungi al carrello\n                        ")]) : _vm._e()]) : _vm._e()])])])])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-4"
+  }, [_c("h2", {
+    staticClass: "text-center mb-3",
+    attrs: {
+      id: "menu"
+    }
+  }, [_vm._v("Carrello")]), _vm._v(" "), _vm.myCart.list_dishes.length > 0 ? _c("ul", {
+    staticClass: "mb-3"
+  }, _vm._l(_vm.myCart.list_dishes, function (dishElement) {
+    return _c("li", {
+      key: dishElement.id
+    }, [_vm._v(_vm._s(dishElement.name) + ": " + _vm._s(dishElement.amount) + " x " + _vm._s(dishElement.price) + "€ = " + _vm._s(dishElement.amount * dishElement.price))]);
+  }), 0) : _c("p", [_vm._v("Nessun elemento nel carrello")]), _vm._v(" "), _c("span", [_vm._v("Totale: " + _vm._s(_vm.myCart.total_amount) + " €")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    on: {
+      click: function click($event) {
+        return _vm.myCart.resetCart();
+      }
+    }
+  }, [_vm._v("Azzera carrello")])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -57152,6 +57300,60 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 // whole app router-aware.
 
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/state.js":
+/*!*******************************!*\
+  !*** ./resources/js/state.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+//importo Vue
+ //inserisco qui le variabili che voglio 
+//raggiungere dai componenti non parenti
+
+var state = vue__WEBPACK_IMPORTED_MODULE_0___default.a.observable({
+  cart: {
+    list_dishes: [//Gli elementi del carrello dovranno contenere
+      //id piatto
+      //nome piatto
+      //quantità piatto
+      //prezzo singolo piatto
+      //prezzo singolo per quantità
+    ],
+    //il totale sarà la somma dei parziali totali
+    total_amount: 0.00,
+    makeTotal: function makeTotal() {
+      if (this.list_dishes.length > 0) {
+        var sum = 0; //fa la somma
+
+        this.list_dishes.forEach(function (dish) {
+          var partial = dish.amount * dish.price;
+          sum = sum + partial;
+        });
+        this.total_amount = sum;
+      } else {
+        console.log('Somma totale carrelo non riuscita: non posso sommare 0 elementi');
+      }
+    },
+    resetCart: function resetCart() {
+      console.log('sto per cancellare tutto, attualmente hai');
+      console.log(this.list_dishes);
+      this.list_dishes = [];
+      this.total_amount = 0.00;
+      console.log('lista piatti dopo azzeramento');
+      console.log(this.list_dishes);
+    }
+  }
+}); //esporto
+
+/* harmony default export */ __webpack_exports__["default"] = (state);
 
 /***/ }),
 
