@@ -3,7 +3,7 @@
         <HeaderComponent />
         <!-- /.header -->
 
-        <div class="main">
+        <div class="main py-4">
             <router-view></router-view>
         </div>
         <!-- /.main -->
