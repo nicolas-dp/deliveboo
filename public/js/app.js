@@ -57151,9 +57151,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\Final-Project\deliveboo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\Final-Project\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Final-Project\deliveboo\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\Laravel\deliveboo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\Laravel\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\deliveboo\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

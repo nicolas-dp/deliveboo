@@ -53292,7 +53292,80 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: function data() {
+    return {
+      rest_name: '',
+      rest_name_check: 0,
+      address: '',
+      address_check: 0,
+      phone: '',
+      phone_check: 0,
+      delivery_cost: '',
+      delivery_cost_check: 0,
+      piva: 0,
+      piva_check: 0,
+      dish_name: '',
+      dish_name_check: 0,
+      dish_price: '',
+      dish_price_check: 0
+    };
+  },
+  methods: {
+    countCharRestName: function countCharRestName() {
+      if (this.rest_name.length >= 5) {
+        this.rest_name_check = 1;
+      } else if (this.rest_name.length > 0 && this.rest_name.length < 5) {
+        this.rest_name_check = 2;
+      }
+    },
+    countCharAddress: function countCharAddress() {
+      if (this.address.length >= 5) {
+        this.address_check = 1;
+      } else if (this.address.length < 5) {
+        this.address_check = 2;
+      }
+    },
+    countPhone: function countPhone() {
+      if (this.phone.length == 11) {
+        this.phone_check = 1;
+      } else if (this.phone.length <= 10 || this.phone.length >= 12) {
+        this.phone_check = 2;
+      }
+    },
+    checkDeliveryCost: function checkDeliveryCost() {
+      var check = parseInt(this.delivery_cost);
+
+      if (check > 0 && check < 20) {
+        this.delivery_cost_check = 1;
+      } else {
+        this.delivery_cost_check = 2;
+      }
+    },
+    countPIVA: function countPIVA() {
+      if (this.piva.length == 11) {
+        this.piva_check = 1;
+      } else if (this.piva.length <= 10 || this.piva.length >= 12) {
+        this.piva_check = 2;
+      }
+    },
+    countCharDishName: function countCharDishName() {
+      if (this.dish_name.length >= 5) {
+        this.dish_name_check = 1;
+      } else if (this.dish_name.length > 0 && this.dish_name.length < 50) {
+        this.dish_name_check = 2;
+      }
+    },
+    checkDishPrice: function checkDishPrice() {
+      var check = parseInt(this.dish_price);
+
+      if (check > 0) {
+        this.dish_price_check = 1;
+      } else {
+        this.dish_price_check = 2;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -53418,7 +53491,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Final-Project\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })
