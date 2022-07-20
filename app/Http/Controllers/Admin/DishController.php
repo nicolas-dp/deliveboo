@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DishRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
-
+use App\Models\Category;
 class DishController extends Controller
 {
     /**
@@ -20,13 +19,18 @@ class DishController extends Controller
      */
     public function index()
     {
-
-        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
-
-        $dishes = Dish::where('restaurant_id', '=', $restaurants->id)->get();
+        // $restaurants = Restaurant::all('id', 'slug', 'name');
+        $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+        if($restaurant) {
+            $dishes = Dish::where('restaurant_id', '=', $restaurant->id)->get();
+            return view('admin.dishes.index', compact('dishes', 'restaurant'));
+        } else {
+            return redirect()->route('admin.restaurants.create');
+        }
         // dd($dishes);
-
-        return view('admin.dishes.index', compact('dishes'));
+        // dd($restaurants);
+        // return view('admin.dishes.index', compact('dishes', 'restaurant'));
+       
     }
 
     /**
