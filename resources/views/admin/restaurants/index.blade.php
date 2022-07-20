@@ -4,7 +4,7 @@
 
 @include('partials.session_message')
 
-<div class="container text-center">
+<div class="container text-center pt-4 pb-5">
 
     <h1>RISTORANTEEE</h1>
 

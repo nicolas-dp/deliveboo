@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container pt-4 pb-5">
     @if(Auth::check() && $restaurant)
     <div class="row">
         <div class="col-md-12">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container text-center">
+<div class="container text-center pt-4 pb-5">
     <div>{{ $order->customer_name }}</div>
     <div>{{ $order->customer_address }}</div>
     <div>{{ $order->customer_email }}</div>

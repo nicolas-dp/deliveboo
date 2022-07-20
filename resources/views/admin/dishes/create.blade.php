@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container pt-4 pb-5">
 @include('partials.errors')
     <h1>Create Dish</h1>
     <hr>
