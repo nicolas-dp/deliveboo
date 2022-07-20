@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    @if(Auth::check() && $restaurant)
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -39,7 +40,7 @@
                                             <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary">Show</a>
                                             <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success">Edit</a>
 
-                                                                                        <!-- Button trigger modal -->
+                                            <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#order">
                                                 Delete
                                             </button>
@@ -79,6 +80,10 @@
             </div>
         </div>
     </div>
+    @else
+    <h1>Welcome vatti a fare un ristorante</h1>
+    <a href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
+    @endif
 </div>
 
 
