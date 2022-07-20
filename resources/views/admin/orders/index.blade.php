@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    @if(Auth::check() && $restaurant)
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -80,6 +81,10 @@
             </div>
         </div>
     </div>
+    @else
+    <h1>Welcome vatti a fare un ristorante</h1>
+    <a href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
+    @endif
 </div>
 
 @endsection
