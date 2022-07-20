@@ -1,36 +1,29 @@
 <template>
-<div>
+    <div>
+        <HeaderComponent />
+        <!-- /.header -->
 
-  <div class="header">
-    <nav class="nav justify-content-center">
-      <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
-      <router-link class="nav-link" :to="{name: 'about'}">About</router-link>
-      <router-link class="nav-link" :to="{name: 'restaurants'}">Restaurants</router-link>
-      <!-- <router-link class="nav-link" :to="{name: 'restaurant'}">Restaurant</router-link> -->
-    </nav>
-  </div>
-  <!-- /.header -->
+        <div class="main py-4">
+            <router-view></router-view>
+        </div>
+        <!-- /.main -->
 
-  <div class="main">
-    <router-view></router-view>
-  </div>
-  <!-- /.main -->
-
-  <div class="footer">
-    footer
-  </div>
-  <!-- /.footer -->
-</div>
+        <FooterComponent />
+        <!-- /.footer -->
+    </div>
 </template>
 
 <script>
-// import WorkInProgress from "../components/WorkInProgress.vue";
+import HeaderComponent from "../components/HeaderComponent.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 
 export default {
-  name: "App",
-  components: "",
+    name: "App",
+    components: {
+        HeaderComponent,
+        FooterComponent,
+    },
 };
 </script>
 
-<style>
-</style>
+<style></style>
