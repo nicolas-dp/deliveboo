@@ -5142,7 +5142,7 @@ __webpack_require__.r(__webpack_exports__);
       //number: 0,
       loading: true,
       myCart: _state__WEBPACK_IMPORTED_MODULE_0__["default"].cart,
-      dish_amounts: ""
+      dish_amounts: {}
     };
   },
   methods: {
@@ -5157,8 +5157,13 @@ __webpack_require__.r(__webpack_exports__);
             name: "not-found"
           });
         } else {
-          _this.restaurant = response.data; //this.postResponse = response.data;
+          _this.restaurant = response.data;
+
+          _this.restaurant.dishes.forEach(function (dish) {
+            dish["amount_html"] = 1;
+          }); //this.postResponse = response.data;
           //console.log(this.posts);
+
 
           _this.loading = false;
         }
@@ -5166,33 +5171,47 @@ __webpack_require__.r(__webpack_exports__);
         console.error(e);
       });
     },
-    addOne: function addOne(id) {
-      console.log(document.querySelector(".dish-".concat(id)).innerHTML);
-      var amount = parseInt(document.querySelector(".dish-".concat(id)).innerHTML);
-      amount = amount + 1;
-      document.querySelector(".dish-".concat(id)).innerHTML = amount;
+    addOne: function addOne(dish) {
+      /*       console.log(document.querySelector(`.dish-${id}`).innerHTML);
+        let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
+        amount = amount + 1;
+        document.querySelector(`.dish-${id}`).innerHTML = amount; */
+      console.log(dish);
+      dish.amount_html = dish.amount_html + 1;
+      console.log(dish);
+      dish.amount_html.$forceUpdate();
     },
-    subtractOne: function subtractOne(id) {
-      var amount = parseInt(document.querySelector(".dish-".concat(id)).innerHTML);
-
-      if (amount > 0) {
+    subtractOne: function subtractOne(dish) {
+      /*       let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
+        if (amount > 0) {
         //console.log(document.querySelector(`.dish-${id}`).innerHTML);
-        amount = amount - 1;
-        document.querySelector(".dish-".concat(id)).innerHTML = amount;
+          amount = amount - 1;
+          document.querySelector(`.dish-${id}`).innerHTML = amount;
+      } */
+      if (dish.amount_html > 0) {
+        dish.amount_html = dish.amount_html - 1;
       }
     },
     addItemToCart: function addItemToCart(dishObject, dishAmount) {
       //se esiste gìa nel carrello aggiunto altri elementi
-      //if () {} 
-      //sennò lo creo
-      //else {
-      var newDish = dishObject;
-      newDish['amount'] = dishAmount;
-      this.myCart.list_dishes.push(newDish); //console.log(this.myCart.list_dishes);
+      if (this.myCart.list_dishes.filter(function (dishQuery) {
+        return dishQuery.name === dishObject.name;
+      }).length > 0) {
+        var objIndex = this.myCart.list_dishes.findIndex(function (obj) {
+          return obj.id == dishObject.id;
+        }); //console.log(`indice arraypiatti: ${objIndex}`);
 
-      this.myCart.makeTotal();
-      console.log('totale carrello');
-      console.log(this.myCart.total_amount); //}
+        this.myCart.list_dishes[objIndex].amount = this.myCart.list_dishes[objIndex].amount + dishAmount;
+      } //sennò lo creo
+      else {
+        var newDish = dishObject;
+        newDish["amount"] = dishAmount;
+        this.myCart.list_dishes.push(newDish); //console.log(this.myCart.list_dishes);
+
+        this.myCart.makeTotal();
+        console.log("totale carrello");
+        console.log(this.myCart.total_amount);
+      }
     }
     /*     addDish(id) {
       let amount = document.querySelector(`dish-${id}`).value;
@@ -5200,10 +5219,8 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   mounted: function mounted() {
-    this.getRestaurant();
-    /*  this.restaurant.dishes.forEach(element => {
-       
-     }); */
+    this.getRestaurant(); //cancella
+    //cancella
   }
 });
 
@@ -5423,20 +5440,20 @@ var render = function render() {
       },
       on: {
         click: function click($event) {
-          return _vm.subtractOne(dish.id);
+          return _vm.subtractOne(dish);
         }
       }
     }, [_vm._v("\n                            -\n                          ")]), _vm._v(" "), _c("span", {
       staticClass: "bg-light px-3 d-flex align-items-center",
       "class": "dish-".concat(dish.id)
-    }, [_vm._v("\n                            1\n                          ")]), _vm._v(" "), _c("button", {
+    }, [_vm._v("\n                            " + _vm._s(dish.amount_html) + "\n                          ")]), _vm._v(" "), _c("button", {
       staticClass: "btn btn-primary",
       attrs: {
         type: "button"
       },
       on: {
         click: function click($event) {
-          return _vm.addOne(dish.id);
+          return _vm.addOne(dish);
         }
       }
     }, [_vm._v("\n                            +\n                          ")])]), _vm._v(" "), dish.is_available ? _c("button", {
@@ -5446,7 +5463,7 @@ var render = function render() {
       },
       on: {
         click: function click($event) {
-          return _vm.addItemToCart(dish, 1);
+          return _vm.addItemToCart(dish, dish.amount_html);
         }
       }
     }, [_vm._v("\n                          Aggiungi al carrello\n                        ")]) : _vm._e()]) : _vm._e()])])])])])]);
@@ -5462,15 +5479,15 @@ var render = function render() {
   }, _vm._l(_vm.myCart.list_dishes, function (dishElement) {
     return _c("li", {
       key: dishElement.id
-    }, [_vm._v(_vm._s(dishElement.name) + ": " + _vm._s(dishElement.amount) + " x " + _vm._s(dishElement.price) + "€ = " + _vm._s(dishElement.amount * dishElement.price))]);
-  }), 0) : _c("p", [_vm._v("Nessun elemento nel carrello")]), _vm._v(" "), _c("span", [_vm._v("Totale: " + _vm._s(_vm.myCart.total_amount) + " €")]), _vm._v(" "), _c("button", {
+    }, [_vm._v("\n            " + _vm._s(dishElement.name) + ": " + _vm._s(dishElement.amount) + " x\n            " + _vm._s(dishElement.price) + "€ =\n            " + _vm._s(dishElement.amount * dishElement.price) + " €\n          ")]);
+  }), 0) : _c("p", [_vm._v("Nessun elemento nel carrello")]), _vm._v(" "), _c("p", [_vm._v("Totale: " + _vm._s(_vm.myCart.total_amount) + " €")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-secondary",
     on: {
       click: function click($event) {
         return _vm.myCart.resetCart();
       }
     }
-  }, [_vm._v("Azzera carrello")])])])])]);
+  }, [_vm._v("\n          Azzera carrello\n        ")])])])])]);
 };
 
 var staticRenderFns = [function () {

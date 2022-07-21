@@ -124,19 +124,23 @@
                             role="group"
                             aria-label="Basic example"
                           >
-                            <button type="button" class="btn btn-primary" @click="subtractOne(dish.id)">
+                            <button
+                              type="button"
+                              class="btn btn-primary"
+                              @click="subtractOne(dish)"
+                            >
                               -
                             </button>
                             <span
                               class="bg-light px-3 d-flex align-items-center"
                               :class="`dish-${dish.id}`"
                             >
-                              1
+                              {{ dish.amount_html }}
                             </span>
                             <button
                               type="button"
                               class="btn btn-primary"
-                              @click="addOne(dish.id)"
+                              @click="addOne(dish)"
                             >
                               +
                             </button>
@@ -146,7 +150,7 @@
                             v-if="dish.is_available"
                             type="button"
                             class="btn btn-primary"
-                            @click="addItemToCart(dish, 1)"
+                            @click="addItemToCart(dish, dish.amount_html)"
                           >
                             Aggiungi al carrello
                           </button>
@@ -164,14 +168,20 @@
           <h2 class="text-center mb-3" id="menu">Carrello</h2>
 
           <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
-            <li v-for="dishElement in myCart.list_dishes" :key="dishElement.id">{{dishElement.name}}: {{dishElement.amount}} x {{dishElement.price}}€ = {{dishElement.amount * dishElement.price}}</li>
+            <li v-for="dishElement in myCart.list_dishes" :key="dishElement.id">
+              {{ dishElement.name }}: {{ dishElement.amount }} x
+              {{ dishElement.price }}€ =
+              {{ dishElement.amount * dishElement.price }} €
+            </li>
           </ul>
 
           <p v-else>Nessun elemento nel carrello</p>
 
-          <span>Totale: {{myCart.total_amount}} €</span>
+          <p>Totale: {{ myCart.total_amount }} €</p>
 
-          <button class="btn btn-secondary" @click="myCart.resetCart()">Azzera carrello</button>
+          <button class="btn btn-secondary" @click="myCart.resetCart()">
+            Azzera carrello
+          </button>
         </div>
       </div>
     </div>
@@ -190,7 +200,7 @@ export default {
       //number: 0,
       loading: true,
       myCart: state.cart,
-      dish_amounts: "",
+      dish_amounts: {},
     };
   },
 
@@ -205,6 +215,10 @@ export default {
             this.$router.push({ name: "not-found" });
           } else {
             this.restaurant = response.data;
+
+            this.restaurant.dishes.forEach((dish) => {
+              dish["amount_html"] = 1;
+            });
             //this.postResponse = response.data;
             //console.log(this.posts);
             this.loading = false;
@@ -215,54 +229,64 @@ export default {
         });
     },
 
-    addOne(id) {
-      console.log(document.querySelector(`.dish-${id}`).innerHTML);
+    addOne(dish) {
+      /*       console.log(document.querySelector(`.dish-${id}`).innerHTML);
 
       let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
 
       amount = amount + 1;
 
-      document.querySelector(`.dish-${id}`).innerHTML = amount;
+      document.querySelector(`.dish-${id}`).innerHTML = amount; */
+      console.log(dish);
+
+      dish.amount_html = dish.amount_html + 1;
+
+      console.log(dish);
+
+      dish.amount_html.$forceUpdate();
     },
 
-    subtractOne(id) {
-
-      let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
+    subtractOne(dish) {
+      /*       let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
 
       if (amount > 0) {
+        //console.log(document.querySelector(`.dish-${id}`).innerHTML);
 
-      //console.log(document.querySelector(`.dish-${id}`).innerHTML);
+        amount = amount - 1;
 
-      
-
-      amount = amount - 1;
-
-      document.querySelector(`.dish-${id}`).innerHTML = amount;
-
-      } 
+        document.querySelector(`.dish-${id}`).innerHTML = amount;
+      } */
+      if (dish.amount_html > 0) {
+        dish.amount_html = dish.amount_html - 1;
+      }
     },
 
     addItemToCart(dishObject, dishAmount) {
-
       //se esiste gìa nel carrello aggiunto altri elementi
-      //if () {} 
+      if (this.myCart.list_dishes.filter(dishQuery => dishQuery.name === dishObject.name).length > 0) {
+        const objIndex = this.myCart.list_dishes.findIndex((obj => obj.id == dishObject.id));
+
+        //console.log(`indice arraypiatti: ${objIndex}`);
+
+
+        this.myCart.list_dishes[objIndex].amount = this.myCart.list_dishes[objIndex].amount + dishAmount;
+      }
       //sennò lo creo
-      //else {
-        let newDish = dishObject;
+      else {
+      let newDish = dishObject;
 
-        newDish['amount'] = dishAmount;
+      newDish["amount"] = dishAmount;
 
-        this.myCart.list_dishes.push(newDish);
+      this.myCart.list_dishes.push(newDish);
 
-        //console.log(this.myCart.list_dishes);
+      //console.log(this.myCart.list_dishes);
 
-        this.myCart.makeTotal();
+      this.myCart.makeTotal();
 
-        console.log('totale carrello');
-        console.log(this.myCart.total_amount);
-      //}
-
-    }
+      console.log("totale carrello");
+      console.log(this.myCart.total_amount);
+      }
+    },
 
     /*     addDish(id) {
       let amount = document.querySelector(`dish-${id}`).value;
@@ -271,13 +295,13 @@ export default {
     } */
   },
 
-   mounted() {
+  mounted() {
     this.getRestaurant();
 
-   /*  this.restaurant.dishes.forEach(element => {
-      
-    }); */
-  }, 
+    //cancella
+
+    //cancella
+  },
 };
 </script>
 
