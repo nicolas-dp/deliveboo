@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DishRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Category;
 class DishController extends Controller
 {
     /**
@@ -23,13 +22,11 @@ class DishController extends Controller
         $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
         if($restaurant) {
             $dishes = Dish::where('restaurant_id', '=', $restaurant->id)->get();
+            // dd($dishes);
             return view('admin.dishes.index', compact('dishes', 'restaurant'));
         } else {
             return redirect()->route('admin.restaurants.create');
         }
-        // dd($dishes);
-        // dd($restaurants);
-        // return view('admin.dishes.index', compact('dishes', 'restaurant'));
        
     }
 
@@ -149,8 +146,8 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        $dish->delete();
         Storage::delete($dish->cover_image);
+        $dish->delete();
         return redirect()->route('admin.dishes.index')->with('message', 'Piatto eliminato con successo');
     }
 }

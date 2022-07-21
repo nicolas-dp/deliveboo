@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container pt-4 pb-5">
 @include('partials.errors')
     <h1>Create Dish</h1>
     <hr>
@@ -47,9 +47,13 @@
             @include('partials.single_error',['variable' => 'cover_image'])
         </div>
 
+<<<<<<< HEAD
+        <button type="submit" class="btn btn-primary text-light">Create</button>
+=======
         <label class="d-block mb-2">I campi contrassegnati con <strong>*</strong> sono obbligatori.</label>
 
         <button type="submit" class="btn btn-primary">Create</button>
+>>>>>>> dev
     </form>
 </div>
 

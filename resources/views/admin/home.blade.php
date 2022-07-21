@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container text-center">
+<div class="container text-center pt-4 pb-5">
     @if(Auth::check() && $restaurant)
         <h1>Welcome {{ Auth::user()->name }}</h1>
     @else
