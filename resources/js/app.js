@@ -40,5 +40,12 @@ const app2 = new Vue({
                 this.password_check = 2;
             }
         },
+        checkLoginPassword() {
+            if (this.password.length >= 8) {
+                this.password_check = 1;
+            } else {
+                this.password_check = 2;
+            }
+        }
     },
 });
