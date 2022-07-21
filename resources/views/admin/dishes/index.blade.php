@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary">Create</a>
+                            <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary text-light">Create</a>
                         </div>
                     </div>
                     <br>
@@ -37,11 +37,11 @@
                                         <td>{{ $dish->price }}</td>
                                         <td>{{ $dish->restaurant->name }}</td>
                                         <td>
-                                            <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary">Show</a>
-                                            <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success">Edit</a>
+                                            <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary text-light">Show</a>
+                                            <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success text-light">Edit</a>
 
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
+                                            <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
                                                 Delete
                                             </button>
 
@@ -62,7 +62,7 @@
                                                             <form action="{{ route('admin.dishes.destroy', $dish->slug) }}" method="POST" style="display: inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" class="btn btn-danger text-light">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>

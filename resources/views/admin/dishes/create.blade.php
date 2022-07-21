@@ -47,7 +47,7 @@
             @include('partials.single_error',['variable' => 'cover_image'])
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary text-light">Create</button>
     </form>
 </div>
 

@@ -38,12 +38,12 @@
 
 
                                         <td>
-                                            <a href="{{route('admin.orders.show', $order->slug )}}" class="btn btn-primary">Show</a>
+                                            <a href="{{route('admin.orders.show', $order->slug )}}" class="btn btn-primary text-light">Show</a>
 
 
 
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-order-{{$order->id}}">
+                                            <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-order-{{$order->id}}">
                                                 Delete
                                             </button>
 
@@ -64,7 +64,7 @@
                                                             <form action="{{ route('admin.orders.destroy', $order->slug) }}" method="POST" style="display: inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" class="btn btn-danger text-light">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
