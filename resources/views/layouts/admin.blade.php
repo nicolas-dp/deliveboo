@@ -42,6 +42,10 @@
                 </li>
 
                 <li>
+                    @php 
+                    use Illuminate\Support\Facades\Auth;
+                    $restaurant = Auth::user()->restaurant; 
+                    @endphp
                     @if($restaurant)
                     <a href="{{route('admin.home')}}">
                         <i class='bx bx-grid-alt'></i>
