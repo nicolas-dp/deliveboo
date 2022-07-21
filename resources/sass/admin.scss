@@ -5,6 +5,7 @@
 @import "variables";
 
 // Bootstrap
+<<<<<<< HEAD
 @import "~bootstrap/scss/bootstrap";
 
 /* Google Font Import - Poppins */
@@ -265,3 +266,14 @@
     z-index: 1 !important;
 }
 
+=======
+@import '~bootstrap/scss/bootstrap';
+
+.input_error{
+    border: 1px solid red;
+}
+
+.input_correct{
+    border: 1px solid rgb(53, 230, 53);
+}
+>>>>>>> dev
