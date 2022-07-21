@@ -32,3 +32,6 @@ Route::get('categories', 'Api\CategoryController@index');
 
 //api piatti
 Route::get('dishes', 'Api\DishController@index');
+
+//api piatto singolo -> ti restituisce il singolo piatto 
+Route::get('dishes/{dish:slug}', 'Api\DishController@show');
