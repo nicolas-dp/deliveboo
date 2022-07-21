@@ -47,13 +47,9 @@
             @include('partials.single_error',['variable' => 'cover_image'])
         </div>
 
-<<<<<<< HEAD
-        <button type="submit" class="btn btn-primary text-light">Create</button>
-=======
         <label class="d-block mb-2">I campi contrassegnati con <strong>*</strong> sono obbligatori.</label>
 
-        <button type="submit" class="btn btn-primary">Create</button>
->>>>>>> dev
+        <button type="submit" class="btn btn-primary text-light">Create</button>
     </form>
 </div>
 

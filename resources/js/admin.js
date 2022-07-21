@@ -31,9 +31,6 @@ Vue.component(
  */
 
 const app = new Vue({
-<<<<<<< HEAD
-    el: "#app",
-=======
     el: '#app',
     data() {
         return {
@@ -106,7 +103,6 @@ const app = new Vue({
             }
         },
     }
->>>>>>> dev
 });
 
 
