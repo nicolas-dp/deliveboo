@@ -88,7 +88,7 @@
                         <img src="https://flyclipart.com/thumb2/boss-circle-man-person-profile-staff-user-icon-133441.png" alt="profileImg">
                         <div class="name_job">
                             <div class="name">{{ Auth::user()->name }}</div>
-                            <div class="job">Web designer</div>
+                            <div class="job">Admin Profile</div>
                         </div>
                     </div>
 
@@ -107,9 +107,6 @@
             @yield('content')
         </section>
 
-
-        <!-- <main class="py-4">
-        </main> -->
     </div>
 
 </body>
