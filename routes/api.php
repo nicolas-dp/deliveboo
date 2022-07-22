@@ -24,9 +24,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //api ristoranti -> ti restituisce tutti i ristoranti
 Route::get('restaurants', 'Api\RestaurantController@index');
 
+
 //api ristorante -> ti restituisce il singolo ristorante
 Route::get('restaurants/{restaurant:slug}', 'Api\RestaurantController@show');
 
+//filtra ristoranti per categoria
+Route::get('restaurants/filter/{name}', 'Api\RestaurantController@filter');
 //api categorie -> ti restituisce le categorie
 Route::get('categories', 'Api\CategoryController@index');
 

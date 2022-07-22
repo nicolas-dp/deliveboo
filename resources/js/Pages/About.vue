@@ -1,15 +1,16 @@
 <template>
-  <h1>
-    about
-  </h1>
+  <div class="about container">
+    <h1>about</h1>
+  </div>
 </template>
 
 <script>
+
+
 export default {
-    name: 'About',
-}
+  name: "About",
+};
 </script>
 
 <style>
-
 </style>
