@@ -271,3 +271,8 @@
 .input_correct{
     border: 1px solid rgb(53, 230, 53);
 }
+
+input:invalid,
+input:out-of-range {
+    border: red solid 3px;
+}
