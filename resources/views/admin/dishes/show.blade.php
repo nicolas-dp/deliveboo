@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container pt-4 pb-5">
     <h1>{{$dish->name}}</h1>
     <img src='{{ substr($dish->cover_image, 0, 4) == "http" ? $dish->cover_image  :  asset("storage/" . $dish->cover_image)}}' alt="{{$dish->name}}">
     <p>Ingredients: {{$dish->ingredients}}</p>

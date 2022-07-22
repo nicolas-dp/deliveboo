@@ -17,10 +17,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::where('user_id', '=', Auth::id())->get()->first();
-        $orders = Order::where('restaurant_id', '=', $restaurants->id)->get();
+        $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
         // dd($orders);
-        return view('admin.orders.index', compact('orders'));
+
+        if ($restaurant) {
+            $orders = Order::where('restaurant_id', '=', $restaurant->id)->get();
+
+            return view('admin.orders.index', compact('orders', 'restaurant'));
+        } else {
+            return redirect()->route('admin.restaurants.create');
+        }
+
+        // return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -87,6 +95,6 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('admin.orders.index')->with('message', "Ordine cancellato con successo");
+        return redirect()->route('admin.orders.index')->with('message', "Ordine $order->name cancellato con successo");
     }
 }

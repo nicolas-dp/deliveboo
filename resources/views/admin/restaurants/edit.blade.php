@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container pt-4 pb-5 ">
         <h2>Modifica il ristorante</h2>
 
         @include('partials.errors')

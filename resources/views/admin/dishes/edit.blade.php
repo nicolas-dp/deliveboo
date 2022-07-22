@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container pt-4 pb-5">
 @include('partials.errors')
     <h1>Edit Dish</h1>
     <hr>
@@ -49,7 +49,7 @@
             @include('partials.single_error',['variable' => 'cover_image'])
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary text-light">Update</button>
     </form>
 </div>
 
