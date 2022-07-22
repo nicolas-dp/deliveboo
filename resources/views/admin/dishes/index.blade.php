@@ -26,7 +26,6 @@
                                         <th>Description</th>
                                         <th>Price</th>
                                         <th>Restaurant</th>
-                                        <th>Availability</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -37,8 +36,6 @@
                                         <td>{{ $dish->description }}</td>
                                         <td>{{ $dish->price }}</td>
                                         <td>{{ $dish->restaurant->name }}</td>
-                                        
-                                        <td>{{ $dish->is_available == 1 ? 'Available' : 'Not Available' }}</td>
                                         <td>
                                             <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary text-light">Show</a>
                                             <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success text-light">Edit</a>
@@ -49,11 +46,11 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="delete-dish-{{$dish->id}}" role="dialog" tabindex="-1" aria-labelledby="modelTitle-{{$dish->id}}" aria-hidden="true">
+                                            <div class="modal fade" id="delete-dish-{{$dish->id}}"  role="dialog" tabindex="-1" aria-labelledby="modelTitle-{{$dish->id}}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Delete current</h5>
+                                                            <h5 class="modal-title" >Delete current</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">

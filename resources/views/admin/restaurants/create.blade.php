@@ -31,10 +31,10 @@
 
             <div class="mb-2">
                 <label for="phone_number">Numero di telefono *</label>
-                <input type="tel" name="phone_number" id="phone_number" v-model="phone" v-on:keyup="countPhone" :class="{'input_correct': phone_check == 1, 'input_error': phone_check == 2}" 
-                    class="form-control @error('phone_number') is-invalid @enderror" required pattern="[0-9{10}" 
+                <input type="tel" name="phone_number" id="phone_number" v-model="phone" v-on:keyup="countPhone" :class="{'input_correct': phone_check == 1, 'input_error': phone_check == 2}"
+                    class="form-control @error('phone_number') is-invalid @enderror" pattern="[0-9]{3}[-. ]?[0-9]{7}" 
                     aria-describedby="phone_numberHelper" value="{{ old('phone_number') }}">
-                <small id="phone_numberHelper" class="text-muted">Inserisci il numero di telefono del ristorante es. 3519084543</small>
+                <small id="phone_numberHelper" class="text-muted">Inserisci il numero di telefono del ristorante</small>
 
                 @include('partials.single_error', ['variable' => 'phone_number'])
             </div>
@@ -59,7 +59,7 @@
 
             <div class="mb-3">
                 <label for="category_id" class="form-label">Categorie *</label>
-                <select required="required" multiple class="form-control @error('category_id[]') is-invalid @enderror" name="category_id[]"
+                <select multiple class="form-control @error('category_id[]') is-invalid @enderror" name="category_id[]"
                     id="category_id">
                     <option disabled value="">Seleziona categoria</option>
                     @foreach ($categories as $category)

@@ -66,15 +66,15 @@ const app = new Vue({
             }
         },
         countPhone(){
-            if(this.phone.length == 10 ){
+            if(this.phone.length == 11 ){
                 this.phone_check = 1;
-            } else if (this.phone.length <= 9 || this.phone.length >= 11) {
+            } else if (this.phone.length <= 10 || this.phone.length >= 12) {
                 this.phone_check = 2;
             }
         },
         checkDeliveryCost(){
             let check = parseInt(this.delivery_cost)
-            if(check > 0 && check < 25){
+            if(check > 0 && check < 20){
                 this.delivery_cost_check = 1
             } else {
                 this.delivery_cost_check = 2
@@ -94,8 +94,6 @@ const app = new Vue({
                 this.dish_name_check = 2;
             }
         },
-        
-       
         checkDishPrice(){
             let check = parseInt(this.dish_price)
             if(check > 0){

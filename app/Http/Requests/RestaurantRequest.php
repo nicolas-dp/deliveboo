@@ -26,7 +26,7 @@ class RestaurantRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('restaurants')->ignore($this->restaurant), 'max:50'],
-            'category_id' => ['required','exists:categories,id'],
+            'category_id' => ['exists:categories,id'],
             'description' => ['nullable'],
             'address' => ['required'],
             'delivery_cost' => ['required'],
