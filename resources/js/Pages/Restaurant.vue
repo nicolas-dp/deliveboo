@@ -69,7 +69,11 @@
 
                   <p>Prezzo: {{ dish.price }} €</p>
 
-                  <CartActions :dishElement="dish" v-if="dish.is_available" @setCookie="setCartCookie()"/>
+                  <CartActions
+                    :dishElement="dish"
+                    v-if="dish.is_available"
+                    @setCookie="setCartCookie()"
+                  />
                 </div>
                 <div class="card-footer">
                   <button
@@ -192,13 +196,23 @@
           <button class="btn btn-secondary btn-sm" @click="myCart.resetCart()">
             Azzera carrello
           </button>
-          <button
+
+          <router-link
+            class="btn btn-info btn-sm"
+            :to="{ name: 'checkout' }"
+            @click="setCartCookie()"
+            v-if="myCart.list_dishes.length > 0"
+          >
+            Vai al Checkout
+          </router-link>
+
+<!--           <button
             class="btn btn-info btn-sm"
             @click="setCartCookie()"
             v-if="myCart.list_dishes.length > 0"
           >
             Vai al Checkout
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -286,17 +300,14 @@ export default {
 
     //metodo per passare informazione al local storage
     setCartCookie() {
-
       //rimuovo cookie esistente
-      localStorage.removeItem('list_cookie');
+      localStorage.removeItem("list_cookie");
 
       //trasformo in stringa l'array da passare
       const parsed = JSON.stringify(this.myCart.list_dishes);
 
       //creo il 'cookie'
       localStorage.setItem("list_cookie", parsed);
-
-
     },
   },
 
@@ -304,19 +315,19 @@ export default {
     this.getRestaurant();
 
     //controlla al mounted se esiste il cooki dishlist
-    if (localStorage.getItem('list_cookie')) {
-
+    if (localStorage.getItem("list_cookie")) {
       //se c'è
       try {
         //alert("c'è il cookie eheh")
 
         //aggiorno la lista piatti in state.cart
-        this.myCart.list_dishes = JSON.parse(localStorage.getItem('list_cookie'));
+        this.myCart.list_dishes = JSON.parse(
+          localStorage.getItem("list_cookie")
+        );
         this.myCart.makeTotal();
-      } 
-      //sennò lancia errore
-      catch(e) {
-        localStorage.removeItem('list_cookie');
+      } catch (e) {
+        //sennò lancia errore
+        localStorage.removeItem("list_cookie");
       }
     }
 
