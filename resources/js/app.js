@@ -10,7 +10,15 @@ window.Vue = require('vue');
 
 import router from './router';
 import App from './views/App.vue';
+// libreria swiper
+import VueGlide from "vue-glide-js";
+import "vue-glide-js/dist/vue-glide.css";
 
+Vue.use(VueGlide);
+// libreria animazione allo scrool
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
