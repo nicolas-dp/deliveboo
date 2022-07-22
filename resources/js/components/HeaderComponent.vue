@@ -46,7 +46,7 @@
                     </ul>
 
                     <div class="my-2 my-lg-0">
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto d-flex justify-content-space-around flex-row">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <svg

@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="container">
             <div
-                class="row row-cols-3 row-cols-md-2 row-cols-lg-6 gap-3 pt-5 pb-5"
+                class="row row-cols-sm-1 row-cols-md-5 gap-3 pt-5 pb-5 justify-content-center"
             >
                 <div class="col list_style text-center p-3">
                     <h3>Scopri Deliveroo</h3>
@@ -98,23 +98,17 @@
                 <div class="col list_style text-center p-3">
                     <h3>Porta Deliveroo con te</h3>
                     <div>
-                        <a
-                            href="#"
-                            target="_blank"
-                            
-                        >
-                            <img class="img-fluid"
+                        <a href="#" target="_blank">
+                            <img
+                                class="img-fluid"
                                 src="/../img/badge_apple.png"
                                 alt="badge apple"
                             />
                         </a>
 
-                        <a
-                            href="#"
-                            target="_blank"
-                            
-                        >
-                            <img class="img-fluid"
+                        <a href="#" target="_blank">
+                            <img
+                                class="img-fluid"
                                 src="/../img/badge_google.png"
                                 alt="badge google"
                             />
@@ -122,6 +116,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="footer_copyright">
+             <small
+            >Copyright Team 5 - by Nicolas De Palma, Emanuele Scapaticci,
+            Domenico Galileo, Roma Margine, Federico Capitani</small>
         </div>
     </div>
 </template>
@@ -142,5 +141,13 @@ export default {
 .list_style {
     background-color: #444444ad;
     border-radius: 0.25rem;
+}
+
+.footer_copyright{
+    background-color: #444444ad;
+    text-align: center;
+    small{
+        color: white;
+    }
 }
 </style>
