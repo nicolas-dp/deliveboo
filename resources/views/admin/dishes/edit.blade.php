@@ -12,19 +12,19 @@
         
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $dish->name) }}">
+            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $dish->name)}}" v-model="dish_name" v-on:keyup="countCharDishName" :class="{'input_correct': dish_name_check == 1, 'input_error': dish_name_check == 2}">
             @include('partials.single_error',['variable' => 'name'])
         </div>
         
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $dish->description) }}</textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" >{{ old('description', $dish->description) }}</textarea>
             @include('partials.single_error',['variable' => 'description'])
         </div>
         
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" step=".01" class="form-control" id="price" name="price" value="{{ old('price', $dish->price) }}">
+            <input type="number" step=".01" class="form-control" id="price" name="price" value="{{ old('price', $dish->price) }}" v-model="dish_price" v-on:keyup="checkDishPrice" :class="{'input_correct': dish_price_check == 1, 'input_error': dish_price_check == 2}">
             @include('partials.single_error',['variable' => 'price'])
         </div>
 

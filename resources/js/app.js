@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
 window.Vue = require('vue');
 
@@ -20,6 +20,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -27,7 +28,34 @@ AOS.init();
  */
 
 const app = new Vue({
-    el: '#root',
-    render: h => h(App),
-    router
+    el: "#root",
+    render: (h) => h(App),
+    router,
+});
+
+const app2 = new Vue({
+    el: "#app",
+    data() {
+        return {
+            password: "",
+            password_confirm: "",
+            password_check: 0,
+        };
+    },
+    methods: {
+        checkPassword() {
+            if (this.password == this.password_confirm && this.password.length >= 8) {
+                this.password_check = 1;
+            } else {
+                this.password_check = 2;
+            }
+        },
+        checkLoginPassword() {
+            if (this.password.length >= 8) {
+                this.password_check = 1;
+            } else {
+                this.password_check = 2;
+            }
+        }
+    },
 });

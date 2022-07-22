@@ -54,7 +54,7 @@ const app = new Vue({
         countCharRestName(){
             if(this.rest_name.length >= 5 ){
                 this.rest_name_check = 1;
-            } else if (this.rest_name.length > 0 && this.rest_name.length < 5) {
+            } else if (this.rest_name.length >= 0 && this.rest_name.length < 5) {
                 this.rest_name_check = 2;
             }
         },

@@ -40,41 +40,89 @@
                     <input type="text" placeholder="Search...">
                     <span class="tooltip">Search</span>
                 </li>
+
                 <li>
+                    @php 
+                    use Illuminate\Support\Facades\Auth;
+                    $restaurant = Auth::user()->restaurant; 
+                    @endphp
+                    @if($restaurant)
                     <a href="{{route('admin.home')}}">
                         <i class='bx bx-grid-alt'></i>
                         <span class="links_name">Dashboard</span>
                     </a>
+                    @else 
+                    <a href="#">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name" style="color: #878383">Dashboard</span>
+                    </a>
+                    @endif
                     <span class="tooltip">Dashboard</span>
                 </li>
+
                 <li>
-                    <a href="{{route('admin.restaurants.index')}}">
+                    @if($restaurant)
+                    <a href="{{route('admin.restaurants.index')}}" aria-disabled="">
                         <i class='bx bx-user'></i>
-                        <span class="links_name">User</span>
+                        <span class="links_name" >User</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    @else
+                    <a href="#" aria-disabled="">
+                        <i class='bx bx-user'></i>
+                        <span class="links_name" style="color: #878383">User</span>
+                    </a>
+                    @endif
+                    <span class="tooltip" >User</span>
                 </li>
+
+
                 <li>
-                    <a href="{{route('admin.restaurants.index')}}">
+                    @if($restaurant)
+                    <a href="{{route('admin.restaurants.index')}}" >
                         <i class='bx bx-chat'></i>
                         <span class="links_name">Restaurant</span>
                     </a>
+                    @else
+                    <a href="#" >
+                        <i class='bx bx-chat'></i>
+                        <span class="links_name" style="color: #878383">Restaurant</span>
+                    </a>
+                    @endif
                     <span class="tooltip">Restaurant</span>
                 </li>
+
+
                 <li>
+                    @if($restaurant)
                     <a href="{{route('admin.dishes.index')}}">
                         <i class='bx bx-folder'></i>
-                        <span class="links_name">Dishes</span>
+                        <span class="links_name" >Dishes</span>
                     </a>
+                    @else
+                    <a href="#">
+                        <i class='bx bx-folder'></i>
+                        <span class="links_name" style="color: #878383">Dishes</span>
+                    </a>
+                    @endif
                     <span class="tooltip">Dishes</span>
                 </li>
+
+
                 <li>
+                    @if($restaurant)
                     <a href="{{route('admin.orders.index')}}">
                         <i class='bx bx-chat'></i>
                         <span class="links_name"> Orders</span>
                     </a>
+                    @else
+                    <a href="#">
+                        <i class='bx bx-chat'></i>
+                        <span class="links_name" style="color: #878383"> Orders</span>
+                    </a>
+                    @endif
                     <span class="tooltip">Orders</span>
                 </li>
+
 
                 <li>
                     <a href="#">
@@ -83,6 +131,8 @@
                     </a>
                     <span class="tooltip">Setting</span>
                 </li>
+
+
                 <li class="profile">
                     <div class="profile-details">
                         <img src="https://flyclipart.com/thumb2/boss-circle-man-person-profile-staff-user-icon-133441.png" alt="profileImg">
