@@ -14,7 +14,6 @@
             {{ restaurant.description }}
           </p>
         </div>
-
         <div class="col-12 col-lg-6 risto_info">
           <div
             class="
