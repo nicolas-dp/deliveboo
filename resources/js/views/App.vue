@@ -3,7 +3,7 @@
         <HeaderComponent />
         <!-- /.header -->
 
-        <div class="main pb-5">
+        <div class="main">
             <router-view></router-view>
         </div>
         <!-- /.main -->

@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <nav class="navbar navbar-expand-md shadow-sm navbar-dark">
+        <nav class="navbar navbar-expand-md shadow-sm navbar-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="/"
                     ><img
@@ -23,7 +23,7 @@
                     class="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item">
                             <router-link class="nav-link" :to="{ name: 'home' }"
                                 >Home</router-link
@@ -46,7 +46,7 @@
                     </ul>
 
                     <div class="my-2 my-lg-0">
-                        <ul class="navbar-nav ml-auto d-flex justify-content-space-around flex-row">
+                        <ul class="navbar-nav ml-auto d-flex justify-content-around flex-row">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <svg
@@ -87,6 +87,7 @@ export default {
     a {
         color: white !important;
         font-weight: bold;
+        transition: all 0.5s;
         &:hover {
             filter: drop-shadow(2px 4px 6px black);
         }

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home pb-5">
     <div class="jumbotron" v-if="categories">
       <img
         v-if="category_active"
@@ -226,6 +226,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+.home{
+  background-color: whitesmoke;
+}
+
 .jumbotron {
   .img_jumbo {
     width: 100%;
