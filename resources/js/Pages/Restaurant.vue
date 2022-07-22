@@ -62,17 +62,19 @@
           <!-- <div class="container-fluid"> -->
           <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-1">
             <div class="col" v-for="dish in restaurant.dishes" :key="dish.id">
-              <div class="card">
+              <div class="card h-100">
                 <img :src="dish.cover_image" alt="" />
                 <div class="card-body">
                   <h5>{{ dish.name }}</h5>
 
                   <p>Prezzo: {{ dish.price }} €</p>
+
+                  <CartActions :dishElement="dish" v-if="dish.is_available" />
                 </div>
                 <div class="card-footer">
                   <button
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-info btn-sm"
                     data-bs-toggle="modal"
                     :data-bs-target="`#exampleModal-${dish.id}`"
                   >
@@ -118,43 +120,6 @@
                             >
                           </p>
                         </div>
-                        <div v-if="dish.is_available" class="modal-footer">
-                          <div
-                            class="btn-group"
-                            role="group"
-                            aria-label="Basic example"
-                          >
-                            <button
-                              type="button"
-                              class="btn btn-primary"
-                              @click="subtractOne(dish)"
-                            >
-                              -
-                            </button>
-                            <span
-                              class="bg-light px-3 d-flex align-items-center"
-                              :class="`dish-${dish.id}`"
-                            >
-                              {{ dish.amount_html }}
-                            </span>
-                            <button
-                              type="button"
-                              class="btn btn-primary"
-                              @click="addOne(dish)"
-                            >
-                              +
-                            </button>
-                          </div>
-
-                          <button
-                            v-if="dish.is_available"
-                            type="button"
-                            class="btn btn-primary"
-                            @click="addItemToCart(dish, dish.amount_html)"
-                          >
-                            Aggiungi al carrello
-                          </button>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -168,10 +133,47 @@
           <h2 class="text-center mb-3" id="menu">Carrello</h2>
 
           <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
-            <li v-for="dishElement in myCart.list_dishes" :key="dishElement.id">
+            <li v-for="(dishElement, i) in myCart.list_dishes" :key="i">
               {{ dishElement.name }}: {{ dishElement.amount }} x
               {{ dishElement.price }}€ =
               {{ dishElement.amount * dishElement.price }} €
+
+              <div class="cartActions">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    @click="subtractOne(dishElement, i)"
+                  >
+                    -
+                  </button>
+                  <span class="bg-light px-2 border border-1 d-flex align-items-center">
+                    <!-- :class="`dish-${dish.id}`" -->
+                    {{ dishElement.amount }}
+                  </span>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    @click="addOne(dishElement)"
+                  >
+                    +
+                  </button>
+                </div>
+                <span class="btn btn-danger btn-sm" @click="removeItem(i)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="white"
+                    class="bi bi-trash3-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+                    />
+                  </svg>
+                </span>
+              </div>
             </li>
           </ul>
 
@@ -179,8 +181,11 @@
 
           <p>Totale: {{ myCart.total_amount }} €</p>
 
-          <button class="btn btn-secondary" @click="myCart.resetCart()">
+          <button class="btn btn-secondary btn-sm" @click="myCart.resetCart()">
             Azzera carrello
+          </button>
+          <button class="btn btn-info btn-sm" @click="setCartCookie()">
+            Vai al Checkout
           </button>
         </div>
       </div>
@@ -190,9 +195,14 @@
 
 <script>
 import state from "../state";
+import CartActions from "../components/CartActions.vue";
 
 export default {
   name: "Restaurant",
+
+  components: {
+    CartActions,
+  },
 
   data() {
     return {
@@ -200,7 +210,7 @@ export default {
       //number: 0,
       loading: true,
       myCart: state.cart,
-      dish_amounts: {},
+      //dish_amounts: {},
     };
   },
 
@@ -216,9 +226,9 @@ export default {
           } else {
             this.restaurant = response.data;
 
-            this.restaurant.dishes.forEach((dish) => {
+            /*             this.restaurant.dishes.forEach((dish) => {
               dish["amount_html"] = 1;
-            });
+            }); */
             //this.postResponse = response.data;
             //console.log(this.posts);
             this.loading = false;
@@ -229,74 +239,42 @@ export default {
         });
     },
 
-    addOne(dish) {
-      /*       console.log(document.querySelector(`.dish-${id}`).innerHTML);
-
-      let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
-
-      amount = amount + 1;
-
-      document.querySelector(`.dish-${id}`).innerHTML = amount; */
-      console.log(dish);
-
-      dish.amount_html = dish.amount_html + 1;
-
-      console.log(dish);
-
-      dish.amount_html.$forceUpdate();
+    addOne(obj) {
+      //this.counter = this.counter + 1;
+      obj.amount = obj.amount + 1;
+      this.myCart.makeTotal();
     },
 
-    subtractOne(dish) {
-      /*       let amount = parseInt(document.querySelector(`.dish-${id}`).innerHTML);
+    subtractOne(obj, index) {
 
-      if (amount > 0) {
-        //console.log(document.querySelector(`.dish-${id}`).innerHTML);
+      //console.log(obj.amount);
+      //console.log(obj.amount);
 
-        amount = amount - 1;
-
-        document.querySelector(`.dish-${id}`).innerHTML = amount;
-      } */
-      if (dish.amount_html > 0) {
-        dish.amount_html = dish.amount_html - 1;
+      if (obj.amount > 0) {
+        obj.amount = obj.amount - 1;
+        if (obj.amount == 0) {
+          this.removeItem(index)
+          this.myCart.makeTotal();
+        } else {
+          this.myCart.makeTotal();
+        }
       }
     },
 
-    addItemToCart(dishObject, dishAmount) {
-      //se esiste gìa nel carrello aggiunto altri elementi
-      if (this.myCart.list_dishes.filter(dishQuery => dishQuery.name === dishObject.name).length > 0) {
-        const objIndex = this.myCart.list_dishes.findIndex((obj => obj.id == dishObject.id));
-
-        //console.log(`indice arraypiatti: ${objIndex}`);
-
-
-        this.myCart.list_dishes[objIndex].amount = this.myCart.list_dishes[objIndex].amount + dishAmount;
-      }
-      //sennò lo creo
-      else {
-      let newDish = dishObject;
-
-      newDish["amount"] = dishAmount;
-
-      this.myCart.list_dishes.push(newDish);
-
-      //console.log(this.myCart.list_dishes);
+    removeItem(index) {
+      this.myCart.list_dishes.splice(index, 1);
 
       this.myCart.makeTotal();
-
-      console.log("totale carrello");
-      console.log(this.myCart.total_amount);
-      }
     },
 
-    /*     addDish(id) {
-      let amount = document.querySelector(`dish-${id}`).value;
-
-
-    } */
+    setCartCookie() {},
   },
 
   mounted() {
     this.getRestaurant();
+
+    console.log(state.cart);
+    console.log(this.myCart);
 
     //cancella
 

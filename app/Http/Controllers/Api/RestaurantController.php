@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     public function index()
     {
         //
-        $restaurants = Restaurant::with(['categories', 'dishes'])->paginate(10);
+        $restaurants = Restaurant::with(['categories', 'dishes'])->get();
 
         return $restaurants;
     }
@@ -39,6 +39,26 @@ class RestaurantController extends Controller
             return response()->json([
                 'status_code' => 404,
                 'status_text' => 'single restaurant not found'
+            ]);
+        }
+    }
+
+    /* 
+    la seguente api restituische i ristoranti che contengono la categoria desiderata all'url /api/restaurants/filter/{nomeCategoria}
+    */
+    public function filter($name)
+    {
+        //dd($name);
+        $restaurants = Restaurant::with('categories')->whereHas('categories', function ($q) use ($name) {
+            $q->where('name', '=', $name);
+        })->get();
+
+        if ($restaurants) {
+            return $restaurants;
+        } else {
+            return response()->json([
+                'status_code' => 404,
+                'status_text' => 'Nessun ristorante della categoria selezionata'
             ]);
         }
     }
