@@ -1,13 +1,39 @@
 <template>
   <div class="checkout">
-    <h1>checkout</h1>
+    <div v-if="true">
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+      <h1>Il tuo carrello</h1>
+
+      <p>eccolo</p>
+    </div>
+    <div v-else></div>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Checkout',
-}
+  name: "Checkout",
+};
 </script>
 
 <style lang="scss" scoped>

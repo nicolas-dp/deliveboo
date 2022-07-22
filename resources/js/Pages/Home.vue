@@ -1,5 +1,6 @@
 <template>
   <div class="home pb-5">
+    <h1>CIAOOOOOOO</h1>
     <div class="jumbotron" v-if="categories">
       <img
         v-if="category_active"
@@ -87,6 +88,7 @@
             <div class="card">
               <div class="card_image">
                 <img
+                  v-if="restaurant.cover_image"
                   class="img-fluid img_restaurant"
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
@@ -94,6 +96,12 @@
                       : 'storage/' + restaurant.cover_image
                   "
                   :alt="restaurant.name"
+                />
+                <img
+                  v-else
+                  src="https://www.clipartmax.com/png/middle/213-2131416_restaurant-lamb-clipart-placeholder-image-for-restaurant.png"
+                  :alt="restaurant.name"
+                  class="img-fluid"
                 />
               </div>
               <div class="card_text p-2">
@@ -115,12 +123,16 @@
           </router-link>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" v-else>
+      <div
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5"
+        v-else
+      >
         <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
           <router-link :to="'/restaurants/' + restaurant.slug">
             <div class="card">
               <div class="card_image">
                 <img
+                  v-if="restaurant.cover_image"
                   class="img-fluid"
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
@@ -128,6 +140,12 @@
                       : 'storage/' + restaurant.cover_image
                   "
                   :alt="restaurant.name"
+                />
+                <img
+                  v-else
+                  src="https://www.clipartmax.com/png/middle/213-2131416_restaurant-lamb-clipart-placeholder-image-for-restaurant.png"
+                  :alt="restaurant.name"
+                  class="img-fluid"
                 />
               </div>
               <div class="card_text p-2">
@@ -169,6 +187,7 @@ export default {
       categories: null,
       filtered_restaurants: null,
       category_active: null,
+      prova_variabile: "ciao stronzi",
     };
   },
   methods: {
@@ -187,12 +206,14 @@ export default {
       axios
         .get("/api/categories", {})
         .then((response) => {
-          //console.log(response);
+          console.log(response.data);
           this.categories = response.data;
         })
         .catch((error) => {
           console.error(error);
         });
+
+      console.log(this.categories);
     },
     getActiveCategory(index) {
       //console.log(index);
@@ -218,7 +239,7 @@ export default {
     },
   },
   mounted() {
-    console.log("mounted");
+    console.log(this.prova_variabile);
     this.getAllRestaurants();
     this.getAllCategories();
   },
@@ -226,8 +247,7 @@ export default {
 </script>
 
 <style lang="scss">
-
-.home{
+.home {
   background-color: whitesmoke;
 }
 
@@ -252,7 +272,6 @@ export default {
     transition: all 1s;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-
   }
 
   .bg_orange {
@@ -316,9 +335,9 @@ export default {
   color: #ff7f31;
 }
 
-@media screen and (max-width: 575px){
- .img_category{
-  height: 120px !important;
- }  
+@media screen and (max-width: 575px) {
+  .img_category {
+    height: 120px !important;
+  }
 }
 </style>
