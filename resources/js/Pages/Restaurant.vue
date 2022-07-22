@@ -69,7 +69,11 @@
 
                   <p>Prezzo: {{ dish.price }} €</p>
 
-                  <CartActions :dishElement="dish" v-if="dish.is_available" />
+                  <CartActions
+                    :dishElement="dish"
+                    v-if="dish.is_available"
+                    @setCookie="setCartCookie()"
+                  />
                 </div>
                 <div class="card-footer">
                   <button
@@ -147,7 +151,15 @@
                   >
                     -
                   </button>
-                  <span class="bg-light px-2 border border-1 d-flex align-items-center">
+                  <span
+                    class="
+                      bg-light
+                      px-2
+                      border border-1
+                      d-flex
+                      align-items-center
+                    "
+                  >
                     <!-- :class="`dish-${dish.id}`" -->
                     {{ dishElement.amount }}
                   </span>
@@ -184,9 +196,23 @@
           <button class="btn btn-secondary btn-sm" @click="myCart.resetCart()">
             Azzera carrello
           </button>
-          <button class="btn btn-info btn-sm" @click="setCartCookie()">
+
+          <router-link
+            class="btn btn-info btn-sm"
+            :to="{ name: 'checkout' }"
+            @click="setCartCookie()"
+            v-if="myCart.list_dishes.length > 0"
+          >
             Vai al Checkout
-          </button>
+          </router-link>
+
+<!--           <button
+            class="btn btn-info btn-sm"
+            @click="setCartCookie()"
+            v-if="myCart.list_dishes.length > 0"
+          >
+            Vai al Checkout
+          </button> -->
         </div>
       </div>
     </div>
@@ -243,35 +269,67 @@ export default {
       //this.counter = this.counter + 1;
       obj.amount = obj.amount + 1;
       this.myCart.makeTotal();
+
+      this.setCartCookie();
     },
 
     subtractOne(obj, index) {
-
       //console.log(obj.amount);
       //console.log(obj.amount);
 
       if (obj.amount > 0) {
         obj.amount = obj.amount - 1;
         if (obj.amount == 0) {
-          this.removeItem(index)
+          this.removeItem(index);
           this.myCart.makeTotal();
         } else {
           this.myCart.makeTotal();
         }
       }
+
+      this.setCartCookie();
     },
 
     removeItem(index) {
       this.myCart.list_dishes.splice(index, 1);
 
       this.myCart.makeTotal();
+
+      this.setCartCookie();
     },
 
-    setCartCookie() {},
+    //metodo per passare informazione al local storage
+    setCartCookie() {
+      //rimuovo cookie esistente
+      localStorage.removeItem("list_cookie");
+
+      //trasformo in stringa l'array da passare
+      const parsed = JSON.stringify(this.myCart.list_dishes);
+
+      //creo il 'cookie'
+      localStorage.setItem("list_cookie", parsed);
+    },
   },
 
   mounted() {
     this.getRestaurant();
+
+    //controlla al mounted se esiste il cooki dishlist
+    if (localStorage.getItem("list_cookie")) {
+      //se c'è
+      try {
+        //alert("c'è il cookie eheh")
+
+        //aggiorno la lista piatti in state.cart
+        this.myCart.list_dishes = JSON.parse(
+          localStorage.getItem("list_cookie")
+        );
+        this.myCart.makeTotal();
+      } catch (e) {
+        //sennò lancia errore
+        localStorage.removeItem("list_cookie");
+      }
+    }
 
     console.log(state.cart);
     console.log(this.myCart);

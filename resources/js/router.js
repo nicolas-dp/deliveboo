@@ -8,8 +8,8 @@ Vue.use(VueRouter);
 // These can be imported from other files
 import Home from "./Pages/Home";
 import About from "./Pages/About";
-import Restaurants from "./Pages/Restaurants";
 import Restaurant from "./Pages/Restaurant";
+import Checkout from "./Pages/Checkout";
 import NotFound from "./Pages/NotFound";
 
 // 2. Define some routes
@@ -28,15 +28,16 @@ const routes = [
         name: "about",
         component: About,
     },
-    {
-        path: "/restaurants",
-        name: "restaurants",
-        component: Restaurants,
-    },
+
     {
         path: "/restaurants/:slug", // o id (in questo caso nella rotta di web.php abbiamo usato lo slug)
         name: "restaurant",
         component: Restaurant,
+    },    
+    {
+        path: "/checkout",
+        name: "checkout",
+        component: Checkout,
     },
     {
         path: "/*",
