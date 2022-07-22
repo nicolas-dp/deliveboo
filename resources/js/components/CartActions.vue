@@ -14,7 +14,7 @@
     <button
       type="button"
       class="btn btn-success"
-      @click="addItemToCart(dishElement, counter)"
+      @click="addItemToCart(dishElement, counter); $emit('setCookie')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
