@@ -2,22 +2,16 @@
   <div class="home">
     <div class="jumbotron" v-if="categories">
       <img
-      v-if="category_active"
+        v-if="category_active"
         class="img_jumbo"
         :src="categories[category_active].cover_image"
         alt=""
       />
-      <img
-      v-else
-        class="img_jumbo"
-        :src="categories[0].cover_image"
-        alt=""
-      />
+      <img v-else class="img_jumbo" :src="categories[0].cover_image" alt="" />
     </div>
     <section class="category container">
       <vue-glide v-if="categories">
         <vue-glide-slide v-for="category in categories" :key="category.id">
-          <h5 class="text-center text-uppercase">{{ category.name }}</h5>
           <div
             v-on:click="
               getActiveCategory(category.id);
@@ -30,7 +24,13 @@
               :alt="category.name"
               :class="category.id - 1 !== category_active ? 'filter' : ''"
             />
-           <!--  category.id = 1   category_active = 0 -->
+            <h5
+              class="text-center text-uppercase pt-2 pb-3 title_category"
+              :class="category.id - 1 == category_active ? 'bg_orange' : ''"
+            >
+              {{ category.name }}
+            </h5>
+            <!--  category.id = 1   category_active = 0 -->
           </div>
         </vue-glide-slide>
         <template slot="control">
@@ -68,12 +68,16 @@
       </vue-glide>
     </section>
 
-    <section class="restaurant container" data-aos="zoom-in" data-aos-duration="1500">
+    <section
+      class="restaurant container"
+      data-aos="zoom-in"
+      data-aos-duration="1500"
+      v-if="restaurants"
+    >
       <div
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5"
         v-if="filtered_restaurants"
       >
-
         <div
           class="col"
           v-for="restaurant in filtered_restaurants"
@@ -92,17 +96,28 @@
                   :alt="restaurant.name"
                 />
               </div>
-              <div class="card_text">
-                <strong>{{ restaurant.name }}</strong>
+              <div class="card_text p-2">
+                <h4 class="orange">{{ restaurant.name }}</h4>
+                <p>
+                  <span class="orange">Indirizzo:</span>
+                  {{ restaurant.address }}
+                </p>
+                <p>
+                  <span class="orange">Chiude alle</span>
+                  {{ restaurant.closing_hours }}
+                </p>
+                <p>
+                  <span class="orange">Spedizione:</span>
+                  {{ restaurant.delivery_cost }}€
+                </p>
               </div>
             </div>
           </router-link>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3" v-else>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" v-else>
         <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
           <router-link :to="'/restaurants/' + restaurant.slug">
-          
             <div class="card">
               <div class="card_image">
                 <img
@@ -115,8 +130,20 @@
                   :alt="restaurant.name"
                 />
               </div>
-              <div class="card_text">
-                <strong>{{ restaurant.name }}</strong>
+              <div class="card_text p-2">
+                <h4 class="orange">{{ restaurant.name }}</h4>
+                <p>
+                  <span class="orange">Indirizzo:</span>
+                  {{ restaurant.address }}
+                </p>
+                <p>
+                  <span class="orange">Chiude alle</span>
+                  {{ restaurant.closing_hours }}
+                </p>
+                <p>
+                  <span class="orange">Spedizione:</span>
+                  {{ restaurant.delivery_cost }}€
+                </p>
               </div>
             </div>
           </router-link>
@@ -171,12 +198,16 @@ export default {
       //console.log(index);
       this.category_active = index - 1;
       console.log(this.category_active);
-
     },
 
-        getFilteredRestaurants() {
+    getFilteredRestaurants() {
       axios
-        .get(`/api/restaurants/filter/${this.categories[this.category_active].name}`, {})
+        .get(
+          `/api/restaurants/filter/${
+            this.categories[this.category_active].name
+          }`,
+          {}
+        )
         .then((response) => {
           //console.log(response);
           this.filtered_restaurants = response.data;
@@ -184,8 +215,7 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-  },
-
+    },
   },
   mounted() {
     console.log("mounted");
@@ -196,7 +226,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .jumbotron {
   .img_jumbo {
     width: 100%;
@@ -212,21 +241,34 @@ export default {
   background-color: rgba(255, 255, 255, 0.671);
   box-shadow: 0 0 10px grey;
   border-radius: 0.3rem;
-
   padding: 1rem;
+
+  .title_category {
+    transition: all 1s;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+  }
+
+  .bg_orange {
+    background-color: #ff7f31;
+    color: white;
+  }
+
   .img_category {
     width: 100%;
     height: 200px;
     object-fit: cover;
     object-position: center;
     box-shadow: 0 0 10px lightgray;
-    border-radius: 0.3rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
   }
 
   button {
     transition: all 1s;
     &:hover {
-      background-color: orangered !important;
+      background-color: #ff7f31 !important;
       border-radius: 0.5rem;
       color: white;
     }
@@ -240,12 +282,38 @@ export default {
     width: 5% !important;
   }
 
-  .filter{
+  .filter {
+    transition: all 1s;
     filter: brightness(0.5);
   }
-
 }
-  .animate__animated.animate__fadeIn {
-  --animate-duration: 2s;
+
+.restaurant {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  p {
+    margin: 0;
+  }
+  .card {
+    height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px grey;
+    transition: all 0.7s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.orange {
+  color: #ff7f31;
+}
+
+@media screen and (max-width: 575px){
+ .img_category{
+  height: 120px !important;
+ }  
 }
 </style>

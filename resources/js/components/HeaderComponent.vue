@@ -82,7 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-    background-color: #ffa700;
+    background-color: #ff7f31;
 
     a {
         color: white !important;
