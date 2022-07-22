@@ -29,7 +29,7 @@ class DishRequest extends FormRequest
             'price' => 'required|numeric',
             'ingredients' => 'nullable',
             'cover_image' => 'nullable',
-            'is_availability' => 'required',
+            'is_available' => 'required',
             'restaurant_id' => ['exists:restaurants,id'],
         ];
     }

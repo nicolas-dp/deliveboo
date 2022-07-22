@@ -33,10 +33,10 @@
         </div>
 
         <div class="form-group">
-            <label for="is_availability">Availability</label>
-            <select class="form-control" id="is_availability" name="is_availability">
-                <option value="1" {{ old('is_availability') == 1 ? 'selected' : '' }}>Available</option>
-                <option value="0" {{ old('is_availability') == 0 ? 'selected' : '' }}>Not Available</option>
+            <label for="is_available">Availability</label>
+            <select class="form-control" id="is_available" name="is_available">
+                <option value="1" {{ old('is_available') == 1 ? 'selected' : '' }}>Available</option>
+                <option value="0" {{ old('is_available') == 0 ? 'selected' : '' }}>Not Available</option>
             </select>
             @include('partials.single_error',['variable' => 'is_availability'])
         </div>
