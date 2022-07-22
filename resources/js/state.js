@@ -34,6 +34,7 @@ const state = Vue.observable({
 
             } else {
                 console.log('Somma totale carrelo non riuscita: non posso sommare 0 elementi');
+                this.total_amount = 0.00;
             }
         },
 
