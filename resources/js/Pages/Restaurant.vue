@@ -446,11 +446,11 @@ svg {
   .card {
     height: 100%;
     border-radius: 0.5rem;
+    box-shadow: 0 0 10px grey;
     transition: all 0.7s;
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px grey;
-    }
+    // &:hover {
+    //   transform: scale(1.1);
+    // }
   }
 
   .cart {
