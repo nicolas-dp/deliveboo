@@ -39,8 +39,8 @@
         <div class="form-group">
             <label for="is_available">Availability</label>
             <select class="form-control" id="is_available" name="is_available" required='selected'>
-                <option value="{{old('is_available', $dish->is_available)}}" selected="{{ old('is_available', $dish->is_available) == 1 }}" >Available</option>
-                <option value="{{ old('is_available', $dish->is_available)}}" selected="{{ old('is_available', $dish->is_available) == 0 }}">Not Available</option>
+                <option value="1" {{ old('is_available', $dish->is_available) == 1 ? 'selected' : '' }} >Available</option>
+                <option value="0" {{ old('is_available', $dish->is_available) == 0 ? 'selected' : '' }}>Not Available</option>
             </select>
             @include('partials.single_error',['variable' => 'is_available'])
         </div>
