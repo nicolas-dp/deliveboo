@@ -2,8 +2,9 @@
 
 @section('content')
 <div id="app">
-    <div class="container">
-        <div class="row justify-content-center">
+<div class="check-form">
+<div class="container pt-5">
+        <div class="row justify-content-center pt-5">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
@@ -12,7 +13,7 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <div class="form-group row">
+                            <div class="mb-3 row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
 
                                 <div class="col-md-6">
@@ -26,7 +27,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="mb-3 row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
 
                                 <div class="col-md-6">
@@ -40,12 +41,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="mb-3 row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" v-model="password" v-on:keyup="checkPassword" :class="{'input_correct': password_check == 1, 'input_error': password_check == 2}">
-
+                                    <label for="email">Inserire almeno 8 caratteri.</label>
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -54,7 +55,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="mb-3 row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
                                 <div class="col-md-6">
@@ -62,7 +63,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="mb-3 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
@@ -75,5 +76,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

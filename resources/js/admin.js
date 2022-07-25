@@ -66,9 +66,9 @@ const app = new Vue({
             }
         },
         countPhone(){
-            if(this.phone.length == 11 ){
+            if(this.phone.length == 10 ){
                 this.phone_check = 1;
-            } else if (this.phone.length <= 10 || this.phone.length >= 12) {
+            } else if (this.phone.length <= 9 || this.phone.length >= 11) {
                 this.phone_check = 2;
             }
         },
