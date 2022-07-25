@@ -12,6 +12,7 @@
     <p>{{$restaurant->description}}</p>
     <p>{{$restaurant->address}}</p>
     <p>{{$restaurant->delivery_cost}}</p>
+
     <img src="{{$restaurant->cover_image}}" alt="">
 
     <a class="btn btn-success text-light" href="{{route('admin.restaurants.edit', $restaurant->slug)}}">Edit</a>

@@ -20,23 +20,23 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-         public function index()
+    public function index()
     {
         //
 
-         $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
-         $categories = Category::all();
-         if($restaurant) {
+        $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
+        $categories = Category::all();
+        if ($restaurant) {
             $restaurant = Restaurant::where('user_id', '=', Auth::id())->get()->first();
-             return view('admin.restaurants.index', compact('restaurant','categories'));
-         } else {
-             return redirect()->route('admin.restaurants.create');
-         }
+            return view('admin.restaurants.index', compact('restaurant', 'categories'));
+        } else {
+            return redirect()->route('admin.restaurants.create');
+        }
 
         //dd($restaurant);
 
         // return view('admin.restaurants.index', compact('restaurant', 'categories'));
-    } 
+    }
 
 
 
@@ -67,7 +67,7 @@ class RestaurantController extends Controller
         $val_data = $request->validated();
 
         // genera slug
-        $slug = Str::slug($request->name). '-' . rand(1, 1000000);
+        $slug = Str::slug($request->name) . '-' . rand(1, 1000000);
         $val_data['slug'] = $slug;
 
         // assegna il ristorante all'utente registrato
@@ -135,7 +135,7 @@ class RestaurantController extends Controller
         $val_data = $request->validated();
 
         // genera slug
-        $slug = Str::slug($request->name). '-' . rand(1, 1000000);
+        $slug = Str::slug($request->name) . '-' . rand(1, 1000000);
         $val_data['slug'] = $slug;
 
         // assegna il ristorante all'utente registrato
@@ -159,7 +159,7 @@ class RestaurantController extends Controller
         // $new_restaurant = Restaurant::create($val_data->except(['category_id']));
         // $new_restaurant->categories()->attach($request->get('category_id', []));
         $restaurant->update($val_data);
-        $restaurant->categories()->attach($request->category_id);
+        $restaurant->categories()->sync($request->category_id);
 
         // dd($val_data);
         return redirect()->route('admin.restaurants.index')->with('message', 'Ristorante creato con successo!');
@@ -173,6 +173,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-      //
+        //
     }
 }
