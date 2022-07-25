@@ -252,7 +252,7 @@
 
             <button
               class="btn btn-secondary btn-sm"
-              @click="myCart.resetCart()"
+              @click="myCart.resetCart(); setCartCookie()"
             >
               Azzera carrello
             </button>
