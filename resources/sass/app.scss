@@ -34,8 +34,16 @@
     align-content: center;
 }
 
-.card-form {
+.card-form-reg{
+    height: 460px;
+}
+
+.card-form{
     height: 370px;
+}
+
+.card-form,
+.card-form-reg {
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
@@ -48,6 +56,11 @@
     &:hover .black-cube {
         background-color: rgba(0, 0, 0, 0.85) !important;
     }
+}
+
+.card-body{
+    flex: 0 !important;
+    padding: 1rem  1rem 0;
 }
 
 .arrow-back {
@@ -79,36 +92,6 @@
     position: absolute;
     right: 20px;
     top: -45px;
-}
-
-
-.icon-index {
-    z-index: 200;
-}
-
-.black-cube {
-    width: 40px;
-    height: 22px;
-    background-color: rgba(0, 0, 0, 0);
-    z-index: 1;
-}
-
-.cube-1 {
-    position: absolute;
-    right: 147px;
-    top: -22px;
-}
-
-.cube-2 {
-    position: absolute;
-    right: 66px;
-    top: -23px;
-}
-
-.cube-3 {
-    position: absolute;
-    right: 29px;
-    top: -18px;
 }
 
 .input-group-prepend span {
