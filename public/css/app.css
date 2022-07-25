@@ -12180,16 +12180,14 @@ fieldset:disabled .btn {
   align-content: center;
 }
 
-.card-form-reg {
-  height: 460px;
-}
-
-.card-form {
-  height: 370px;
+.card-body {
+  flex: 0 !important;
+  padding: 1rem 1rem 0 !important;
 }
 
 .card-form,
-.card-form-reg {
+.card-form-xs,
+.card-form-xl {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
@@ -12199,18 +12197,31 @@ fieldset:disabled .btn {
 }
 
 .card-form:hover,
-.card-form-reg:hover {
+.card-form-xs:hover,
+.card-form-xl:hover {
   background-color: rgba(0, 0, 0, 0.85) !important;
+  border-radius: 0.44rem !important;
 }
 
-.card-form:hover .black-cube,
-.card-form-reg:hover .black-cube {
-  background-color: rgba(0, 0, 0, 0.85) !important;
+.card-form-xl {
+  height: 460px;
 }
 
-.card-body {
-  flex: 0 !important;
-  padding: 1rem 1rem 0;
+.card-form {
+  height: 370px;
+}
+
+.card-form-xs {
+  height: 240px;
+  margin: 0;
+}
+
+.card-form-xs .card-header {
+  padding: 0 1rem !important;
+}
+
+.card-form-xs .card-body {
+  padding: 0 1rem !important;
 }
 
 .arrow-back {
@@ -12283,14 +12294,18 @@ input:focus {
   color: black;
   background-color: #ffc312;
   border: none;
-  width: 100px;
   transition: 0.33s;
+  width: 100px;
+}
+
+.login_btn_plus {
+  width: 200px;
 }
 
 .login_btn:hover {
-  color: rgb(243, 233, 233);
+  color: rgb(255, 252, 252);
   background-color: #ff7f31;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .links {
