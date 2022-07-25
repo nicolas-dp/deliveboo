@@ -29,6 +29,7 @@ class RestaurantRequest extends FormRequest
             'category_id' => ['required','exists:categories,id'],
             'description' => ['nullable'],
             'address' => ['required'],
+            'description' => ['nullable'],
             'delivery_cost' => ['required'],
             'opening_hours' => ['nullable'],
             'closing_hours' => ['nullable'],
