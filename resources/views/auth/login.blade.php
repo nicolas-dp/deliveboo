@@ -19,12 +19,6 @@
                             <span><i class="fab fa-google-plus-square"></i></span>
                             <span><i class="fab fa-twitter-square"></i></span>
                         </div>
-                        <div class="d-flex justify-content-end d-none">
-                            <span class="black-cube cube-1"></span>
-                            <span class="black-cube cube-2 mx-4"></span>
-                            <span class="black-cube cube-3"></span>
-                        </div>
-                        
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
