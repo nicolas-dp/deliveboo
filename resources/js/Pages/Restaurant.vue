@@ -228,7 +228,10 @@
                       +
                     </button>
                   </div>
-                  <span class="btn btn-danger text-white btn-sm" @click="removeItem(i)">
+                  <span
+                    class="btn btn-danger text-white btn-sm"
+                    @click="removeItem(i)"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -252,7 +255,10 @@
 
             <button
               class="btn btn-secondary btn-sm"
-              @click="myCart.resetCart(); setCartCookie()"
+              @click="
+                myCart.resetCart();
+                setCartCookie();
+              "
             >
               Azzera carrello
             </button>
@@ -323,6 +329,8 @@ export default {
             //this.postResponse = response.data;
             //console.log(this.posts);
             this.loading = false;
+
+            this.getPreviousCart();
           }
         })
         .catch((e) => {
@@ -363,6 +371,47 @@ export default {
       this.setCartCookie();
     },
 
+    getPreviousCart() {
+      //controlla al mounted se esiste il cooki dishlist e se l'id cookie del
+      //ristorante è uguale a quello salvato nel local storage
+      if (
+        localStorage.getItem("list_cookie") &&
+        localStorage.getItem("restaurant_id") == this.restaurant.id
+      ) {
+        console.log("siamo nel ristorante del precedente carrello");
+        //se c'è
+        try {
+          //alert("c'è il cookie eheh")
+
+          //aggiorno la lista piatti in state.cart
+          this.myCart.list_dishes = JSON.parse(
+            localStorage.getItem("list_cookie")
+          );
+          this.myCart.makeTotal();
+        } catch (e) {
+          //sennò lancia errore
+          localStorage.removeItem("list_cookie");
+        }
+      } else {
+        console.log("siamo in un nuovo ristorante");
+
+        //console.log(localStorage.getItem("list_cookie"));
+        localStorage.removeItem("list_cookie");
+
+
+        localStorage.removeItem("restaurant_id");
+        localStorage.removeItem("restaurant_slug");
+
+
+
+        localStorage.setItem("restaurant_id", this.restaurant.id);
+        //console.log(localStorage.getItem("restaurant_id"));
+
+        localStorage.setItem("restaurant_slug", this.restaurant.slug);
+        //console.log(localStorage.getItem("restaurant_id"));
+      }
+    },
+
     //metodo per passare informazione al local storage
     setCartCookie() {
       //rimuovo cookie esistente
@@ -374,27 +423,17 @@ export default {
       //creo il 'cookie'
       localStorage.setItem("list_cookie", parsed);
     },
+
   },
 
   mounted() {
     this.getRestaurant();
 
-    //controlla al mounted se esiste il cooki dishlist
-    if (localStorage.getItem("list_cookie")) {
-      //se c'è
-      try {
-        //alert("c'è il cookie eheh")
-
-        //aggiorno la lista piatti in state.cart
-        this.myCart.list_dishes = JSON.parse(
-          localStorage.getItem("list_cookie")
-        );
-        this.myCart.makeTotal();
-      } catch (e) {
-        //sennò lancia errore
-        localStorage.removeItem("list_cookie");
-      }
-    }
+    /*     if (!this.loading) {
+      console.log('sto scrivendo');
+      localStorage.setItem("restaurant_id", this.restaurant.id);
+      console.log(localStorage.getItem("list_cookie"));
+    } */
 
     console.log(state.cart);
     console.log(this.myCart);
@@ -462,9 +501,9 @@ svg {
       padding: 1rem;
       box-shadow: 0 0 10px grey;
       border-radius: 0.5rem;
-      ul{
+      ul {
         padding: 0;
-        li{
+        li {
           list-style: none;
         }
       }

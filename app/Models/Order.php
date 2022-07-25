@@ -17,4 +17,24 @@ class Order extends Model
     {
         return $this->belongsToMany(Dish::class);
     }
+
+    protected $fillable = [
+        'customer_name',
+        'customer_email',
+        'customer_phone',
+        'customer_address',
+        'restaurant_id',
+        'total_price',
+        'slug',
+        'notes',
+        'order_date',
+    ];
 }
+
+/*   'customer_name' => 'required|max:100',
+            'customer_email' => 'required|max:100',
+            'customer_phone' => 'required|max:100',
+            'customer_address' => 'required|max:400',
+            'restaurant_id' => 'required',
+            'total_price' => 'required',
+            'notes' => 'nullable|max:400', */
