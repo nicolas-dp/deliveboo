@@ -18,7 +18,6 @@
     <p>Prezzo consegne: {{$restaurant->delivery_cost}}€</p>
     <p>Partita iva: {{$restaurant->PIVA}}</p>
     
-
     <h4>Modifica le informazioni del tuo ristorante</h4>
     <a class="btn btn-success text-light" href="{{route('admin.restaurants.edit', $restaurant->slug)}}">Edit</a>
     

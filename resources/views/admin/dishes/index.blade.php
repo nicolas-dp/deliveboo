@@ -42,7 +42,6 @@
                                         <td>{{ $dish->description }}</td>
                                         <td>{{ $dish->price }}</td>
                                         <td>{{ $dish->restaurant->name }}</td>
-                                        
                                         <td>{{ $dish->is_available == 1 ? 'Available' : 'Not Available' }}</td>
                                         <td>
                                             <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary text-light">Show</a>
