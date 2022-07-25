@@ -7,8 +7,8 @@
         <h1>Welcome {{ Auth::user()->name }}</h1>
     @else
     
-        <h1>Welcome vatti a fare un ristorante</h1>
-        <a href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
+        <h1>Registra qui il tuo ristorante</h1>
+        <a class="btn btn-primary" href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
     @endif
 </div>
 @endsection

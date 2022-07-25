@@ -3,7 +3,12 @@
 @section('content')
 
 <div class="container pt-4 pb-5">
-    @if(Auth::check() && $restaurant)
+    @if(Auth::check() && $restaurant && count($dishes) <= 0)
+    <div class="text-center">
+        <h1 class="pb-4">Inserisci qui i tuoi piatti</h1>
+        <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary text-light">Create</a>
+    </div>
+    @elseif(Auth::check() && $restaurant)
     <div class="row">
         <div class="col-md-12">
             <div class="card">
