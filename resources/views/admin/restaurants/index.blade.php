@@ -8,7 +8,7 @@
 
     <h1 class="tetx-center">{{$restaurant->name}}</h1>
 
-    <img class="img-fluid" src='{{ substr($restaurant->cover_image, 0, 4) == "http" ? $dish->cover_image  :  asset("storage/" . $restaurant->cover_image)}}' alt="immagine copertina ristorante">
+    <img class="img-fluid" src='{{ substr($restaurant->cover_image, 0, 4) == "http" ? $restaurant->cover_image  :  asset("storage/" . $restaurant->cover_image)}}' alt="immagine copertina ristorante">
     <p>Indirizzo: {{$restaurant->address}}</p>
     <p>Numero di telefono: {{$restaurant->phone_number}}</p>
     <p>Descrizione: </p>
