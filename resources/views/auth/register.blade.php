@@ -5,7 +5,7 @@
     <div class="check-form">
         <div class="container container-form">
             <div class="d-flex justify-content-center h-100">
-                <div class="card card-form-reg">
+                <div class="card card-form-xl">
                     <div class="card-header">
                         <div class="arrow-back">
                             <a href="/"><strong>
