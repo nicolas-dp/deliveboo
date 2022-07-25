@@ -1,10 +1,10 @@
 <template>
   <div class="mb-4 single_restaurant">
-    <div class="p-5 bg-light container-fluid show_restaurant">
+    <div class="show_restaurant mb-5 bg-light container">
       <h1 class="title_restaurant orange">{{ restaurant.name }}</h1>
-      <!-- <h1 class="display-3">Fluid jumbo heading</h1> -->
+
       <div class="row g-3">
-        <div class="col-12 col-lg-6">
+        <div class="risto_img_desc col-12 col-lg-9">
           <img
             :src="restaurant.cover_image"
             :alt="restaurant.name"
@@ -14,7 +14,8 @@
             {{ restaurant.description }}
           </p>
         </div>
-        <div class="col-12 col-lg-6 risto_info">
+        <!-- /.risto_img_desc -->
+        <div class="risto_info col-12 col-lg-3">
           <div
             class="
               text-center
@@ -23,6 +24,7 @@
               justify-content-center
               align-items-center
               mb-4
+              info
             "
           >
             <h4
@@ -98,23 +100,25 @@
             </p>
           </div>
         </div>
+        <!-- /.risto_info -->
       </div>
+      <!-- /.row -->
     </div>
     <!-- /.show_restaurant -->
 
-    <div class="container">
-      <div class="row g-3">
-        <div class="col-12 col-lg-8">
-          <h2 class="text-center mb-3" id="menu">Menù</h2>
+    <div class="dishes_list_cart container">
+      <div class="row g-4">
+        <div class="dishes col-12 col-lg-9">
+          <h2 id="menu" class="mb-5 orange">Menù</h2>
           <!-- <div class="container-fluid"> -->
-          <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-1">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             <div class="col" v-for="dish in restaurant.dishes" :key="dish.id">
               <div class="card h-100">
                 <img :src="dish.cover_image" alt="" />
-                <div class="card-body">
-                  <h5>{{ dish.name }}</h5>
+                <div class="card_text p-3">
+                  <h5 class="orange">{{ dish.name }}</h5>
 
-                  <p>Prezzo: {{ dish.price }} €</p>
+                  <p><span class="orange">Prezzo: </span> {{ dish.price }} €</p>
 
                   <CartActions
                     :dishElement="dish"
@@ -122,10 +126,10 @@
                     @setCookie="setCartCookie()"
                   />
                 </div>
-                <div class="card-footer">
+                <div class="dish_info m-3 text-center">
                   <button
                     type="button"
-                    class="btn btn-info btn-sm"
+                    class="btn bg_orange"
                     data-bs-toggle="modal"
                     :data-bs-target="`#exampleModal-${dish.id}`"
                   >
@@ -180,90 +184,104 @@
           </div>
           <!-- </div> -->
         </div>
-        <div class="col-12 col-lg-4">
-          <h2 class="text-center mb-3" id="menu">Carrello</h2>
+        <!-- /.dishes -->
+        <div class="cart col-12 col-lg-3">
+          <div class="cart_content">
+            <h2 class="text-center mb-5 orange" id="menu">Carrello</h2>
 
-          <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
-            <li v-for="(dishElement, i) in myCart.list_dishes" :key="i">
-              {{ dishElement.name }}: {{ dishElement.amount }} x
-              {{ dishElement.price }}€ =
-              {{ dishElement.amount * dishElement.price }} €
+            <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
+              <li v-for="(dishElement, i) in myCart.list_dishes" :key="i">
+                {{ dishElement.name }}: {{ dishElement.amount }} x
+                {{ dishElement.price }}€ =
+                {{ dishElement.amount * dishElement.price }} €
 
-              <div class="cartActions">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    @click="subtractOne(dishElement, i)"
+                <div class="cartActions">
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic example"
                   >
-                    -
-                  </button>
-                  <span
-                    class="
-                      bg-light
-                      px-2
-                      border border-1
-                      d-flex
-                      align-items-center
-                    "
-                  >
-                    <!-- :class="`dish-${dish.id}`" -->
-                    {{ dishElement.amount }}
+                    <button
+                      type="button"
+                      class="btn btn-secondary text-white btn-sm"
+                      @click="subtractOne(dishElement, i)"
+                    >
+                      -
+                    </button>
+                    <span
+                      class="
+                        bg-light
+                        px-2
+                        border border-1
+                        d-flex
+                        align-items-center
+                      "
+                    >
+                      <!-- :class="`dish-${dish.id}`" -->
+                      {{ dishElement.amount }}
+                    </span>
+                    <button
+                      type="button"
+                      class="btn btn-secondary text-white btn-sm"
+                      @click="addOne(dishElement)"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <span class="btn btn-danger text-white btn-sm" @click="removeItem(i)">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="white"
+                      class="bi bi-trash3-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+                      />
+                    </svg>
                   </span>
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    @click="addOne(dishElement)"
-                  >
-                    +
-                  </button>
                 </div>
-                <span class="btn btn-danger btn-sm" @click="removeItem(i)">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="white"
-                    class="bi bi-trash3-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
 
-          <p v-else>Nessun elemento nel carrello</p>
+            <p v-else>Nessun elemento nel carrello</p>
 
-          <p>Totale: {{ myCart.total_amount }} €</p>
+            <p>Totale: {{ myCart.total_amount }} €</p>
 
-          <button class="btn btn-secondary btn-sm" @click="myCart.resetCart()">
-            Azzera carrello
-          </button>
+            <button
+              class="btn btn-secondary btn-sm"
+              @click="myCart.resetCart()"
+            >
+              Azzera carrello
+            </button>
 
-          <router-link
-            class="btn btn-info btn-sm"
-            :to="{ name: 'checkout' }"
-            @click="setCartCookie()"
-            v-if="myCart.list_dishes.length > 0"
-          >
-            Vai al Checkout
-          </router-link>
+            <router-link
+              class="btn bg_orange btn-sm"
+              :to="{ name: 'checkout' }"
+              @click="setCartCookie()"
+              v-if="myCart.list_dishes.length > 0"
+            >
+              Vai al Checkout
+            </router-link>
 
-<!--           <button
+            <!--           <button
             class="btn btn-info btn-sm"
             @click="setCartCookie()"
             v-if="myCart.list_dishes.length > 0"
           >
             Vai al Checkout
           </button> -->
+          </div>
         </div>
+        <!-- /.cart -->
       </div>
+      <!-- /.row -->
     </div>
+    <!-- /.dishes_list_cart -->
   </div>
+  <!-- /.single_restaurant -->
 </template>
 
 <script>
@@ -393,12 +411,12 @@ export default {
   color: #ff7f31;
 }
 
-svg{
+svg {
   color: #ff7f31;
 }
 
 .single_restaurant {
-  margin-top: 5rem;
+  margin-top: 7rem;
   .show_restaurant {
     .title_restaurant {
       margin-bottom: 2rem;
@@ -408,13 +426,49 @@ svg{
     }
   }
 
-  .risto_info{
+  .risto_info {
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .info {
+      padding: 1rem;
+      box-shadow: 0 0 10px grey;
+      border-radius: 0.5rem;
+    }
   }
 
-  .bg_orange{
+  .bg_orange {
     background-color: #ff7f31;
     color: white;
+  }
+
+  .card {
+    height: 100%;
+    border-radius: 0.5rem;
+    transition: all 0.7s;
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px grey;
+    }
+  }
+
+  .cart {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .cart_content {
+      padding: 1rem;
+      box-shadow: 0 0 10px grey;
+      border-radius: 0.5rem;
+      ul{
+        padding: 0;
+        li{
+          list-style: none;
+        }
+      }
+    }
   }
 }
 </style>

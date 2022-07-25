@@ -1,20 +1,23 @@
 <template>
-  <div class="actions">
+  <div class="actions text-center">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary" @click="subtractOne()">
+      <button type="button" class="btn btn-secondary text-white" @click="subtractOne()">
         -
       </button>
-      <span class="bg-light px-3 d-flex align-items-center">
+      <span class="counter bg-light px-3 d-flex align-items-center">
         <!-- :class="`dish-${dish.id}`" -->
         {{ counter }}
       </span>
-      <button type="button" class="btn btn-primary" @click="addOne()">+</button>
+      <button type="button" class="btn btn-secondary text-white" @click="addOne()">+</button>
     </div>
 
     <button
       type="button"
-      class="btn btn-success"
-      @click="addItemToCart(dishElement, counter); $emit('setCookie')"
+      class=" add_cart btn bg_orange ms-3"
+      @click="
+        addItemToCart(dishElement, counter);
+        $emit('setCookie');
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -99,5 +102,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.bg_orange {
+  background-color: #ff7f31;
+  color: white;
+}
+
+.counter{
+  font-size: 0.8rem;
+}
 </style>
