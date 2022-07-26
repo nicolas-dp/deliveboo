@@ -228,7 +228,10 @@
                       +
                     </button>
                   </div>
-                  <span class="btn btn-danger text-white btn-sm" @click="removeItem(i)">
+                  <!--                   <span
+                    class="btn btn-danger text-white btn-sm"
+                    @click="removeItem(i)"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -241,7 +244,73 @@
                         d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
                       />
                     </svg>
-                  </span>
+                  </span> -->
+                  <!-- Button trigger modal erase item -->
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#removeItem"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="white"
+                      class="bi bi-trash3-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+                      />
+                    </svg>
+                  </button>
+
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="removeItem"
+                    tabindex="-1"
+                    aria-labelledby="removeItem"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" >
+                            Rimuovi elemento
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          Vuoi rimuovere l'elemento {{ dishElement.name }} dal
+                          carrello?
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Annulla
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal"
+                            @click="removeItem(i)"
+                          >
+                            Elimina
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -252,7 +321,10 @@
 
             <button
               class="btn btn-secondary btn-sm"
-              @click="myCart.resetCart(); setCartCookie()"
+              @click="
+                myCart.resetCart();
+                setCartCookie();
+              "
             >
               Azzera carrello
             </button>
@@ -323,6 +395,8 @@ export default {
             //this.postResponse = response.data;
             //console.log(this.posts);
             this.loading = false;
+
+            this.getPreviousCart();
           }
         })
         .catch((e) => {
@@ -363,6 +437,44 @@ export default {
       this.setCartCookie();
     },
 
+    getPreviousCart() {
+      //controlla al mounted se esiste il cooki dishlist e se l'id cookie del
+      //ristorante è uguale a quello salvato nel local storage
+      if (
+        localStorage.getItem("list_cookie") &&
+        localStorage.getItem("restaurant_id") == this.restaurant.id
+      ) {
+        console.log("siamo nel ristorante del precedente carrello");
+        //se c'è
+        try {
+          //alert("c'è il cookie eheh")
+
+          //aggiorno la lista piatti in state.cart
+          this.myCart.list_dishes = JSON.parse(
+            localStorage.getItem("list_cookie")
+          );
+          this.myCart.makeTotal();
+        } catch (e) {
+          //sennò lancia errore
+          localStorage.removeItem("list_cookie");
+        }
+      } else {
+        console.log("siamo in un nuovo ristorante");
+
+        //console.log(localStorage.getItem("list_cookie"));
+        localStorage.removeItem("list_cookie");
+
+        localStorage.removeItem("restaurant_id");
+        localStorage.removeItem("restaurant_slug");
+
+        localStorage.setItem("restaurant_id", this.restaurant.id);
+        //console.log(localStorage.getItem("restaurant_id"));
+
+        localStorage.setItem("restaurant_slug", this.restaurant.slug);
+        //console.log(localStorage.getItem("restaurant_id"));
+      }
+    },
+
     //metodo per passare informazione al local storage
     setCartCookie() {
       //rimuovo cookie esistente
@@ -379,22 +491,11 @@ export default {
   mounted() {
     this.getRestaurant();
 
-    //controlla al mounted se esiste il cooki dishlist
-    if (localStorage.getItem("list_cookie")) {
-      //se c'è
-      try {
-        //alert("c'è il cookie eheh")
-
-        //aggiorno la lista piatti in state.cart
-        this.myCart.list_dishes = JSON.parse(
-          localStorage.getItem("list_cookie")
-        );
-        this.myCart.makeTotal();
-      } catch (e) {
-        //sennò lancia errore
-        localStorage.removeItem("list_cookie");
-      }
-    }
+    /*     if (!this.loading) {
+      console.log('sto scrivendo');
+      localStorage.setItem("restaurant_id", this.restaurant.id);
+      console.log(localStorage.getItem("list_cookie"));
+    } */
 
     console.log(state.cart);
     console.log(this.myCart);
@@ -462,9 +563,9 @@ svg {
       padding: 1rem;
       box-shadow: 0 0 10px grey;
       border-radius: 0.5rem;
-      ul{
+      ul {
         padding: 0;
-        li{
+        li {
           list-style: none;
         }
       }
