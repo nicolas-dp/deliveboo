@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+//rotte per salvare ordini ?
+//Route::get('contact-form', 'OrderController@index')->name('contact-form.index');
+Route::post('order-received', 'OrderController@store');
+
+
 
 Auth::routes();
 

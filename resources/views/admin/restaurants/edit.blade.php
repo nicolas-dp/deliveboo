@@ -60,10 +60,13 @@
                 @endforeach
             </select>
 
-
-
-
             @include('partials.single_error', ['variable' => 'category_id[]'])
+        </div>
+
+        <div class="mb-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $restaurant->description) }}</textarea>
+            @include('partials.single_error',['variable' => 'description'])
         </div>
 
         <div class="mb-2">
