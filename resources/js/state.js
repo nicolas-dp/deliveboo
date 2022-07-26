@@ -1,6 +1,7 @@
 //importo Vue
 import Vue from 'vue';
-
+import VueBraintree from 'vue-braintree';
+Vue.use(VueBraintree);
 //inserisco qui le variabili che voglio 
 //raggiungere dai componenti non parenti
 const state = Vue.observable({

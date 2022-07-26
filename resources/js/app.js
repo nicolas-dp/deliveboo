@@ -1,3 +1,4 @@
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19,6 +20,7 @@ Vue.use(VueGlide);
 import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
+
 
 
 /**

@@ -1,5 +1,14 @@
 <template>
   <div class="checkout container">
+   <div class="text-2xl">
+            <PaymentComponent
+                ref="paymentRef"
+                :authorization="tokenApi"
+                @loading="handleLoading"
+                @onSuccess="paymentOnSuccess"
+                @onError="paymentOnError"
+            />  
+        </div>
     <div v-if="myCart.list_dishes.length > 0">
       <h1>Il tuo carrello</h1>
 
@@ -144,11 +153,14 @@
 <script>
 import state from "../state";
 import VueForm from "../components/VueForm.vue";
+import PaymentComponent from "../components/PaymentComponent.vue";
+import axios from "axios";
 
 export default {
   name: "Checkout",
   components: {
     VueForm,
+    PaymentComponent
   },
   data() {
     return {
@@ -156,6 +168,8 @@ export default {
       restaurant: null,
       loading: true,
       myCart: state.cart,
+      tokenApi: "",
+      errors: [],
     };
   },
   mounted() {
@@ -206,11 +220,21 @@ export default {
         });
     },
   },
+  
+  async created() {
+        try {
+            const response = await axios.get("/api/generate");
+            this.tokenApi = response.data.token;
+        } catch (e) {
+            this.errors.push(e);
+        }
+    },
+
 };
 </script>
 
 <style lang="scss" scoped>
 .checkout {
-  margin-top: 7rem;
+    margin-top: 7rem;
 }
 </style>
