@@ -10,6 +10,7 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Restaurant from "./Pages/Restaurant";
 import Checkout from "./Pages/Checkout";
+import OrderReceived from "./Pages/OrderReceived";
 import NotFound from "./Pages/NotFound";
 
 // 2. Define some routes
@@ -38,6 +39,11 @@ const routes = [
         path: "/checkout",
         name: "checkout",
         component: Checkout,
+    },
+    {
+        path: "/order-received",
+        name: "order-received",
+        component: OrderReceived,
     },
     {
         path: "/*",

@@ -31,9 +31,9 @@ class OrderController extends Controller
 
         $validate_data['total_price'] = intval($validate_data['total_price']);
         
-        $validate_data['slug'] = Str::slug($validate_data['customer_name'], '-') . '-' . Str::slug($validate_data['restaurant_id'], '-') . '-' . rand(0, 100000);
-        
         $validate_data['order_date'] = date("Y-m-d");
+        
+        $validate_data['slug'] = Str::slug($validate_data['restaurant_id'], '-') . '-' . Str::slug($validate_data['order_date'], '-') . '-' . rand(0, 100000);
         
         //dd($validate_data);
 

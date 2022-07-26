@@ -16,7 +16,7 @@
         Totale: <strong>{{ myCart.total_amount }} €</strong>
       </p>
 
-      <vue-form method="post" action="/contact-form">
+      <vue-form method="post" action="/order-received">
         <!-- ID ristorante -->
         <div class="mb-3 d-none" v-if="restaurant">
           <label for="restaurant_id" class="form-label">Ristorante ID:</label>
