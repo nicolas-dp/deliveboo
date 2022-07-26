@@ -1,38 +1,211 @@
 <template>
-  <div class="checkout">
-    <div v-if="true">
+  <div class="checkout container">
+    <div v-if="myCart.list_dishes.length > 0">
       <h1>Il tuo carrello</h1>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+      <p v-if="restaurant">Ristorante: {{ restaurant.name }}</p>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+      <ul>
+        <li v-for="dish in myCart.list_dishes" :key="dish.id">
+          {{ dish.name }}: {{ dish.amount }} x {{ dish.price }}€ =
+          <strong>{{ dish.amount * dish.price }} €</strong>
+        </li>
+      </ul>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+      <p class="lead">
+        Totale: <strong>{{ myCart.total_amount }} €</strong>
+      </p>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+      <vue-form method="post" action="/order-received">
+        <!-- ID ristorante -->
+        <div class="mb-3 d-none" v-if="restaurant">
+          <label for="restaurant_id" class="form-label">Ristorante ID:</label>
+          <input
+            type="text"
+            name="restaurant_id"
+            id="restaurant_id"
+            class="form-control"
+            :value="restaurant.id"
+            :placeholder="restaurant.id"
+            aria-describedby="restaurantIdHelper"
+            readonly
+          />
+          <small id="restaurantIdHelper" class="text-muted"
+            >ID ristorante</small
+          >
+        </div>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+        <!-- totale da pagare -->
+        <div class="mb-3 d-none">
+          <label for="total_price" class="form-label">Totale:</label>
+          <input
+            type="text"
+            name="total_price"
+            id="total_price"
+            class="form-control"
+            :value="myCart.total_amount"
+            :placeholder="myCart.total_amount + '€'"
+            aria-describedby="totalPriceHelper"
+            readonly
+          />
+          <small id="totalPriceHelper" class="text-muted"
+            >il tuo totale</small
+          >
+        </div>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+        <!-- nome cliente -->
+        <div class="mb-3">
+          <label for="customer_name" class="form-label">Full Name</label>
+          <input
+            type="text"
+            name="customer_name"
+            id="customer_name"
+            class="form-control"
+            placeholder="Domenico Galileo"
+            aria-describedby="customerNameHelper"
+            required
+          />
+          <small id="customerNameHelper" class="text-muted"
+            >Type your full name</small
+          >
+        </div>
 
-      <p>eccolo</p>
-      <h1>Il tuo carrello</h1>
+        <!-- email cliente -->
+        <div class="mb-3">
+          <label for="customer_email" class="form-label">Email</label>
+          <input
+            type="text"
+            name="customer_email"
+            id="customer_email"
+            class="form-control"
+            placeholder="Domenico@example.com"
+            aria-describedby="customerEmailHelper"
+            required
+          />
+          <small id="customerEmailHelper" class="text-muted"
+            >Type your email</small
+          >
+        </div>
 
-      <p>eccolo</p>
+        <!-- indirizzo cliente -->
+        <div class="mb-3">
+          <label for="customer_address" class="form-label">Indirizzo</label>
+          <input
+            type="text"
+            name="customer_address"
+            id="customer_address"
+            class="form-control"
+            aria-describedby="customerAddressHelper"
+            required
+          />
+          <small id="customerAddressHelper" class="text-muted"
+            >Type your full address</small
+          >
+        </div>
+
+        <!-- telefono cliente -->
+        <div class="mb-3">
+          <label for="customer_phone" class="form-label">Telefono</label>
+          <input
+            type="text"
+            name="customer_phone"
+            id="customer_phone"
+            class="form-control"
+            aria-describedby="customerPhoneHelper"
+            required
+          />
+          <small id="customerPhoneHelper" class="text-muted"
+            >Type your phone number</small
+          >
+        </div>
+
+        <!-- note -->
+        <div class="mb-3">
+          <label for="notes" class="form-label">Note</label>
+          <textarea
+            class="form-control"
+            name="notes"
+            id="notes"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark text-white">Paga ora</button>
+      </vue-form>
+
+      <!-- <span class="btn btn-lg btn-primary">Paga ora</span> -->
     </div>
-    <div v-else></div>
+    <div v-else>
+      <p>Non hai aggiunto alcun prodotto al carrello</p>
+    </div>
   </div>
 </template>
 
 <script>
+import state from "../state";
+import VueForm from "../components/VueForm.vue";
+
 export default {
   name: "Checkout",
+  components: {
+    VueForm,
+  },
+  data() {
+    return {
+      restaurant_checkout: null,
+      restaurant: null,
+      loading: true,
+      myCart: state.cart,
+    };
+  },
+  mounted() {
+    /*     console.log(localStorage.getItem("restaurant_id"));
+    if (localStorage.getItem("restaurant_id")) {
+      this.restaurant_checkout = localStorage.getItem("restaurant_id");
+    } */
+
+    if (localStorage.getItem("restaurant_slug")) {
+      this.restaurant_checkout = localStorage.getItem("restaurant_slug");
+
+      console.log(this.restaurant_checkout);
+
+      this.getRestaurant();
+    }
+
+    if (localStorage.getItem("list_cookie")) {
+      this.myCart.list_dishes = JSON.parse(localStorage.getItem("list_cookie"));
+      console.log(this.myCart.list_dishes);
+      this.myCart.makeTotal();
+    }
+
+    //console.log(this.myCart.list_dishes);
+    //console.log(this.myCart);
+  },
+  methods: {
+    getRestaurant() {
+      axios
+        .get(`/api/restaurants/${this.restaurant_checkout}`)
+        .then((response) => {
+          //console.log(response.data);
+          if (response.data.status_code == 404) {
+            //this.loading = false;
+            this.$router.push({ name: "not-found" });
+          } else {
+            this.restaurant = response.data;
+
+            /*             this.restaurant.dishes.forEach((dish) => {
+              dish["amount_html"] = 1;
+            }); */
+            //this.postResponse = response.data;
+            //console.log(this.posts);
+            this.loading = false;
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+  },
 };
 </script>
 
