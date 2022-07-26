@@ -29,8 +29,10 @@ Route::get('restaurants', 'Api\RestaurantController@index');
 Route::get('restaurants/{restaurant:slug}', 'Api\RestaurantController@show');
 
 //filtra ristoranti per categoria
-Route::get('restaurants/filter/{name}', 'Api\RestaurantController@filter');
+Route::get('restaurants/filter/{id}', 'Api\RestaurantController@filter');
 //api categorie -> ti restituisce le categorie
+
+Route::get('restaurants/filterplus/{id1}/{id2?}/{id3?}', 'Api\RestaurantController@filterPlus');
 Route::get('categories', 'Api\CategoryController@index');
 
 //api piatti
