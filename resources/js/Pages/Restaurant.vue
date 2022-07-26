@@ -228,7 +228,10 @@
                       +
                     </button>
                   </div>
-                  <span class="btn btn-danger text-white btn-sm" @click="removeItem(i)">
+                  <span
+                    class="btn btn-danger text-white btn-sm"
+                    @click="removeItem(i)"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -251,8 +254,11 @@
             <p>Totale: {{ myCart.total_amount }} €</p>
 
             <button
-              class="btn btn-secondary btn-sm"
-              @click="myCart.resetCart(); setCartCookie()"
+              class="reset_cart btn btn-secondary btn-sm mb-2"
+              @click="
+                myCart.resetCart();
+                setCartCookie();
+              "
             >
               Azzera carrello
             </button>
@@ -462,12 +468,25 @@ svg {
       padding: 1rem;
       box-shadow: 0 0 10px grey;
       border-radius: 0.5rem;
-      ul{
+      ul {
         padding: 0;
-        li{
+        li {
           list-style: none;
         }
       }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .cart_content {
+      text-align: center;
+      width: 100%;
+    }
+    .reset_cart {
+      margin: 0 !important;
+    }
+    .info{
+      text-align: center;
+      width: 100%;
     }
   }
 }
