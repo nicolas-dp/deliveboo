@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewOrderMade;
 use Illuminate\Support\Str;
 
 
@@ -40,6 +41,9 @@ class OrderController extends Controller
         $order = Order::create($validate_data);
 
         //$order->save();
+        // dd($validate_data['customer_email']);
+        Mail::to($validate_data['customer_email'])->send(new NewOrderMade($order));
+        Mail::to('example@example.com')->send(new NewOrderMade($order));
         return view("guest.home");
     }
 
