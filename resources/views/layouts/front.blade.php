@@ -19,6 +19,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+
+    {{-- cdn braintree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.3/js/dropin.js" defer></script>
 </head>
 
 <body>

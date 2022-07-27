@@ -21,7 +21,7 @@ class PaymentController extends Controller
         return response()->json($data,200);
     }
 
-    public function makePayment(PaymentRequest $request, Gateway $gateway)
+    /* public function makePayment(PaymentRequest $request, Gateway $gateway)
     {
         $result = $gateway->transaction()->sale([
             'amount' => $request->amount,
@@ -45,5 +45,5 @@ class PaymentController extends Controller
             return response()->json($data,401);
         }
         
-    }
+    } */
 }
