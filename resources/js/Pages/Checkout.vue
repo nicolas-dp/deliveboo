@@ -1,14 +1,5 @@
 <template>
   <div class="checkout container">
-    <div class="text-2xl">
-      <PaymentComponent
-        ref="paymentRef"
-        :authorization="tokenApi"
-        @loading="handleLoading"
-        @onSuccess="paymentOnSuccess"
-        @onError="paymentOnError"
-      />
-    </div>
     <div v-if="myCart.list_dishes.length > 0">
       <h1>Il tuo carrello</h1>
 
@@ -59,6 +50,13 @@
             readonly
           />
           <small id="totalPriceHelper" class="text-muted">il tuo totale</small>
+        </div>
+        <!-- div inserimento carta di credito -->
+        <div class="mb-3">
+          <div id="dropin-container"></div>
+          <button id="submit-button" class="button button--small button--green">
+            Verifica Carta di credito
+          </button>
         </div>
 
         <!-- nome cliente -->
@@ -144,10 +142,17 @@
           ></textarea>
         </div>
 
-        <button type="submit" class="btn bg_orange text-white">Paga ora</button>
-      </vue-form>
 
-      <!-- <span class="btn btn-lg btn-primary">Paga ora</span> -->
+        <!-- bottone di invio form -->
+        <button
+          id="my-submit-button"
+          type="submit"
+          class="btn bg_orange btn-lg text-white disabled ms-2"
+        >
+          Paga ora
+        </button>
+
+      </vue-form>
     </div>
     <div v-else>
       <p>Non hai aggiunto alcun prodotto al carrello</p>
@@ -158,14 +163,29 @@
 <script>
 import state from "../state";
 import VueForm from "../components/VueForm.vue";
-import PaymentComponent from "../components/PaymentComponent.vue";
+//import PaymentComponent from "../components/PaymentComponent.vue";
 import axios from "axios";
+
+/* const button = document.querySelector("#submit-button");
+
+braintree.dropin.create(
+  {
+    authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
+    selector: "#dropin-container",
+  },
+  function (err, instance) {
+    button.addEventListener("click", function () {
+      instance.requestPaymentMethod(function (err, payload) {
+        // Submit payload.nonce to your server
+      });
+    });
+  }
+); */
 
 export default {
   name: "Checkout",
   components: {
     VueForm,
-    PaymentComponent,
   },
   data() {
     return {
@@ -174,31 +194,47 @@ export default {
       loading: true,
       myCart: state.cart,
       tokenApi: "",
-      errors: [],
+
+      /* CODICE NICOLAS */
+      /*       tokenApi: "",
+      errors: [], */
     };
   },
   mounted() {
-    /*     console.log(localStorage.getItem("restaurant_id"));
-    if (localStorage.getItem("restaurant_id")) {
-      this.restaurant_checkout = localStorage.getItem("restaurant_id");
-    } */
+    this.getToken();
 
     if (localStorage.getItem("restaurant_slug")) {
       this.restaurant_checkout = localStorage.getItem("restaurant_slug");
 
-      console.log(this.restaurant_checkout);
+      //console.log(this.restaurant_checkout);
 
       this.getRestaurant();
     }
 
     if (localStorage.getItem("list_cookie")) {
       this.myCart.list_dishes = JSON.parse(localStorage.getItem("list_cookie"));
-      console.log(this.myCart.list_dishes);
+      //console.log(this.myCart.list_dishes);
       this.myCart.makeTotal();
     }
 
     //console.log(this.myCart.list_dishes);
     //console.log(this.myCart);
+
+    /*     braintree.dropin.create(
+      {
+        authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
+        //authorization:
+          //"eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSXNJbWx6Y3lJNkltaDBkSEJ6T2k4dllYQnBMbk5oYm1SaWIzZ3VZbkpoYVc1MGNtVmxaMkYwWlhkaGVTNWpiMjBpZlEuZXlKbGVIQWlPakUyTlRrd01ETXpOVFlzSW1wMGFTSTZJbU5qWW1FeU56RXlMV1JpTW1FdE5EazRaaTFpTnpZMExUVXhOak5pT1dWaE9ERTNaU0lzSW5OMVlpSTZJalkwWjIxeFpIbG9hR1ptTmpodU1tMGlMQ0pwYzNNaU9pSm9kSFJ3Y3pvdkwyRndhUzV6WVc1a1ltOTRMbUp5WVdsdWRISmxaV2RoZEdWM1lYa3VZMjl0SWl3aWJXVnlZMmhoYm5RaU9uc2ljSFZpYkdsalgybGtJam9pTmpSbmJYRmtlV2hvWm1ZMk9HNHliU0lzSW5abGNtbG1lVjlqWVhKa1gySjVYMlJsWm1GMWJIUWlPbVpoYkhObGZTd2ljbWxuYUhSeklqcGJJbTFoYm1GblpWOTJZWFZzZENKZExDSnpZMjl3WlNJNld5SkNjbUZwYm5SeVpXVTZWbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LmJQdXZuQWNaM3JubDJxZzY0T0lTRnc3d3lERUpaajVqNmNDYzZ5NlhEMmNZY2ZBODRUZ1U2SmZ4UnpCRkpXREdwMnctRl9EdFF0Q21oQUtsdHIya0h3IiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzY0Z21xZHloaGZmNjhuMm0vY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4IiwiZmVhdHVyZXMiOlsidG9rZW5pemVfY3JlZGl0X2NhcmRzIl19LCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvNjRnbXFkeWhoZmY2OG4ybS9jbGllbnRfYXBpIiwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwibWVyY2hhbnRJZCI6IjY0Z21xZHloaGZmNjhuMm0iLCJhc3NldHNVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImF1dGhVcmwiOiJodHRwczovL2F1dGgudmVubW8uc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbSIsInZlbm1vIjoib2ZmIiwiY2hhbGxlbmdlcyI6W10sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsImFuYWx5dGljcyI6eyJ1cmwiOiJodHRwczovL29yaWdpbi1hbmFseXRpY3Mtc2FuZC5zYW5kYm94LmJyYWludHJlZS1hcGkuY29tLzY0Z21xZHloaGZmNjhuMm0ifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImJpbGxpbmdBZ3JlZW1lbnRzRW5hYmxlZCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOnRydWUsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJhbGxvd0h0dHAiOnRydWUsImRpc3BsYXlOYW1lIjoiVGVhbSA1IERlbGl2ZUJvb2wiLCJjbGllbnRJZCI6bnVsbCwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiZW52aXJvbm1lbnQiOiJvZmZsaW5lIiwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJ0ZWFtNWRlbGl2ZWJvb2wiLCJjdXJyZW5jeUlzb0NvZGUiOiJFVVIifX0=",
+        selector: "#dropin-container",
+      },
+      function (err, instance) {
+        this.button.addEventListener("click", function () {
+          instance.requestPaymentMethod(function (err, payload) {
+            // Submit payload.nonce to your server
+          });
+        });
+      }
+    ); */
   },
   methods: {
     getRestaurant() {
@@ -224,22 +260,114 @@ export default {
           console.error(e);
         });
     },
+
+    getToken() {
+      axios
+        .get(`/api/generate`)
+        .then((response) => {
+          //console.log(response.data);
+          if (response.data.status_code == 404) {
+            //this.loading = false;
+            this.$router.push({ name: "not-found" });
+          } else {
+            //console.log(response);
+            this.tokenApi = response.data.token;
+
+            //parte l'altra funzione
+            this.dropInFunc();
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+
+      //console.log('ecco il token', this.tokenApi);
+    },
+
+    dropInFunc() {
+      const braintreeBtn = document.querySelector("#submit-button");
+      //var form = document.querySelector("#payment-form");
+      const token = this.tokenApi;
+
+      braintree.dropin.create(
+        {
+          authorization: token,
+          selector: "#dropin-container",
+        },
+        function (err, dropinInstance) {
+          if (err) {
+            // Handle any errors that might've occurred when creating Drop-in
+            console.error(err);
+            return;
+          }
+          braintreeBtn.addEventListener("click", function (event) {
+            //event.preventDefault();
+            dropinInstance.requestPaymentMethod(function (err) {
+              if (err) {
+                // Handle errors in requesting payment method
+                console.log("Errore, il pagamento non è riuscito", err);
+                return;
+              }
+              // Send payload.nonce to your server
+              /*               document.querySelector("#nonce").value = payload.nonce;
+              document.querySelector("#guest_user_email").value =
+                document.getElementById("guest_email").value;
+              console.log(document.querySelector("#guest_user_email").value);
+              form.submit(); */
+
+              //sblocco il pulsante del form 'paga ora'
+              document
+                .getElementById("my-submit-button")
+                .classList.remove("disabled");
+            });
+          });
+        }
+      );
+    },
   },
 
-  async created() {
-    try {
-      const response = await axios.get("/api/generate");
-      this.tokenApi = response.data.token;
-    } catch (e) {
-      this.errors.push(e);
-    }
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .checkout {
   margin-top: 7rem;
+
+}
+
+.button {
+  cursor: pointer;
+  font-weight: 500;
+  left: 3px;
+  line-height: inherit;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+}
+
+.button--small {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+.button--green {
+  outline: none;
+  background-color: #64d18a;
+  border-color: #64d18a;
+  color: white;
+  transition: all 200ms ease;
+}
+
+.button--green:hover {
+  background-color: #8bdda8;
+  color: white;
+
   .order {
     li {
       list-style: none;
@@ -250,5 +378,6 @@ export default {
     background-color: #ff7f31;
     color: white;
   }
+
 }
 </style>
