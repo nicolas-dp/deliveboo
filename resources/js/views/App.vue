@@ -26,4 +26,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.main{
+    margin-top: 4.8rem;
+    padding-bottom: 3rem;
+    background-color: whitesmoke;
+}
+</style>
