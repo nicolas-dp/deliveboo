@@ -1,7 +1,7 @@
 <template>
   <div class="checkout container">
     <div v-if="myCart.list_dishes.length > 0">
-      <h1>Il tuo carrello</h1>
+      <h1 class="title_cart orange pt-3">Il tuo carrello</h1>
 
       <h3 v-if="restaurant">
         <strong>Ristorante:</strong> {{ restaurant.name }}
@@ -54,12 +54,13 @@
         <!-- div inserimento carta di credito -->
         <div class="mb-3">
           <div id="dropin-container"></div>
-          <button id="submit-button" class="button button--small button--green">
+          <button id="submit-button" class="btn btn-lg btn_green">
             Verifica Carta di credito
           </button>
         </div>
 
-        <!-- nome cliente -->
+        <!-- dati cliente -->
+        <h2 class="data_title orange py-3">Inserisci i tuoi dati</h2>
         <div class="mb-3">
           <label for="customer_name" class="form-label">Nome e Cognome *</label>
           <input
@@ -147,8 +148,7 @@
         <button
           id="my-submit-button"
           type="submit"
-          class="btn bg_orange btn-lg text-white disabled ms-2"
-        >
+          class="btn btn-lg bg_orange disabled">
           Paga ora
         </button>
 
@@ -330,33 +330,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.checkout {
-  margin-top: 7rem;
 
+.orange{
+  color: #ff7f31;
 }
 
-.button {
-  cursor: pointer;
-  font-weight: 500;
-  left: 3px;
-  line-height: inherit;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: inline-block;
-}
-
-.button--small {
-  padding: 10px 20px;
-  font-size: 0.875rem;
-}
-
-.button--green {
+.btn_green {
   outline: none;
   background-color: #64d18a;
   border-color: #64d18a;
@@ -364,7 +343,7 @@ export default {
   transition: all 200ms ease;
 }
 
-.button--green:hover {
+.btn_green:hover {
   background-color: #8bdda8;
   color: white;
 
@@ -373,11 +352,9 @@ export default {
       list-style: none;
     }
   }
-
+}
   .bg_orange {
     background-color: #ff7f31;
     color: white;
   }
-
-}
 </style>

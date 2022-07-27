@@ -4,7 +4,7 @@
       <div class="container">
         <a class="navbar-brand" href="/"
           ><img
-            height="70"
+            height="50"
             src="/../img/logo-deliveroo.png"
             alt="logo deliveroo"
         /></a>

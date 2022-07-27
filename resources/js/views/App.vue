@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .main{
-    margin-top: 6rem;
+    margin-top: 4.8rem;
     padding-bottom: 3rem;
     background-color: whitesmoke;
 }
