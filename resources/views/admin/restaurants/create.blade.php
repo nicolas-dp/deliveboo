@@ -13,7 +13,7 @@
 
             <div class="mb-2">
                 <label for="name">Nome *</label>
-                <input required="required" type="text" v-model="rest_name" v-on:keyup="countCharRestName" :class="{'input_correct': rest_name_check == 1, 'input_error': rest_name_check == 2}" minlength="4" maxlength="50" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                <input required="required" type="text" v-model="rest_name" v-on:keyup="countCharRestName" :class="{'input_correct': rest_name_check == 1, 'input_error': rest_name_check == 2}" minlength="3" maxlength="50" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     aria-describedby="nameHelper" value="{{ old('name') }}">
                 <small id="nameHelper" class="text-muted">Inserisci il nome del ristorante (massimo 50
                     caratteri)</small>
@@ -32,7 +32,7 @@
             <div class="mb-2">
                 <label for="phone_number">Numero di telefono *</label>
                 <input type="tel" name="phone_number" id="phone_number" required="required" v-model="phone" v-on:keyup="countPhone" :class="{'input_correct': phone_check == 1, 'input_error': phone_check == 2}" 
-                    class="form-control @error('phone_number') is-invalid @enderror" required pattern="[0-9{10}" 
+                    class="form-control @error('phone_number') is-invalid @enderror" required pattern="[0-9]{10}" 
                     aria-describedby="phone_numberHelper" value="{{ old('phone_number') }}">
                 <small id="phone_numberHelper" class="text-muted">Inserisci il numero di telefono del ristorante es. 3519084543</small>
 

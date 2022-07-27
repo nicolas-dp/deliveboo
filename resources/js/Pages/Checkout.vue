@@ -1,30 +1,21 @@
 <template>
   <div class="checkout container">
-    <!-- CODICE NICOLAS -->
-    <!--    <div class="text-2xl">
-            <PaymentComponent
-                ref="paymentRef"
-                :authorization="tokenApi"
-                @loading="handleLoading"
-                @onSuccess="paymentOnSuccess"
-                @onError="paymentOnError"
-            />  
-        </div> -->
     <div v-if="myCart.list_dishes.length > 0">
       <h1>Il tuo carrello</h1>
 
-      <p v-if="restaurant">Ristorante: {{ restaurant.name }}</p>
+      <h3 v-if="restaurant">
+        <strong>Ristorante:</strong> {{ restaurant.name }}
+      </h3>
 
-      <ul>
+      <ul class="order">
         <li v-for="dish in myCart.list_dishes" :key="dish.id">
-          {{ dish.name }}: {{ dish.amount }} x {{ dish.price }}€ =
+          <strong>{{ dish.name }}:</strong> {{ dish.amount }} x
+          {{ dish.price }}€ =
           <strong>{{ dish.amount * dish.price }} €</strong>
         </li>
       </ul>
 
-      <p class="lead">
-        Totale: <strong>{{ myCart.total_amount }} €</strong>
-      </p>
+      <h3><strong>Totale: </strong>{{ myCart.total_amount }} €</h3>
 
       <vue-form method="post" action="/order-received">
         <!-- ID ristorante -->
@@ -60,7 +51,6 @@
           />
           <small id="totalPriceHelper" class="text-muted">il tuo totale</small>
         </div>
-
         <!-- div inserimento carta di credito -->
         <div class="mb-3">
           <div id="dropin-container"></div>
@@ -71,67 +61,73 @@
 
         <!-- nome cliente -->
         <div class="mb-3">
-          <label for="customer_name" class="form-label">Full Name</label>
+          <label for="customer_name" class="form-label">Nome e Cognome *</label>
           <input
             type="text"
             name="customer_name"
             id="customer_name"
             class="form-control"
-            placeholder="Domenico Galileo"
+            placeholder="es: Marco Rossi"
             aria-describedby="customerNameHelper"
             required
+            minlength="3"
+            maxlength="50"
           />
           <small id="customerNameHelper" class="text-muted"
-            >Type your full name</small
+            >Inserisci il tuo nome e cognome</small
           >
         </div>
 
         <!-- email cliente -->
         <div class="mb-3">
-          <label for="customer_email" class="form-label">Email</label>
+          <label for="customer_email" class="form-label">Email *</label>
           <input
-            type="text"
+            type="email"
             name="customer_email"
             id="customer_email"
             class="form-control"
-            placeholder="Domenico@example.com"
+            placeholder="es: marco@example.com"
             aria-describedby="customerEmailHelper"
             required
           />
           <small id="customerEmailHelper" class="text-muted"
-            >Type your email</small
+            >Inserisci la tua mail</small
           >
         </div>
 
         <!-- indirizzo cliente -->
         <div class="mb-3">
-          <label for="customer_address" class="form-label">Indirizzo</label>
+          <label for="customer_address" class="form-label">Indirizzo *</label>
           <input
             type="text"
             name="customer_address"
             id="customer_address"
             class="form-control"
+            placeholder="es: Via Roma, 15"
             aria-describedby="customerAddressHelper"
             required
+            minlength="5"
+            maxlength="150"
           />
           <small id="customerAddressHelper" class="text-muted"
-            >Type your full address</small
+            >Inserisci il tuo indirizzo</small
           >
         </div>
 
         <!-- telefono cliente -->
         <div class="mb-3">
-          <label for="customer_phone" class="form-label">Telefono</label>
+          <label for="customer_phone" class="form-label">Numero di Telefono *</label>
           <input
-            type="text"
+            type="tel"
             name="customer_phone"
             id="customer_phone"
             class="form-control"
             aria-describedby="customerPhoneHelper"
             required
+            pattern="[0-9]{10}"
           />
           <small id="customerPhoneHelper" class="text-muted"
-            >Type your phone number</small
+            >Inserisci il tuo numero di telefono</small
           >
         </div>
 
@@ -146,14 +142,16 @@
           ></textarea>
         </div>
 
+
         <!-- bottone di invio form -->
         <button
           id="my-submit-button"
           type="submit"
-          class="btn btn-primary btn-lg text-white disabled ms-2"
+          class="btn bg_orange btn-lg text-white disabled ms-2"
         >
           Paga ora
         </button>
+
       </vue-form>
     </div>
     <div v-else>
@@ -188,7 +186,6 @@ export default {
   name: "Checkout",
   components: {
     VueForm,
-    //PaymentComponent
   },
   data() {
     return {
@@ -329,21 +326,13 @@ export default {
     },
   },
 
-  /* CODICE NICOLAS */
-  /*   async created() {
-        try {
-            const response = await axios.get("/api/generate");
-            this.tokenApi = response.data.token;
-        } catch (e) {
-            this.errors.push(e);
-        }
-    }, */
 };
 </script>
 
 <style lang="scss" scoped>
 .checkout {
   margin-top: 7rem;
+
 }
 
 .button {
@@ -378,5 +367,17 @@ export default {
 .button--green:hover {
   background-color: #8bdda8;
   color: white;
+
+  .order {
+    li {
+      list-style: none;
+    }
+  }
+
+  .bg_orange {
+    background-color: #ff7f31;
+    color: white;
+  }
+
 }
 </style>
