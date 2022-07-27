@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewOrderMade;
@@ -36,14 +38,16 @@ class OrderController extends Controller
         
         $validate_data['slug'] = Str::slug($validate_data['restaurant_id'], '-') . '-' . Str::slug($validate_data['order_date'], '-') . '-' . rand(0, 100000);
         
-        //dd($validate_data);
+        // dd($validate_data);
 
         $order = Order::create($validate_data);
-
+        $restaurant = Restaurant::where('id', '=', $validate_data['restaurant_id'])->get()->first();
+        $user = User::where('id', '=', $restaurant['user_id'])->get()->first();
+        // dd($user);
         //$order->save();
         // dd($validate_data['customer_email']);
         Mail::to($validate_data['customer_email'])->send(new NewOrderMade($order));
-        Mail::to('example@example.com')->send(new NewOrderMade($order));
+        Mail::to($user['email'])->send(new NewOrderMade($order));
         return view("guest.home");
     }
 
