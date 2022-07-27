@@ -42,6 +42,8 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('orders', 'OrderController')->parameters([
         'orders' => 'order:slug'
     ])->except('create', 'store', 'edit', 'update');
+
+    Route::resource('charts', 'ChartController');
 });
 
 

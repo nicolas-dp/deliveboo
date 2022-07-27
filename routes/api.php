@@ -44,6 +44,6 @@ Route::get('dishes/{dish:slug}', 'Api\DishController@show');
 
 //Pagamento
 Route::get('generate', 'Api\PaymentController@generate');
-
-/* codice nicolas */
-//Route::post('make/payment', 'Api\PaymentController@makePayment');
+Route::post('make/payment', 'Api\PaymentController@makePayment');
+//Statistiche
+Route::get('orders/statistics/{id}', 'Api\OrderController@statistics');
