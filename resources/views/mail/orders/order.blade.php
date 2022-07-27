@@ -10,7 +10,7 @@
 
     <h1>Nuovo ordine effetttuato</h1>
 
-    <p>ciao utente</p>
+    <p>ciao {{$order->customer_name}}, il tuo ordine è stato inoltrato con successo, a breve ti sarà consegnato</p>
 
 </body>
 </html>

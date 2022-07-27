@@ -10,7 +10,7 @@
 
     <h1>Nuovo ordine effetttuato</h1>
 
-    <p>ciao admin</p>
+    <p>ciao admin, l'ordine di {{$order->customer_name}} è stato salvato con successo</p>
 
 </body>
 </html>
