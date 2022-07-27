@@ -274,19 +274,19 @@
                         </div>
                         <div class="modal-body">
                           Vuoi rimuovere l'elemento {{ dishElement.name }} dal
-                          carrello?
+                          carrello? 
                         </div>
                         <div class="modal-footer">
                           <button
                             type="button"
-                            class="btn btn-secondary"
+                            class="btn btn-secondary text-white"
                             data-bs-dismiss="modal"
                           >
                             Annulla
                           </button>
                           <button
                             type="button"
-                            class="btn btn-danger"
+                            class="btn btn-danger text-white"
                             data-bs-dismiss="modal"
                             @click="removeItem(i)"
                           >
@@ -305,7 +305,7 @@
             <p>Totale: {{ myCart.total_amount }} €</p>
 
             <button
-              class="reset_cart btn btn-secondary btn-sm mb-2"       
+              class="reset_cart btn btn-secondary btn-sm"       
               @click="
                 myCart.resetCart();
                 setCartCookie();
@@ -560,9 +560,6 @@ svg {
     .cart_content {
       text-align: center;
       width: 100%;
-    }
-    .reset_cart {
-      margin: 0 !important;
     }
     .info{
       text-align: center;
