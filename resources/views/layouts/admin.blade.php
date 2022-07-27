@@ -12,7 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
-
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js" integrity="sha512-zjlf0U0eJmSo1Le4/zcZI51ks5SjuQXkU0yOdsOBubjSmio9iCUp8XPLkEAADZNBdR9crRy3cniZ65LF2w8sRA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -42,16 +43,16 @@
                 </li>
 
                 <li>
-                    @php 
+                    @php
                     use Illuminate\Support\Facades\Auth;
-                    $restaurant = Auth::user()->restaurant; 
+                    $restaurant = Auth::user()->restaurant;
                     @endphp
                     @if($restaurant)
-                    <a href="{{route('admin.home')}}">
+                    <a href="{{route('admin.charts.index')}}">
                         <i class='bx bx-grid-alt'></i>
                         <span class="links_name">Dashboard</span>
                     </a>
-                    @else 
+                    @else
                     <a href="#">
                         <i class='bx bx-grid-alt'></i>
                         <span class="links_name" style="color: #878383">Dashboard</span>
@@ -64,7 +65,7 @@
                     @if($restaurant)
                     <a href="{{route('admin.restaurants.index')}}" aria-disabled="">
                         <i class='bx bx-user'></i>
-                        <span class="links_name" >User</span>
+                        <span class="links_name">User</span>
                     </a>
                     @else
                     <a href="#" aria-disabled="">
@@ -72,18 +73,18 @@
                         <span class="links_name" style="color: #878383">User</span>
                     </a>
                     @endif
-                    <span class="tooltip" >User</span>
+                    <span class="tooltip">User</span>
                 </li>
 
 
                 <li>
                     @if($restaurant)
-                    <a href="{{route('admin.restaurants.index')}}" >
+                    <a href="{{route('admin.restaurants.index')}}">
                         <i class='bx bx-chat'></i>
                         <span class="links_name">Restaurant</span>
                     </a>
                     @else
-                    <a href="#" >
+                    <a href="#">
                         <i class='bx bx-chat'></i>
                         <span class="links_name" style="color: #878383">Restaurant</span>
                     </a>
@@ -96,7 +97,7 @@
                     @if($restaurant)
                     <a href="{{route('admin.dishes.index')}}">
                         <i class='bx bx-folder'></i>
-                        <span class="links_name" >Dishes</span>
+                        <span class="links_name">Dishes</span>
                     </a>
                     @else
                     <a href="#">

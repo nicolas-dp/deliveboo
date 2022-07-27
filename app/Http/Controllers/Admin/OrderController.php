@@ -28,7 +28,6 @@ class OrderController extends Controller
             return redirect()->route('admin.restaurants.create');
         }
 
-        // return view('admin.orders.index', compact('orders'));
     }
 
     /**
