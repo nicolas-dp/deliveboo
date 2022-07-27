@@ -262,7 +262,7 @@
       </div>
 
       <div class="not_restaurant" v-if="filtered_restaurants == 0">
-        <h1>Non ci sono ristoranti per le categorie selezionate.</h1>
+        <h1>Non ci sono ristoranti con le categorie selezionate.</h1>
       </div>
     </section>
     <!-- /.restaurant -->
