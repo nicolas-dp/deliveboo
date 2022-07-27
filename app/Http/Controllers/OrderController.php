@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewOrderMade;
+use App\Mail\NewOrderMadeAdmin;
 use Illuminate\Support\Str;
 
 
@@ -47,7 +48,7 @@ class OrderController extends Controller
         //$order->save();
         // dd($validate_data['customer_email']);
         Mail::to($validate_data['customer_email'])->send(new NewOrderMade($order));
-        Mail::to($user['email'])->send(new NewOrderMade($order));
+        Mail::to($user['email'])->send(new NewOrderMadeAdmin($order));
         return view("guest.home");
     }
 

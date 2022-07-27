@@ -3,12 +3,13 @@
 namespace App\Mail;
 
 use App\Models\Order;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewOrderMade extends Mailable
+class NewOrderMadeAdmin extends Mailable
 {
     use Queueable, SerializesModels;
     public $order;
@@ -32,6 +33,6 @@ class NewOrderMade extends Mailable
         return $this
         ->from('noreply@example.com')
         ->subject('Nuovo ordine effettuato')
-        ->view('mail.orders.order');
+        ->view('mail.orders.admin_mail');
     }
 }
