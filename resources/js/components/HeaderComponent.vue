@@ -38,7 +38,6 @@
               class="navbar-nav ml-auto d-flex justify-content-around flex-row"
             >
               <li class="nav-item">
-
                 <router-link class="nav-link" :to="{ name: 'checkout' }">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +53,11 @@
                   </svg>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/admin">Accedi</a>
+              <li class="nav-item" v-if="user_name">
+                <a class="nav-link" href="/admin" ><i class="fa-solid fa-user-ninja"></i> {{user_name}} </a>
+              </li>
+              <li class="nav-item" v-else>
+                <a class="nav-link" href="/admin" >Accedi</a>
               </li>
             </ul>
           </div>
@@ -68,6 +70,50 @@
 <script>
 export default {
   name: "HeaderComponent",
+  data() {
+    return {
+      user_name: null
+    };
+  },
+  methods: {
+    getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
+
+    //document.write("n" + readCookie('site'));
+
+    checkCookie() {
+      let username = this.getCookie("user_logged");
+      if (username != "") {
+        this.user_name = username;
+      } else {
+        //username = prompt("Please enter your name:", "");
+/*         if (username != "" && username != null) {
+          setCookie("username", username, 365);
+        } */
+      }
+    },
+  },
+
+  mounted() {
+    //console.log(`cokkie: ${this.getCookie("user_logged")}`);
+    //console.log(`cokkie: ${(document.cookie = "user_logged")}`);
+    console.log(`cokkie: ${this.getCookie("user_logged")}`);
+
+    this.checkCookie();
+  },
 };
 </script>
 

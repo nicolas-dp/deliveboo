@@ -40,12 +40,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        // stuff to do after user logs in
+        $cookie_name = "user_logged";
+        $cookie_value = $user->name;
+        setcookie($cookie_name, $cookie_value, time()+3600);;
+
+        //dd($_COOKIE["pippobaudo"]);
+    }
 
 
 
     /* QUI SOTTO LA FUNZIONE CHE REINDIRIZZA ALLA ADMIN.HOME UNA VOLTA CHE SI FA IL LOGOUT */
 
-        /**
+    /**
      * Logout trait
      *
      * @author Yugo <dedy.yugo.purwanto@gmail.com>
@@ -59,6 +68,8 @@ class LoginController extends Controller
         $request->session()->flush();
 
         $request->session()->regenerate();
+
+        setcookie("user_logged", "", time() - 3600);
 
         return redirect()->route('admin.home');
     }
