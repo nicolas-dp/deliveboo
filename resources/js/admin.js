@@ -8,7 +8,7 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
-import Chart from "chart.js/auto";
+//import Chart from "chart.js/auto";
 
 
 /**
@@ -40,7 +40,7 @@ Vue.component(
 
 const app = new Vue({
     el: "#app",
-    components: { Chart },
+    //components: { Chart },
     data() {
         return {
             rest_name: "",
