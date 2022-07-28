@@ -14,11 +14,11 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 20)
+        factory(Order::class, 2222)
             ->make()
             ->each(function ($order) {
-                $order->slug = Str::slug($order->customer_name) . '-' . rand(1, 1000000);
-
+                // $order->slug = Str::slug($order->customer_name) . '-' . rand(1, 1000000);
+                $order->slug = Str::slug($order['restaurant_id'], '-') . '-' . Str::slug($order['order_date'], '-') . '-' . rand(0, 1000000);
                 $order->save();
 
                 $dishes = Dish::inRandomOrder()->limit(rand(1, 10))->get();
