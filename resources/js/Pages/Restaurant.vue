@@ -499,12 +499,9 @@ export default {
       console.log(localStorage.getItem("list_cookie"));
     } */
 
-    console.log(state.cart);
-    console.log(this.myCart);
+    //console.log(state.cart);
+    //console.log(this.myCart);
 
-    //cancella
-
-    //cancella
   },
 };
 </script>
