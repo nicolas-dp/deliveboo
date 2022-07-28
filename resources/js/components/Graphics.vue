@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="chart-container">
     <div class="wrapper">
       <h1 class="text-center p-3">5 Years Order</h1>
       <canvas id="myChart" width="400" height="400"></canvas>
@@ -143,11 +143,11 @@ export default {
 </script>
 
 <style >
-.container {
+.chart-container {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: left;
   align-items: center;
 }
 
