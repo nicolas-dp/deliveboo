@@ -1,19 +1,29 @@
 <template>
   <div class="actions text-center">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary text-white" @click="subtractOne()">
+      <button
+        type="button"
+        class="btn btn-secondary text-white"
+        @click="subtractOne()"
+      >
         -
       </button>
       <span class="counter bg-light px-3 d-flex align-items-center">
         <!-- :class="`dish-${dish.id}`" -->
         {{ counter }}
       </span>
-      <button type="button" class="btn btn-secondary text-white" @click="addOne()">+</button>
+      <button
+        type="button"
+        class="btn btn-secondary text-white"
+        @click="addOne()"
+      >
+        +
+      </button>
     </div>
 
     <button
       type="button"
-      class=" add_cart btn bg_orange ms-3"
+      class="add_cart btn bg_orange ms-3"
       @click="
         addItemToCart(dishElement, counter);
         $emit('setCookie');
@@ -43,6 +53,8 @@ export default {
 
   props: {
     dishElement: Object,
+    restaurantPageId: Number,
+    restaurantSlug: String,
   },
 
   data() {
@@ -62,38 +74,149 @@ export default {
       }
     },
 
+    setRestaurantCookie() {
+      //rimuovo cookie esistente
+      localStorage.removeItem("restaurant_id");
+      localStorage.removeItem("restaurant_slug");
+
+      //creo il 'cookie'
+      localStorage.setItem("restaurant_id", this.restaurantPageId);
+      localStorage.setItem("restaurant_slug", this.restaurantSlug);
+    },
+
     addItemToCart(dishObject, dishAmount) {
-      //se esiste gìa nel carrello aggiunto altri elementi
-      if (
-        state.cart.list_dishes.filter(
-          (dishQuery) => dishQuery.name === dishObject.name
-        ).length > 0
+      //mi deve eseguire il codice se il ristorante id passato per props
+      //è uguale a quello nel local storage
+      if (state.cart.list_dishes.length == 0) {
+        //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+        //se esiste gìa nel carrello aggiunto altri elementi
+        if (
+          state.cart.list_dishes.filter(
+            (dishQuery) => dishQuery.name === dishObject.name
+          ).length > 0
+        ) {
+          const objIndex = state.cart.list_dishes.findIndex(
+            (obj) => obj.id == dishObject.id
+          );
+
+          //console.log(`indice arraypiatti: ${objIndex}`);
+
+          state.cart.list_dishes[objIndex].amount =
+            state.cart.list_dishes[objIndex].amount + dishAmount;
+
+          state.cart.makeTotal();
+        }
+        //sennò lo creo
+        else {
+          let newDish = dishObject;
+
+          newDish["amount"] = dishAmount;
+
+          state.cart.list_dishes.push(newDish);
+
+          //console.log(state.cart.list_dishes);
+
+          state.cart.makeTotal();
+
+          console.log("totale carrello");
+          console.log(state.cart.total_amount);
+        }
+        //FINE CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+
+        this.setRestaurantCookie();
+      } else if (
+        state.cart.list_dishes.length > 0 &&
+        this.restaurantPageId == localStorage.getItem("restaurant_id")
       ) {
-        const objIndex = state.cart.list_dishes.findIndex(
-          (obj) => obj.id == dishObject.id
-        );
+        //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+        //se esiste gìa nel carrello aggiunto altri elementi
+        if (
+          state.cart.list_dishes.filter(
+            (dishQuery) => dishQuery.name === dishObject.name
+          ).length > 0
+        ) {
+          const objIndex = state.cart.list_dishes.findIndex(
+            (obj) => obj.id == dishObject.id
+          );
 
-        //console.log(`indice arraypiatti: ${objIndex}`);
+          //console.log(`indice arraypiatti: ${objIndex}`);
 
-        state.cart.list_dishes[objIndex].amount =
-          state.cart.list_dishes[objIndex].amount + dishAmount;
+          state.cart.list_dishes[objIndex].amount =
+            state.cart.list_dishes[objIndex].amount + dishAmount;
 
-        state.cart.makeTotal();
-      }
-      //sennò lo creo
-      else {
-        let newDish = dishObject;
+          state.cart.makeTotal();
+        }
+        //sennò lo creo
+        else {
+          let newDish = dishObject;
 
-        newDish["amount"] = dishAmount;
+          newDish["amount"] = dishAmount;
 
-        state.cart.list_dishes.push(newDish);
+          state.cart.list_dishes.push(newDish);
 
-        //console.log(state.cart.list_dishes);
+          //console.log(state.cart.list_dishes);
 
-        state.cart.makeTotal();
+          state.cart.makeTotal();
 
-        console.log("totale carrello");
-        console.log(state.cart.total_amount);
+          console.log("totale carrello");
+          console.log(state.cart.total_amount);
+        }
+        //FINE CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+
+        this.setRestaurantCookie();
+      } else {
+        //se non coincidono gli ID faccio comparire una modale per
+        //chiedere all'utente se vuole azzerare il carrello e farne uno nuovo
+
+        //prova sweettalert
+
+        swal({
+          title: "Vuoi creare un nuovo carrello?",
+          text: "Puoi ordinare da un solo ristorante, vuoi rimuovere i piatti presenti nel carrello?",
+          icon: "warning",
+          //buttons: true,
+          buttons: ["Annulla", "Azzera carrello"],
+          dangerMode: true,
+        }).then((willDelete) => {
+          state.cart.resetCart();
+
+          //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+          //se esiste gìa nel carrello aggiunto altri elementi
+          if (
+            state.cart.list_dishes.filter(
+              (dishQuery) => dishQuery.name === dishObject.name
+            ).length > 0
+          ) {
+            const objIndex = state.cart.list_dishes.findIndex(
+              (obj) => obj.id == dishObject.id
+            );
+
+            //console.log(`indice arraypiatti: ${objIndex}`);
+
+            state.cart.list_dishes[objIndex].amount =
+              state.cart.list_dishes[objIndex].amount + dishAmount;
+
+            state.cart.makeTotal();
+          }
+          //sennò lo creo
+          else {
+            let newDish = dishObject;
+
+            newDish["amount"] = dishAmount;
+
+            state.cart.list_dishes.push(newDish);
+
+            //console.log(state.cart.list_dishes);
+
+            state.cart.makeTotal();
+
+            console.log("totale carrello");
+            console.log(state.cart.total_amount);
+          }
+          //FINE CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+
+          this.setRestaurantCookie();
+        });
       }
 
       this.counter = 1;
@@ -108,7 +231,7 @@ export default {
   color: white;
 }
 
-.counter{
+.counter {
   font-size: 0.8rem;
 }
 </style>

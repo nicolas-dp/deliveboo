@@ -22,6 +22,9 @@
 
     {{-- cdn braintree --}}
     <script src="https://js.braintreegateway.com/web/dropin/1.33.3/js/dropin.js" defer></script>
+
+    {{-- cdn per alert carini --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>

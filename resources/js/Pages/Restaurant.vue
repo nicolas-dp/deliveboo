@@ -122,6 +122,8 @@
 
                   <CartActions
                     :dishElement="dish"
+                    :restaurantPageId="restaurant.id"
+                    :restaurantSlug="restaurant.slug"
                     v-if="dish.is_available"
                     @setCookie="setCartCookie()"
                   />
@@ -190,7 +192,11 @@
             <h2 class="text-center mb-5 orange" id="menu">Carrello</h2>
 
             <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
-              <li v-for="(dishElement, i) in myCart.list_dishes" :key="i">
+              <li
+                v-for="(dishElement, i) in myCart.list_dishes"
+                :key="i"
+                class="mb-1"
+              >
                 {{ dishElement.name }}: {{ dishElement.amount }} x
                 {{ dishElement.price }}€ =
                 {{ dishElement.amount * dishElement.price }} €
@@ -229,13 +235,10 @@
                     </button>
                   </div>
 
-           
-                  <!-- Button trigger modal erase item -->
                   <button
                     type="button"
                     class="btn btn-sm btn-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#removeItem"
+                    @click="removeItem(i)"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -250,79 +253,86 @@
                       />
                     </svg>
                   </button>
-
-                  <!-- Modal -->
-                  <div
-                    class="modal fade"
-                    id="removeItem"
-                    tabindex="-1"
-                    aria-labelledby="removeItem"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" >
-                            Rimuovi elemento
-                          </h5>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          Vuoi rimuovere l'elemento {{ dishElement.name }} dal
-                          carrello? 
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary text-white"
-                            data-bs-dismiss="modal"
-                          >
-                            Annulla
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger text-white"
-                            data-bs-dismiss="modal"
-                            @click="removeItem(i)"
-                          >
-                            Elimina
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </li>
             </ul>
 
             <p v-else>Nessun elemento nel carrello</p>
 
-            <p>Totale: {{ myCart.total_amount }} €</p>
+            <p>
+              Totale: <strong>{{ myCart.total_amount }} €</strong>
+            </p>
 
-            <button
-              class="reset_cart btn btn-secondary btn-sm"       
-              @click="
-                myCart.resetCart();
-                setCartCookie();
-              "
-            >
-              Azzera carrello
-            </button>
+            <div class="cart_buttons" v-if="myCart.list_dishes.length > 0">
+              <!-- modale -->
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="reset_cart btn btn-secondary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteCart"
+              >
+                Azzera Carrello
+              </button>
 
-            <router-link
-              class="btn bg_orange btn-sm"
-              :to="{ name: 'checkout' }"
-              @click="setCartCookie()"
-              v-if="myCart.list_dishes.length > 0"
-            >
-              Vai al Checkout
-            </router-link>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="deleteCart"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="deleteCartLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteCartLabel">
+                        Elimina Carrello
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      Vuoi eliminare tutti gli elementi dal carrello?
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Annulla
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger text-white"
+                        data-bs-dismiss="modal"
+                        @click="
+                          myCart.resetCart();
+                          setCartCookie();
+                        "
+                      >
+                        Elimina
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+              <router-link
+                class="btn bg_orange btn-sm"
+                :to="{ name: 'checkout' }"
+                @click="setCartCookie()"
+              >
+                Vai al Checkout
+              </router-link>
+            </div>
             <!--           <button
             class="btn btn-info btn-sm"
             @click="setCartCookie()"
@@ -358,7 +368,10 @@ export default {
       //number: 0,
       loading: true,
       myCart: state.cart,
+
+      restaurantCookieToken: null,
       //dish_amounts: {},
+      //firstItemAdded: true,
     };
   },
 
@@ -426,10 +439,11 @@ export default {
       //controlla al mounted se esiste il cooki dishlist e se l'id cookie del
       //ristorante è uguale a quello salvato nel local storage
       if (
-        localStorage.getItem("list_cookie") &&
-        localStorage.getItem("restaurant_id") == this.restaurant.id
+        localStorage.getItem("list_cookie") 
       ) {
-        console.log("siamo nel ristorante del precedente carrello");
+
+        console.log('c"è una lista piatti esistente');
+        console.log(localStorage.getItem("list_cookie"));
         //se c'è
         try {
           //alert("c'è il cookie eheh")
@@ -444,18 +458,11 @@ export default {
           localStorage.removeItem("list_cookie");
         }
       } else {
-        console.log("siamo in un nuovo ristorante");
+        console.log("non esistono piatti aggiunti nel local storage");
 
         //console.log(localStorage.getItem("list_cookie"));
-        localStorage.removeItem("list_cookie");
 
-        localStorage.removeItem("restaurant_id");
-        localStorage.removeItem("restaurant_slug");
-
-        localStorage.setItem("restaurant_id", this.restaurant.id);
-        //console.log(localStorage.getItem("restaurant_id"));
-
-        localStorage.setItem("restaurant_slug", this.restaurant.slug);
+        //localStorage.removeItem("list_cookie");
         //console.log(localStorage.getItem("restaurant_id"));
       }
     },
@@ -471,9 +478,19 @@ export default {
       //creo il 'cookie'
       localStorage.setItem("list_cookie", parsed);
     },
+
+    setRestaurantCookie() {
+      //rimuovo cookie esistente
+      localStorage.removeItem("restaurant_id");
+
+      //creo il 'cookie'
+      localStorage.setItem("restaurant_id", this.restaurant.id);
+    },
   },
 
   mounted() {
+    //this.restaurantCookieToken = localStorage.getItem("restaurant_id");
+
     this.getRestaurant();
 
     /*     if (!this.loading) {
@@ -561,7 +578,7 @@ svg {
       text-align: center;
       width: 100%;
     }
-    .info{
+    .info {
       text-align: center;
       width: 100%;
     }
