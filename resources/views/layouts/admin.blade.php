@@ -24,6 +24,9 @@
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -32,15 +35,12 @@
         <div class="sidebar">
             <div class="logo-details">
                 <i class='bx bxl-c-plus-plus icon'></i>
-                <div class="logo_name">Deliveboo</div>
-                <i class='bx bx-menu' id="btn"></i>
+                <a class="text-decoration-none" href="/">
+                    <div class="logo_name">Deliveboo</div>
+
+                </a> <i class='bx bx-menu' id="btn"></i>
             </div>
             <ul class="nav-list">
-                <li>
-                    <i class='bx bx-search'></i>
-                    <input type="text" placeholder="Search...">
-                    <span class="tooltip">Search</span>
-                </li>
 
                 <li>
                     @php
@@ -48,13 +48,28 @@
                     $restaurant = Auth::user()->restaurant;
                     @endphp
                     @if($restaurant)
+                    <a href="/">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                    @else
+                    <a href="/">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="links_name" style="color: #878383">Home</span>
+                    </a>
+                    @endif
+                    <span class="tooltip">Home</span>
+                </li>
+
+                <li>
+                    @if($restaurant)
                     <a href="{{route('admin.charts.index')}}">
-                        <i class='bx bx-grid-alt'></i>
+                        <i class="fa-solid fa-chart-line"></i>
                         <span class="links_name">Dashboard</span>
                     </a>
                     @else
                     <a href="#">
-                        <i class='bx bx-grid-alt'></i>
+                        <i class="fa-solid fa-chart-line"></i>
                         <span class="links_name" style="color: #878383">Dashboard</span>
                     </a>
                     @endif
@@ -63,29 +78,13 @@
 
                 <li>
                     @if($restaurant)
-                    <a href="{{route('admin.restaurants.index')}}" aria-disabled="">
-                        <i class='bx bx-user'></i>
-                        <span class="links_name">User</span>
-                    </a>
-                    @else
-                    <a href="#" aria-disabled="">
-                        <i class='bx bx-user'></i>
-                        <span class="links_name" style="color: #878383">User</span>
-                    </a>
-                    @endif
-                    <span class="tooltip">User</span>
-                </li>
-
-
-                <li>
-                    @if($restaurant)
                     <a href="{{route('admin.restaurants.index')}}">
-                        <i class='bx bx-chat'></i>
+                        <i class="fa-solid fa-utensils"></i>
                         <span class="links_name">Restaurant</span>
                     </a>
                     @else
                     <a href="#">
-                        <i class='bx bx-chat'></i>
+                        <i class="fa-solid fa-utensils"></i>
                         <span class="links_name" style="color: #878383">Restaurant</span>
                     </a>
                     @endif
@@ -96,12 +95,12 @@
                 <li>
                     @if($restaurant)
                     <a href="{{route('admin.dishes.index')}}">
-                        <i class='bx bx-folder'></i>
+                        <i class="fa-solid fa-burger"></i>
                         <span class="links_name">Dishes</span>
                     </a>
                     @else
                     <a href="#">
-                        <i class='bx bx-folder'></i>
+                        <i class="fa-solid fa-burger"></i>
                         <span class="links_name" style="color: #878383">Dishes</span>
                     </a>
                     @endif
@@ -112,27 +111,17 @@
                 <li>
                     @if($restaurant)
                     <a href="{{route('admin.orders.index')}}">
-                        <i class='bx bx-chat'></i>
+                        <i class="fa-solid fa-dolly"></i>
                         <span class="links_name"> Orders</span>
                     </a>
                     @else
                     <a href="#">
-                        <i class='bx bx-chat'></i>
+                        <i class="fa-solid fa-dolly"></i>
                         <span class="links_name" style="color: #878383"> Orders</span>
                     </a>
                     @endif
                     <span class="tooltip">Orders</span>
                 </li>
-
-
-                <li>
-                    <a href="#">
-                        <i class='bx bx-cog'></i>
-                        <span class="links_name">Setting</span>
-                    </a>
-                    <span class="tooltip">Setting</span>
-                </li>
-
 
                 <li class="profile">
                     <div class="profile-details">
