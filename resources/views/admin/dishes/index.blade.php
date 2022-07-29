@@ -8,7 +8,7 @@
             <div class="admin-cards  p-admin">
                 <h3>Aggiungi un nuovo piatto!</h3>
                 <div class="buttons">
-                    <a href="{{route('admin.restaurants.create')}}" class="blob-btn">
+                    <a href="{{route('admin.dishes.create')}}" class="blob-btn">
                         Create New Dish
                         <span class="blob-btn__inner">
                             <span class="blob-btn__blobs">
