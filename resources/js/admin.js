@@ -57,6 +57,9 @@ const app = new Vue({
             dish_name_check: 0,
             dish_price: "",
             dish_price_check: 0,
+            opening_hours: "",
+            closing_hours: "",
+            check_hours: 0,
         };
     },
     methods: {
@@ -117,24 +120,31 @@ const app = new Vue({
                 this.dish_price_check = 2;
             }
         },
+        checkOpeningClosingHours() {
+            if (this.opening_hours === this.closing_hours){
+                this.check_hours = 2;
+            } else {
+                this.check_hours = 1;
+            }
+        }
     },
 });
 
 // dashboard sidebar
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let searchBtn = document.querySelector(".bx-search");
+//let searchBtn = document.querySelector(".bx-search");
 
 closeBtn.addEventListener("click", () => {
     sidebar.classList.toggle("open");
     menuBtnChange(); //calling the function(optional)
 });
 
-searchBtn.addEventListener("click", () => {
+/* searchBtn.addEventListener("click", () => {
     // Sidebar open when you click on the search iocn
     sidebar.classList.toggle("open");
     menuBtnChange(); //calling the function(optional)
-});
+}); */
 
 // following are the code to change sidebar button(optional)
 function menuBtnChange() {

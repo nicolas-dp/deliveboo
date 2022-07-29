@@ -1,23 +1,30 @@
 <template>
   <div class="actions text-center">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary text-white" @click="subtractOne()">
+      <button
+        type="button"
+        class="btn btn-secondary text-white"
+        @click="subtractOne()"
+      >
         -
       </button>
       <span class="counter bg-light px-3 d-flex align-items-center">
         <!-- :class="`dish-${dish.id}`" -->
         {{ counter }}
       </span>
-      <button type="button" class="btn btn-secondary text-white" @click="addOne()">+</button>
+      <button
+        type="button"
+        class="btn btn-secondary text-white"
+        @click="addOne()"
+      >
+        +
+      </button>
     </div>
 
     <button
       type="button"
-      class=" add_cart btn bg_orange ms-3"
-      @click="
-        addItemToCart(dishElement, counter);
-        $emit('setCookie');
-      "
+      class="add_cart btn bg_orange ms-3"
+      @click="addItemToCart(dishElement, counter)"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +50,8 @@ export default {
 
   props: {
     dishElement: Object,
+    restaurantPageId: Number,
+    restaurantSlug: String,
   },
 
   data() {
@@ -62,7 +71,18 @@ export default {
       }
     },
 
-    addItemToCart(dishObject, dishAmount) {
+    setRestaurantCookie() {
+      //rimuovo cookie esistente
+      localStorage.removeItem("restaurant_id");
+      localStorage.removeItem("restaurant_slug");
+
+      //creo il 'cookie'
+      localStorage.setItem("restaurant_id", this.restaurantPageId);
+      localStorage.setItem("restaurant_slug", this.restaurantSlug);
+    },
+
+    addItem(dishObject, dishAmount) {
+      //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
       //se esiste gìa nel carrello aggiunto altri elementi
       if (
         state.cart.list_dishes.filter(
@@ -95,6 +115,51 @@ export default {
         console.log("totale carrello");
         console.log(state.cart.total_amount);
       }
+      //FINE CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+
+      this.$emit('setCookie');
+    },
+
+    addItemToCart(dishObject, dishAmount) {
+      //mi deve eseguire il codice se il ristorante id passato per props
+      //è uguale a quello nel local storage
+      if (state.cart.list_dishes.length == 0) {
+        //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+        this.addItem(dishObject, dishAmount);
+
+        this.setRestaurantCookie();
+      } else if (
+        state.cart.list_dishes.length > 0 &&
+        this.restaurantPageId == localStorage.getItem("restaurant_id")
+      ) {
+        //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+        this.addItem(dishObject, dishAmount);
+
+        this.setRestaurantCookie();
+      } else {
+        //se non coincidono gli ID faccio comparire una modale per
+        //chiedere all'utente se vuole azzerare il carrello e farne uno nuovo
+
+        //prova sweettalert
+
+        swal({
+          title: "Vuoi creare un nuovo carrello?",
+          text: "Puoi ordinare da un solo ristorante, vuoi rimuovere i piatti presenti nel carrello?",
+          icon: "warning",
+          //buttons: true,
+          buttons: ["Annulla", "Azzera carrello"],
+          dangerMode: true,
+        }).then((willDelete) => {
+          state.cart.resetCart();
+
+          //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
+          this.addItem(dishObject, dishAmount);
+
+          //this.$emit('setCookie');
+
+          this.setRestaurantCookie();
+        });
+      }
 
       this.counter = 1;
     },
@@ -108,7 +173,7 @@ export default {
   color: white;
 }
 
-.counter{
+.counter {
   font-size: 0.8rem;
 }
 </style>

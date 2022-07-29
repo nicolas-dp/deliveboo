@@ -37,15 +37,25 @@
 
             <div class="mb-2">
                 <label for="opening_hours">Orario di Apertura</label>
-                <input type="time" required="required" min="00:00" max="13:00" name="opening_hours" id="opening_hours" class="form-control" aria-describedby="opening_hoursHelper" value="{{ old('opening_hours') }}">
+
+                <input type="time" required="required" name="opening_hours" id="opening_hours"
+                    v-model="opening_hours" v-on:keyup="checkOpeningClosingHours" :class="{'input_correct': check_hours == 1, 'input_error': check_hours == 2}"
+                    class="form-control"  aria-describedby="opening_hoursHelper"
+                    value="{{ old('opening_hours') }}">
+
                 <small id="opening_hoursHelper" class="text-muted">Inserisci l'orario di apertura</small>
                 @include('partials.single_error', ['variable' => 'opening_hours'])
             </div>
 
             <div class="mb-2">
                 <label for="closing_hours">Orario di Chiusura</label>
-                <input type="time" required="required" min="14:00" max="23:59" name="closing_hours" id="closing_hours" class="form-control" aria-describedby="closing_hoursHelper" value="{{ old('closing_hours') }}">
-                <small id="closing_hoursHelper" class="text-muted">Inserisci l'orario di chiusura</small>
+
+                <input type="time" required="required" name="closing_hours" id="closing_hours"
+                    v-model="closing_hours" v-on:keyup="checkOpeningClosingHours" :class="{'input_correct': check_hours == 1, 'input_error': check_hours == 2}"
+                    class="form-control"  aria-describedby="closing_hoursHelper"
+                    value="{{ old('closing_hours') }}">
+                <small id="closing_hoursHelper" class="text-muted">Inserisci l'orario di chiusura (deve essere diverso dall'orario di apertura)</small>
+
                 @include('partials.single_error', ['variable' => 'closing_hours'])
             </div>
 
