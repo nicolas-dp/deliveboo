@@ -258,7 +258,7 @@
               <div class="card_image">
                 <img
                   v-if="restaurant.cover_image"
-                  class="img-fluid img_restaurant"
+                  class="img-fluid w-100 img_restaurant"
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
                       ? restaurant.cover_image
@@ -302,7 +302,7 @@
               <div class="card_image">
                 <img
                   v-if="restaurant.cover_image"
-                  class="img-fluid"
+                  class="img-fluid w-100"
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
                       ? restaurant.cover_image
@@ -314,7 +314,7 @@
                   v-else
                   src="https://www.clipartmax.com/png/middle/213-2131416_restaurant-lamb-clipart-placeholder-image-for-restaurant.png"
                   :alt="restaurant.name"
-                  class="img-fluid"
+                  class="img-fluid w-100"
                 />
               </div>
               <div class="card_text p-2">
@@ -543,6 +543,11 @@ export default {
       transition: all 0.7s;
       &:hover {
         transform: scale(1.1);
+      }
+
+      .card_image {
+        max-height: 160px;
+        overflow-y: hidden;
       }
     }
   }

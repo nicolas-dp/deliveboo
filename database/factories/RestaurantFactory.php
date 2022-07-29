@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Restaurant::class, function (Faker $faker) {
     return [
-        'user_id' => $faker->unique()->numberBetween(1, App\Models\User::count()),
+        /* 'user_id' => $faker->unique()->numberBetween(1, App\Models\User::count()),
         //'name' => $faker->sentence(2),
         'description' => $faker->text(500),
         'address' => $faker->streetAddress,
@@ -16,6 +16,6 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'closing_hours' => '23:00:00',
         'phone_number' => $faker->phoneNumber,
         //'cover_image' => $faker->imageUrl(600, 300, 'Restaurant', true, '$restaurant->slug', false),
-        'PIVA' => substr($faker ->unique() ->iban('IT'), 0, 11)
+        'PIVA' => substr($faker ->unique() ->iban('IT'), 0, 11) */
     ];
 });
