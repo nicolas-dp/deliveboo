@@ -2,8 +2,8 @@
 
 @section('content')
 
+@if($orders->count() > 0)
 <div class="container pt-4 pb-5">
-    @if(Auth::check() && $restaurant)
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -35,12 +35,8 @@
                                         <td>{{ $order->restaurant->name }}</td>
                                         <td>{{ $order->order_date }}</td>
                                         <td>{{ $order->total_price }}</td>
-
-
                                         <td>
                                             <a href="{{route('admin.orders.show', $order->slug )}}" class="btn btn-primary text-light">Show</a>
-
-
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-order-{{$order->id}}">
@@ -48,7 +44,7 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="delete-order-{{$order->id}}"  tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{$order->id}}" aria-hidden="true">
+                                            <div class="modal fade" id="delete-order-{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{$order->id}}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -70,9 +66,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         </td>
                                     </tr>
                                     @endforeach
@@ -84,10 +77,20 @@
             </div>
         </div>
     </div>
-    @else
-    <h1>Welcome vatti a fare un ristorante</h1>
-    <a href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
-    @endif
 </div>
+
+@else
+<div class="container-fluid">
+    <img class="bg-admin" src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000" alt="">
+    <div class="admin-wrapper">
+        <div class="admin-card-order p-orders">
+            <div>
+                <h3>Nessun ordine presente!</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endif
 
 @endsection
