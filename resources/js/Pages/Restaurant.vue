@@ -114,7 +114,9 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             <div class="col" v-for="dish in restaurant.dishes" :key="dish.id">
               <div class="card h-100">
-                <img :src="dish.cover_image" alt="" />
+                <div class="img_wrapper">
+                  <img :src="dish.cover_image" alt="" class="img-fluid w-100" />
+                </div>
                 <div class="card_text p-3">
                   <h5 class="orange">{{ dish.name }}</h5>
 
@@ -548,9 +550,12 @@ svg {
     border-radius: 0.5rem;
     box-shadow: 0 0 10px grey;
     transition: all 0.7s;
-    // &:hover {
-    //   transform: scale(1.1);
-    // }
+
+
+    .img_wrapper {
+      max-height: 160px;
+      overflow-y: hidden;
+    }
   }
 
   .cart {

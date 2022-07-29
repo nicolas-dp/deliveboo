@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     'restaurants' => [
@@ -74,5 +74,49 @@ return [
         "Pita and Happiness" => 'https://media-cdn.tripadvisor.com/media/photo-s/0e/94/1d/63/20170302-203425-largejpg.jpg',
         "Healthy corner" => 'https://cdn-5df63d5cf911ca048c6d1a79.closte.com/wp-content/uploads/2019/12/how-to-eat-vegan-in-rome-vacation-tips.jpg',
         "My Green Way" => 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2019/06/21043813/vegan-restaurants-c-WAVE.jpg',
+    ],
+
+    'dishes_images' => [
+        [
+            'name' => 'Pasta',
+            'img' => 'https://www.interris.it/wp-content/uploads/2020/02/img800-un-piatto-di-pasta-a-cena-combatte-insonnia-e-stress-143065-1280x720.jpg'
+        ],
+        [
+            'name' => 'Bowl',
+            'img' => 'https://static.cookist.it/wp-content/uploads/sites/21/2020/06/poke-bowl-salmone-avocado.jpg'
+        ],
+        [
+            'name' => 'Haburger',
+            'img' => 'https://thegirlnextkitchen.com/wp-content/uploads/2021/01/ricetta-hamburger.jpg'
+        ],
+        [
+            'name' => 'Pesce',
+            'img' => 'https://images.indianexpress.com/2018/07/fish-sustainanbel-759.jpg'
+        ],
+        [
+            'name' => 'Gelato',
+            'img' => 'https://www.tavolartegusto.it/wp/wp-content/uploads/2020/05/Gelato-alla-frutta.jpg'
+        ],
+        [
+            'name' => 'Pizza',
+            'img' => 'https://blog.giallozafferano.it/spadellalapadella/wp-content/uploads/2022/02/20220126_200721-2_tn-960x719.jpg'
+        ],
+        [
+            'name' => 'Kebab',
+            'img' => 'https://cdn.ilclubdellericette.it/wp-content/uploads/2019/06/kebab-fatto-in-casa-640x480.jpg'
+        ],
+        [
+            'name' => 'Gyros',
+            'img' => 'https://www.ricettedigusto.info/wp-content/uploads/2022/01/Gyros-1200x900.jpg'
+        ],
+        [
+            'name' => 'Insalata',
+            'img' => 'https://cdn.ilclubdellericette.it/wp-content/uploads/2019/10/insalata-1280x720.jpg'
+        ],
+        [
+            'name' => 'Tacos',
+            'img' => 'https://www.giallozafferano.it/images/175-17533/Tacos-veloci_650x433_wm.jpg'
+        ],
+
     ]
 ];
