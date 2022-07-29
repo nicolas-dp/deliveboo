@@ -35,7 +35,20 @@
             >ID ristorante</small
           >
         </div>
-
+        <!-- List dishes -->
+        <div class="mb-3 d-none" v-if="myCart.list_dishes">
+          <label for="list_dishes" class="form-label">Lista piatti:</label>
+          <input
+            type="text"
+            name="list_dishes"
+            id="list_dishes"
+            class="form-control"
+            :value="list_parsed"
+            aria-describedby="list_dishesHelper"
+            readonly
+          />
+          
+        </div>
         <!-- totale da pagare -->
         <div class="mb-3 d-none">
           <label for="total_price" class="form-label">Totale:</label>
@@ -194,7 +207,8 @@ export default {
       loading: true,
       myCart: state.cart,
       tokenApi: "",
-
+      //list_parsed: JSON.parse(myCart.list_dishes),
+      list_parsed: null,
       /* CODICE NICOLAS */
       /*       tokenApi: "",
       errors: [], */
@@ -215,6 +229,8 @@ export default {
       this.myCart.list_dishes = JSON.parse(localStorage.getItem("list_cookie"));
       //console.log(this.myCart.list_dishes);
       this.myCart.makeTotal();
+      this.list_parsed = localStorage.getItem("list_cookie");
+      console.log("Console di nicolas:", this.list_parsed);
     }
 
     //console.log(this.myCart.list_dishes);
