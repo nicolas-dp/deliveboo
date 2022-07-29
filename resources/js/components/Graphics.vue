@@ -2,7 +2,7 @@
   <div class="chart-container">
     <div class="wrapper">
       <h1 class="text-center p-3">5 Years Order</h1>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <canvas id="myChart" class="graphic"></canvas>
     </div>
   </div>
 </template>
@@ -152,7 +152,28 @@ export default {
 }
 
 .wrapper {
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
 }
+
+/* @media (max-width: 768px) {
+  .graphic {
+    width: 600px;
+    height: 700px;
+  }
+}
+
+@media (max-width: 425px) {
+  .graphic {
+    width: 400px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 320px) {
+  .graphic {
+    width: 200px !important;
+    height: 400px !important;
+  }
+} */
 </style>
