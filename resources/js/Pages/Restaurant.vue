@@ -115,7 +115,7 @@
             <div class="col" v-for="dish in restaurant.dishes" :key="dish.id">
               <div class="card h-100">
                 <div class="img_wrapper">
-                  <img :src="dish.cover_image" alt="" class="img-fluid w-100" />
+                  <img :src="dish.cover_image" alt="" class="" />
                 </div>
                 <div class="card_text p-3">
                   <h5 class="orange">{{ dish.name }}</h5>
@@ -553,8 +553,12 @@ svg {
 
 
     .img_wrapper {
-      max-height: 160px;
-      overflow-y: hidden;
+      height: 160px;
+      overflow: hidden;
+      img{
+        max-height: 100%;
+        object-fit: fill;
+      }
     }
   }
 
