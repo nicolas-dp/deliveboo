@@ -280,7 +280,8 @@
 
 // }
 
-.bg-admin {
+.bg-admin,
+.img_opacity {
     height: 100%;
     width: 100%;
     z-index: -5;
@@ -290,6 +291,10 @@
     top: 0;
     left: 0;
     opacity: 0.65;
+}
+
+.img_opacity {
+    opacity: 0.45 !important;
 }
 
 .admin-wrapper {
@@ -331,7 +336,7 @@
 .p-orders {
     padding: 3.4rem !important;
 }
-.p-admin{
+.p-admin {
     padding-top: 2rem !important;
 }
 
@@ -341,22 +346,22 @@
         width: 350px;
         height: 130px;
     }
-    .admin-cards{
+    .admin-cards {
         width: 350px;
         height: 135px !important;
     }
     .p-orders {
         padding-top: 2.45rem !important;
     }
-    .p-admin{
+    .p-admin {
         padding-top: 1.8rem !important;
     }
-    .buttons{
+    .buttons {
         margin-top: 1.25rem !important;
     }
-    .blob-btn{
-    padding: 13px 31px !important;
-    font-size: .7rem !important;
+    .blob-btn {
+        padding: 13px 31px !important;
+        font-size: 0.7rem !important;
     }
 }
 
@@ -369,22 +374,22 @@
     .p-orders {
         padding-top: 1.45rem !important;
     }
-    .p-admin{
+    .p-admin {
         padding-top: 0.8rem !important;
     }
-    .admin-cards{
+    .admin-cards {
         width: 270px;
         height: 130px !important;
     }
     .sidebar li .tooltip {
         display: none;
     }
-    .buttons{
+    .buttons {
         margin-top: 1rem !important;
     }
-    .blob-btn{
-    padding: 11px 28px !important;
-    font-size: .7rem !important;
+    .blob-btn {
+        padding: 11px 28px !important;
+        font-size: 0.7rem !important;
     }
 }
 
@@ -393,29 +398,29 @@
     .admin-card-order {
         width: 225px;
         height: 75px;
-        h3{
+        h3 {
             font-size: 1rem;
         }
     }
     .p-orders {
         padding-top: 0.5rem !important;
     }
-    .p-admin{
+    .p-admin {
         padding-top: 0.25rem !important;
     }
-    .admin-cards{
+    .admin-cards {
         width: 225px;
         height: 100px !important;
-        h3{
+        h3 {
             font-size: 1rem;
         }
     }
-    .buttons{
-        margin-top: .75rem !important;
+    .buttons {
+        margin-top: 0.75rem !important;
     }
-    .blob-btn{
-    padding: 9px 23px !important;
-    font-size: .6rem !important;
+    .blob-btn {
+        padding: 9px 23px !important;
+        font-size: 0.6rem !important;
     }
 }
 
@@ -642,5 +647,24 @@ $borderW: 2px;
                 transform: translateZ(0) scale(1.4);
             }
         }
+    }
+}
+
+.my_shadow {
+    //box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.my_yellow{
+    color: #ffc312;
+}
+
+.bg_black_trasparent{
+    background-color: #353536d9;
+}
+
+.bx-log-out{
+    &:hover{
+        color:#f7be12 !important;
     }
 }
