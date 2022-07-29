@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
         //     $new_user->email = $faker->unique()->safeEmail;
         //     $new_user->save();
         // }
-        factory(User::class, 20)->create();
+        factory(User::class, count(config('db.restaurants')))->create();
     }
 }

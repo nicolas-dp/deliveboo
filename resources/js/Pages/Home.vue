@@ -197,7 +197,15 @@
               {{ category.name }}
             </h5> -->
 
-            <h5 class="title_category text-center text-uppercase fw-bold pt-2 pb-3">
+            <h5
+              class="
+                title_category
+                text-center text-uppercase
+                fw-bold
+                pt-2
+                pb-3
+              "
+            >
               {{ category.name }}
             </h5>
             <!--  category.id = 1   category_active = 0 -->
@@ -258,7 +266,7 @@
               <div class="card_image">
                 <img
                   v-if="restaurant.cover_image"
-                  class="img-fluid img_restaurant"
+                  class="img_restaurant"
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
                       ? restaurant.cover_image
@@ -302,7 +310,7 @@
               <div class="card_image">
                 <img
                   v-if="restaurant.cover_image"
-                  class="img-fluid"
+                  class=""
                   :src="
                     restaurant.cover_image.slice(0, 4) == 'http'
                       ? restaurant.cover_image
@@ -314,7 +322,7 @@
                   v-else
                   src="https://www.clipartmax.com/png/middle/213-2131416_restaurant-lamb-clipart-placeholder-image-for-restaurant.png"
                   :alt="restaurant.name"
-                  class="img-fluid"
+                  class=""
                 />
               </div>
               <div class="card_text p-2">
@@ -543,6 +551,18 @@ export default {
       transition: all 0.7s;
       &:hover {
         transform: scale(1.1);
+      }
+
+      .card_image {
+        height: 160px;
+        overflow: hidden;
+
+        img {
+          //height: 100%;
+          width: 100%;
+          //object-fit: fill;
+          //object-fit: contain;
+        }
       }
     }
   }

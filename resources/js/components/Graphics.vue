@@ -1,8 +1,14 @@
 <template>
   <div class="chart-container">
     <div class="wrapper">
-      <h1 class="text-center p-3">5 Years Order</h1>
-      <canvas id="myChart" class="graphic"></canvas>
+
+      <h1 class="text-center p-3">Incassi per Anno</h1>
+      <canvas id="myChart" width="400" height="400"></canvas>
+
+    </div>
+    <div class="wrapper">
+      <h1 class="text-center p-3">Incassi per Mese</h1>
+      <canvas id="myChart_2" width="400" height="400"></canvas>
     </div>
   </div>
 </template>
@@ -33,62 +39,39 @@ export default {
             this.xlabel.push(element.order_date);
             this.ylabel.push(element.total_price);
           });
-          const labelx = [
-            "1970 - 1975",
-            "1976 - 1980",
-            "1981 - 1985",
-            "1986 - 1990",
-            "1991 - 1995",
-            "1996 - 2000",
-            "2001 - 2005",
-            "2006 - 2010",
-            "2011 - 2015",
-            "2016 - 2020",
-            "2021 - Now",
-          ];
-          const labely = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+          console.log(this.xlabel);
+
+          //GRAFICO ANNI
+          const labelx_years = ["2017", "2018", "2019", "2020", "2021", "2022"];
+          const labely_years = [0, 0, 0, 0, 0, 0];
           this.xlabel.forEach((element, index) => {
             const year = parseInt(element.slice(0, 4));
             // console.log(this.ylabel)
             switch (true) {
-              case year >= 1970 && year <= 1975:
-                labely[0] += parseInt(this.ylabel[index]);
+              case year == 2017:
+                labely_years[0] += parseInt(this.ylabel[index]);
                 break;
-              case year >= 1976 && year <= 1980:
-                labely[1] += parseInt(this.ylabel[index]);
+              case year == 2018:
+                labely_years[1] += parseInt(this.ylabel[index]);
                 break;
-              case year >= 1981 && year <= 1985:
-                labely[2] += parseInt(this.ylabel[index]);
+              case year == 2019:
+                labely_years[2] += parseInt(this.ylabel[index]);
                 break;
-              case year >= 1986 && year <= 1990:
-                labely[3] += parseInt(this.ylabel[index]);
+              case year == 2020:
+                labely_years[3] += parseInt(this.ylabel[index]);
                 break;
-              case year >= 1991 && year <= 1995:
-                labely[4] += parseInt(this.ylabel[index]);
+              case year == 2021:
+                labely_years[4] += parseInt(this.ylabel[index]);
                 break;
-              case year >= 1996 && year <= 2000:
-                labely[5] += parseInt(this.ylabel[index]);
-                break;
-              case year >= 2001 && year <= 2005:
-                labely[6] += parseInt(this.ylabel[index]);
-                break;
-              case year >= 2006 && year <= 2010:
-                labely[7] += parseInt(this.ylabel[index]);
-                break;
-              case year >= 2011 && year <= 2015:
-                labely[8] += parseInt(this.ylabel[index]);
-                break;
-              case year >= 2016 && year <= 2020:
-                labely[9] += parseInt(this.ylabel[index]);
-                break;
-              case year >= 2021 && year <= 2022:
-                labely[10] += parseInt(this.ylabel[index]);
+              case year == 2022:
+                labely_years[5] += parseInt(this.ylabel[index]);
                 break;
             }
           });
 
-          console.log(labely);
-          console.log(labelx);
+          console.log(labely_years);
+          console.log(labelx_years);
 
           const ctx = document.getElementById("myChart");
 
@@ -97,13 +80,13 @@ export default {
           const myChart = new Chart(ctx, {
             type: "bar",
             data: {
-              labels: labelx,
+              labels: labelx_years,
               datasets: [
                 {
                   label: "€ amount",
-                  data: labely,
-                  backgroundColor: this.randomColor(labelx.length),
-                  borderColor: this.randomColor(labelx.length),
+                  data: labely_years,
+                  backgroundColor: this.randomColor(labelx_years.length),
+                  borderColor: this.randomColor(labelx_years.length),
                   borderWidth: 1,
                 },
               ],
@@ -116,6 +99,86 @@ export default {
               },
             },
           });
+          //FINE GRAFICO ANNI
+
+          //GRAFICO MESI
+          const labelx_months = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+          const labely_months = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          this.xlabel.forEach((element, index) => {
+            const month = parseInt(element.slice(5, 7));
+            //console.log(element.slice(5, 7));
+            switch (true) {
+              case month == 1:
+                labely_months[0] += parseInt(this.ylabel[index]);
+                break;
+              case month == 2:
+                labely_months[1] += parseInt(this.ylabel[index]);
+                break;
+              case month == 3:
+                labely_months[2] += parseInt(this.ylabel[index]);
+                break;
+              case month == 4:
+                labely_months[3] += parseInt(this.ylabel[index]);
+                break;
+              case month == 5:
+                labely_months[4] += parseInt(this.ylabel[index]);
+                break;
+              case month == 6:
+                labely_months[5] += parseInt(this.ylabel[index]);
+                break;
+              case month == 7:
+                labely_months[6] += parseInt(this.ylabel[index]);
+                break;
+              case month == 8:
+                labely_months[7] += parseInt(this.ylabel[index]);
+                break;
+              case month == 9:
+                labely_months[8] += parseInt(this.ylabel[index]);
+                break;
+              case month == 10:
+                labely_months[9] += parseInt(this.ylabel[index]);
+                break;
+              case month == 11:
+                labely_months[10] += parseInt(this.ylabel[index]);
+                break;
+              case month == 12:
+                labely_months[11] += parseInt(this.ylabel[index]);
+                break;
+
+
+            }
+          });
+
+          console.log(labely_months);
+          console.log(labelx_months);
+
+          const ctx_2 = document.getElementById("myChart_2");
+
+          //console.log(ctx);
+
+          const myChart_2 = new Chart(ctx_2, {
+            type: "bar",
+            data: {
+              labels: labelx_months,
+              datasets: [
+                {
+                  label: "€ amount",
+                  data: labely_months,
+                  backgroundColor: this.randomColor(labelx_months.length),
+                  borderColor: this.randomColor(labelx_months.length),
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
+          //FINE GRAFICO MESI
         })
         .catch((e) => {
           console.error(e);
