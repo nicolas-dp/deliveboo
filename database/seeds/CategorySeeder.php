@@ -25,7 +25,6 @@ class CategorySeeder extends Seeder
             'americano' => 'https://www.chefspencil.com/wp-content/uploads/American-Foods.jpg',
             'cinese' => 'https://luxofood.com/wp-content/uploads/2021/12/chinese-5233490_1280.jpg',
             'pesce' => 'https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/727bda84826873.5d6906eb29c0a.jpg',
-            'italiano' => 'https://www.buttalapasta.it/wp-content/uploads/2016/01/pasta-spaghetti-alla-puttanesca.jpg',
             'greco' => 'https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/lamb-gyro.jpg?quality=82&strip=1',
             'dolce' => 'https://static01.nyt.com/images/2020/07/10/well/10well-newsletter/10well-newsletter-superJumbo.jpg',
             'kebab' => 'https://staticfanpage.akamaized.net/wp-content/uploads/sites/21/2019/05/kebab-fatto-in-casa-1200x675.jpg',
@@ -35,6 +34,9 @@ class CategorySeeder extends Seeder
             'panuozzo' => 'https://primochef.it/wp-content/uploads/2021/11/SH_panuozzo.jpg',
             'siriano' => 'https://kaleela.com/wp-content/uploads/2020/04/Syrian-food.jpg',
             'vegano' => 'https://mcdn.elektronik-star.de/klarstein/landingpage/lp-vegan-week/KS_VEGAN_WEEK_shop_LP_header_desktop_1440_560.jpg',
+            'turco' => 'https://nomadsunveiled.com/wp-content/uploads/2022/02/turkish-foods-in-turkey.jpg',
+            'argentino' => 'https://nomadparadise.com/wp-content/uploads/2020/06/argentinian_food_08.jpg',
+            'africano' => 'https://thekitchencommunity.org/wp-content/uploads/2021/11/shutterstock_1351940339-1200x900.jpg',
         ];
 
         foreach ($categories as $name => $cover_image) {
