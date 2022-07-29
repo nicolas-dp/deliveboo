@@ -57,6 +57,9 @@ const app = new Vue({
             dish_name_check: 0,
             dish_price: "",
             dish_price_check: 0,
+            opening_hours: "",
+            closing_hours: "",
+            check_hours: 0,
         };
     },
     methods: {
@@ -117,6 +120,13 @@ const app = new Vue({
                 this.dish_price_check = 2;
             }
         },
+        checkOpeningClosingHours() {
+            if (this.opening_hours === this.closing_hours){
+                this.check_hours = 2;
+            } else {
+                this.check_hours = 1;
+            }
+        }
     },
 });
 
