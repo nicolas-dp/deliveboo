@@ -42,35 +42,35 @@
                         <h3>Dishes</h3>
                     </div>
 
-                    <div class="card-body">                                    
-                    <div class="row">
-                        <div class="col-md-12 table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th class="d-none d-md-table-cell">Description</th>
-                                        <th class="d-none d-sm-table-cell">cover_image</th>
-                                        <th class="d-none d-sm-table-cell">Price</th>
-                                        <th class="d-none d-md-table-cell">Restaurant</th>
-                                        <th>Availability</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dishes as $dish)
-                                    <tr>
-                                        <td>{{ $dish->name }}</td>
-                                        <td style="max-width: 400px" class="d-none d-sm-table-cell">{{ $dish->description }}</td>
-                                        <td class="d-none d-md-table-cell">
-                                            <img src='{{ substr($dish->cover_image, 0, 4) == "http" ? $dish->cover_image  :  asset("storage/" . $dish->cover_image)}}' alt="{{$dish->name}}" style="max-width: 100px">
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">{{ $dish->price }} €</td>
-                                        <td class="d-none d-md-table-cell">{{ $dish->restaurant->name }}</td>
-                                        <td>{{ $dish->is_available == 1 ? 'Available' : 'Not Available' }}</td>
-                                        <td>
-                                            <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary text-light">Show</a>
-                                            <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success text-light">Edit</a>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="d-none d-md-table-cell">Description</th>
+                                            <th class="d-none d-sm-table-cell">cover_image</th>
+                                            <th class="d-none d-sm-table-cell">Price</th>
+                                            <th class="d-none d-md-table-cell">Restaurant</th>
+                                            <th>Availability</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($dishes as $dish)
+                                        <tr>
+                                            <td>{{ $dish->name }}</td>
+                                            <td style="max-width: 400px" class="d-none d-sm-table-cell">{{ $dish->description }}</td>
+                                            <td class="d-none d-md-table-cell">
+                                                <img src='{{ substr($dish->cover_image, 0, 4) == "http" ? $dish->cover_image  :  asset("storage/" . $dish->cover_image)}}' alt="{{$dish->name}}" style="max-width: 100px">
+                                            </td>
+                                            <td class="d-none d-sm-table-cell">{{ $dish->price }} €</td>
+                                            <td class="d-none d-md-table-cell">{{ $dish->restaurant->name }}</td>
+                                            <td>{{ $dish->is_available == 1 ? 'Available' : 'Not Available' }}</td>
+                                            <td>
+                                                <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary mb-2 mb-xl-0 text-light">Show</a>
+                                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success mb-2 mb-xl-0 text-light">Edit</a>
 
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
