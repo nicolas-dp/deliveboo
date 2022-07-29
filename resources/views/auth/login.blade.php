@@ -28,7 +28,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text pb-3"><i class="fas fa-user mt-1"></i></span>
                                 </div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="username">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
