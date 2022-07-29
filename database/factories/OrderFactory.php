@@ -12,8 +12,9 @@ $factory->define(Order::class, function (Faker $faker) {
         'customer_address' => $faker->streetAddress,
         'customer_email' => $faker->safeEmail,
         'customer_phone' => $faker->phoneNumber,
-        'order_date' => $faker->date('Y-m-d', 'now'),
-        'total_price' => rand(10, 1000),
+        //'order_date' => $faker->date('Y-m-d', 'now'),
+        //'order_date' => rand(2017, 2022) . '-' . rand(1, 12) . '-' . rand(1, 28),
+        'total_price' => rand(5, 700),
         'notes' =>$faker->text(500),  
     ];
 });
