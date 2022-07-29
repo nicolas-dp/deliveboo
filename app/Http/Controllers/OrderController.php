@@ -26,6 +26,7 @@ class OrderController extends Controller
             'customer_address' => 'required|max:400',
             'restaurant_id' => 'required',
             'total_price' => 'required',
+            'list_dishes' => 'nullable',
             'notes' => 'nullable|max:400',
         ]);
 
@@ -35,6 +36,8 @@ class OrderController extends Controller
 
         $validate_data['total_price'] = intval($validate_data['total_price']);
         
+        $list_dish =  $validate_data['list_dishes'];
+
         $validate_data['order_date'] = date("Y-m-d");
         
         $validate_data['slug'] = Str::slug($validate_data['restaurant_id'], '-') . '-' . Str::slug($validate_data['order_date'], '-') . '-' . rand(0, 100000);
@@ -47,8 +50,8 @@ class OrderController extends Controller
         // dd($user);
         //$order->save();
         // dd($validate_data['customer_email']);
-        Mail::to($validate_data['customer_email'])->send(new NewOrderMade($order));
-        Mail::to($user['email'])->send(new NewOrderMadeAdmin($order));
+        Mail::to($validate_data['customer_email'])->send(new NewOrderMade($order, $list_dish));
+        Mail::to($user['email'])->send(new NewOrderMadeAdmin($order, $list_dish));
         return view("guest.home");
     }
 
