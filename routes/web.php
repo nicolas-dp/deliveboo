@@ -44,8 +44,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     ])->except('create', 'store', 'edit', 'update');
 
     Route::resource('charts', 'ChartController');
-});
 
+    //Route::get('order-received/mail/orders/', 'MailController@index');
+});
+//Route::get('order-received', 'MailController@index');
 
 
 
