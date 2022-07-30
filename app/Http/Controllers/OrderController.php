@@ -14,7 +14,9 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    //
+    //qui sotto il codice per salvare nel database i dati dell'ordine 
+    //quando un ordine viene effettuato
+    //in più viene mandata una mail
     public function store(Request $request) {
 
         //dd($request);
