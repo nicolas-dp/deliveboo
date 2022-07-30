@@ -282,10 +282,13 @@
                   <span class="orange">Chiude alle</span>
                   {{ restaurant.closing_hours.slice(0, 5) }}
                 </p>
-                <p>
-                  <span class="orange"><strong>Spedizione:</strong></span>
-                  {{ restaurant.delivery_cost }}€
-                </p>
+                <div class="badge_delivery badge bg_orange">
+                  <p>
+                    <span class="orange"><strong>Spedizione:</strong></span>
+                    {{ restaurant.delivery_cost }}€
+                  </p>
+                </div>
+                
               </div>
             </div>
           </router-link>
