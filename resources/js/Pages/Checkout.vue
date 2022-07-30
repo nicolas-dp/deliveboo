@@ -277,6 +277,7 @@ export default {
         });
     },
 
+    //metodo per generare il token che servirà a far funzionare il pagamento con braintree
     getToken() {
       axios
         .get(`/api/generate`)
@@ -300,6 +301,8 @@ export default {
       //console.log('ecco il token', this.tokenApi);
     },
 
+    //metodo che servirà per generare nella DOM la finestra nella quale 
+    //vengono inseriti numero di carta e data di scadenza
     dropInFunc() {
       const braintreeBtn = document.querySelector("#submit-button");
       //var form = document.querySelector("#payment-form");

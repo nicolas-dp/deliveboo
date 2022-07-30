@@ -419,6 +419,13 @@ export default {
         });
     },
 
+    /* 
+    metodo toggleAction che prende in input l'id della categoria
+    1 controlla se la cat selezionata ha classe 'active' o no
+    3 se non è presente aggiunge classe 'active' e pusha in un array 'filter_array' l'id della categoria e fa partire la funzione 'filter_plus'
+    2 se è presente la rimuove, rimuove anche dall'array 'filter_array' l'id della categoria e fa partire la funzione 'filter_plus'
+  */
+
     toggleAction(id) {
       let title_category = document.querySelector(
         `.category_wrapper_${id} > .title_category`
@@ -457,12 +464,6 @@ export default {
     },
   },
 
-  /* 
-    metodo toggle che prende in input l'id della categoria
-    1 controlla se la cat selezionata ha classe 'active' o no
-    3 se non è presente aggiunge classe 'active' e pusha in un array 'filter_array' l'id della categoria e fa partire la funzione 'filter_plus'
-    2 se è presente la rimuove, rimuove anche dall'array 'filter_array' l'id della categoria e fa partire la funzione 'filter_plus'
-  */
   mounted() {
     //console.log(this.prova_variabile);
     this.getAllRestaurants();

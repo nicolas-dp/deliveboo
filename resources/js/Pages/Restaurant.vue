@@ -404,6 +404,7 @@ export default {
         });
     },
 
+    //metodo per modificare il numero di elementi nel carrello (+1)
     addOne(obj) {
       //this.counter = this.counter + 1;
       obj.amount = obj.amount + 1;
@@ -412,6 +413,7 @@ export default {
       this.setCartCookie();
     },
 
+    //metodo per modificare il numero di elementi nel carrello (-1)
     subtractOne(obj, index) {
       //console.log(obj.amount);
       //console.log(obj.amount);
@@ -429,6 +431,7 @@ export default {
       this.setCartCookie();
     },
 
+    //metodo per rimuovere piatto/i dal carrello
     removeItem(index) {
       this.myCart.list_dishes.splice(index, 1);
 
@@ -437,6 +440,7 @@ export default {
       this.setCartCookie();
     },
 
+    //metodo per controllare se nel local storage ci sono elementi salvati da carrelli precedenti
     getPreviousCart() {
       //controlla al mounted se esiste il cooki dishlist e se l'id cookie del
       //ristorante è uguale a quello salvato nel local storage

@@ -42,17 +42,18 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // stuff to do after user logs in
+        //qui creo il cookie che mi servirà a visualizzare il nome utente in guest home
+
         $cookie_name = "user_logged";
         $cookie_value = $user->name;
-        setcookie($cookie_name, $cookie_value, time()+10800);;
+        setcookie($cookie_name, $cookie_value, time() + 10800);;
 
         //dd($_COOKIE["pippobaudo"]);
     }
 
 
 
-    /* QUI SOTTO LA FUNZIONE CHE REINDIRIZZA ALLA ADMIN.HOME UNA VOLTA CHE SI FA IL LOGOUT */
+    
 
     /**
      * Logout trait
@@ -63,12 +64,14 @@ class LoginController extends Controller
      */
     protected function logout(Request $request)
     {
+        /* QUI SOTTO codice per reindirizzare ALLA ADMIN.HOME UNA VOLTA CHE SI FA IL LOGOUT */
         $this->guard()->logout();
 
         $request->session()->flush();
 
         $request->session()->regenerate();
 
+        //qui elimino il cookie che mi serviva a visualizzare il nome utente in guest home
         setcookie("user_logged", "", time() - 3600);
 
         return redirect()->route('admin.home');
