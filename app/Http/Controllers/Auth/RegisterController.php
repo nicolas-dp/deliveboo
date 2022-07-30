@@ -64,6 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $cookie_name = "user_logged";
+        $cookie_value = $data['name'];
+        setcookie($cookie_name, $cookie_value, time()+3600);;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
