@@ -20,6 +20,7 @@ const state = Vue.observable({
         //il totale sarà la somma dei parziali totali
         total_amount: 0.00,
 
+        //metodo per sommare i prezzi dei piatti in list_dishes
         makeTotal: function() {
             if (this.list_dishes.length > 0) {
 
@@ -39,6 +40,7 @@ const state = Vue.observable({
             }
         },
 
+        //metodo per resettare il carrello
         resetCart: function() {
 
             console.log('sto per cancellare tutto, attualmente hai');
