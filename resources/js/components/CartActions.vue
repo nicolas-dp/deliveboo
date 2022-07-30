@@ -61,16 +61,19 @@ export default {
   },
 
   methods: {
+    //metodo per aggiungere una unità al contatore
     addOne() {
       this.counter = this.counter + 1;
     },
 
+    //metodo per rimuovere una unità dal contatore
     subtractOne() {
       if (this.counter > 1) {
         this.counter = this.counter - 1;
       }
     },
 
+    //metodo per immagazzinare nel local storage le informazioni da passare alla pagina di checkout
     setRestaurantCookie() {
       //rimuovo cookie esistente
       localStorage.removeItem("restaurant_id");
@@ -81,8 +84,9 @@ export default {
       localStorage.setItem("restaurant_slug", this.restaurantSlug);
     },
 
+
+    //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
     addItem(dishObject, dishAmount) {
-      //CODICE PER INSERIRE PIATTO/I NEL CARRELLO
       //se esiste gìa nel carrello aggiunto altri elementi
       if (
         state.cart.list_dishes.filter(
@@ -117,9 +121,12 @@ export default {
       }
       //FINE CODICE PER INSERIRE PIATTO/I NEL CARRELLO
 
-      this.$emit('setCookie');
+      this.$emit("setCookie");
     },
 
+    //funzione aggiunta per evitare di aggiungere piatti al carrello 
+    //quando il carrello contiene elementi di altri ristoranti
+    //-> in tal caso comparirà un alert che ti chiede se vuoi azzerare il carrello
     addItemToCart(dishObject, dishAmount) {
       //mi deve eseguire il codice se il ristorante id passato per props
       //è uguale a quello nel local storage
