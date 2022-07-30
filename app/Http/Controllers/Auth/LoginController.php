@@ -45,7 +45,7 @@ class LoginController extends Controller
         // stuff to do after user logs in
         $cookie_name = "user_logged";
         $cookie_value = $user->name;
-        setcookie($cookie_name, $cookie_value, time()+3600);;
+        setcookie($cookie_name, $cookie_value, time()+10800);;
 
         //dd($_COOKIE["pippobaudo"]);
     }
