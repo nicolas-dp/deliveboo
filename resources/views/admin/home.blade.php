@@ -10,7 +10,7 @@
         </div>
         <img class="img_opacity" src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000" alt="">
         <div class="container pt-4 pb-5">
-            <div class="card_restaurant rounded m-auto my_shadow bg_black_trasparent py-4 ps-5">
+            <div class="card_restaurant rounded m-auto my_shadow bg_black_trasparent py-4 px-3">
                 <h1 class="text-center my_yellow py-3">Welcome {{ Auth::user()->name }}</h1>
                 <h2 class="my-3 my_yellow">{{$restaurant->name}}</h2>
                 <div class="row row-cols-1 row-cols-md-2 ">

@@ -1,11 +1,12 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
-
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+* {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
 .input_error {
     border: 1px solid red;
@@ -50,7 +51,7 @@
     opacity: 1;
     &:hover {
         background-color: rgba(0, 0, 0, 0.85) !important;
-        border-radius: .44rem !important;
+        border-radius: 0.44rem !important;
     }
 }
 

@@ -21,7 +21,7 @@ class OrderController extends Controller
         // dd($orders);
 
         if ($restaurant) {
-            $orders = Order::where('restaurant_id', '=', $restaurant->id)->get();
+            $orders = Order::where('restaurant_id', '=', $restaurant->id)->orderByDesc('order_date')->get();
 
             return view('admin.orders.index', compact('orders', 'restaurant'));
         } else {

@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4 single_restaurant">
-    <div class="show_restaurant mb-5 bg-light container">
+    <div class="show_restaurant rounded mb-5 bg-light container">
       <h1 class="title_restaurant orange">{{ restaurant.name }}</h1>
 
       <div class="row g-3">
@@ -87,10 +87,10 @@
               {{ restaurant.delivery_cost }} €
             </p>
             <p v-if="restaurant.opening_hours">
-              Apertura: {{ restaurant.opening_hours }}
+              Apertura: {{ restaurant.opening_hours.slice(0, 5) }}
             </p>
             <p v-if="restaurant.closing_hours">
-              Apertura: {{ restaurant.closing_hours }}
+              Chiusura: {{ restaurant.closing_hours.slice(0, 5) }}
             </p>
 
             <p class="lead">
@@ -115,7 +115,7 @@
             <div class="col" v-for="dish in restaurant.dishes" :key="dish.id">
               <div class="card h-100">
                 <div class="img_wrapper">
-                  <img :src="dish.cover_image" alt="" class="" />
+                  <img :src="dish.cover_image" alt="" class="img-fluid" />
                 </div>
                 <div class="card_text p-3">
                   <h5 class="orange">{{ dish.name }}</h5>
@@ -151,7 +151,7 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">
+                          <h5 class="modal-title orange" id="exampleModalLabel">
                             {{ dish.name }}
                           </h5>
                           <button
@@ -165,11 +165,13 @@
                           <img
                             :src="dish.cover_image"
                             :alt="dish.name"
-                            class="img-fluid"
+                            class="img-fluid pb-4 rounded"
                           />
-                          <p>Dettagli: {{ dish.description }}</p>
-                          <p>Ingredienti: {{ dish.ingredients }}</p>
-                          <p>Prezzo: {{ dish.price }} €</p>
+                          <div class="details">
+                          <p class="text-start"><strong class="orange ">Dettagli:</strong> {{ dish.description }}</p>
+                          <p class="text-start"><strong class="orange ">Ingredienti:</strong> {{ dish.ingredients }}</p>
+                          <p><strong class="orange text-center">Prezzo:</strong> {{ dish.price }} €</p>
+                          </div>
                           <p>
                             <span v-if="dish.is_available" class="text-success"
                               >Disponibile</span
@@ -190,8 +192,8 @@
         </div>
         <!-- /.dishes -->
         <div class="cart col-12 col-lg-3">
-          <div class="cart_content">
-            <h2 class="text-center mb-5 orange" id="menu">Carrello</h2>
+          <div class="cart_content p-4">
+            <h2 class="text-center mb-2 orange" id="menu">Carrello</h2>
 
             <ul v-if="myCart.list_dishes.length > 0" class="mb-3">
               <li
@@ -440,10 +442,7 @@ export default {
     getPreviousCart() {
       //controlla al mounted se esiste il cooki dishlist e se l'id cookie del
       //ristorante è uguale a quello salvato nel local storage
-      if (
-        localStorage.getItem("list_cookie") 
-      ) {
-
+      if (localStorage.getItem("list_cookie")) {
         console.log('c"è una lista piatti esistente');
         console.log(localStorage.getItem("list_cookie"));
         //se c'è
@@ -503,7 +502,6 @@ export default {
 
     //console.log(state.cart);
     //console.log(this.myCart);
-
   },
 };
 </script>
@@ -518,8 +516,10 @@ svg {
 }
 
 .single_restaurant {
-  margin-top: 7rem;
+  padding-top: 5rem;
   .show_restaurant {
+    padding: 2rem;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     .title_restaurant {
       margin-bottom: 2rem;
     }
@@ -534,8 +534,9 @@ svg {
     flex-direction: column;
     align-items: center;
     .info {
+      background-color: white;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
       padding: 1rem;
-      box-shadow: 0 0 10px grey;
       border-radius: 0.5rem;
     }
   }
@@ -548,16 +549,17 @@ svg {
   .card {
     height: 100%;
     border-radius: 0.5rem;
-    box-shadow: 0 0 10px grey;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
     transition: all 0.7s;
-
 
     .img_wrapper {
       height: 160px;
       overflow: hidden;
-      img{
+      img {
+        width: 100%;
         max-height: 100%;
-        object-fit: fill;
+        object-fit: cover;
+        object-position: center;
       }
     }
   }
@@ -568,8 +570,8 @@ svg {
     flex-direction: column;
     align-items: center;
     .cart_content {
-      padding: 1rem;
-      box-shadow: 0 0 10px grey;
+      background-color: white;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
       border-radius: 0.5rem;
       ul {
         padding: 0;

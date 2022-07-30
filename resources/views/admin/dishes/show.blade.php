@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <img class="img_opacity" src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000" alt="">
     <div class="container py-5">
-        <div class="card_dish rounded m-auto w-50 d-flex flex-column my_shadow bg_black_trasparent p-5">
+        <div class="card_dish rounded m-auto d-flex flex-column my_shadow bg_black_trasparent p-2">
             <h3 class="text-white"><strong class="my_yellow">{{$dish->name}}</strong> </h3>
             <div class="img_dish">
                 <img class="py-4 img-fluid" src='{{ substr($dish->cover_image, 0, 4) == "http" ? $dish->cover_image  :  asset("storage/" . $dish->cover_image)}}' alt="{{$dish->name}}">

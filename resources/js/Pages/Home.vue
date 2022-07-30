@@ -1,16 +1,6 @@
 <template>
   <div class="home">
     <div class="jumbotron" v-if="categories">
-      <!-- <img
-        v-if="category_active"
-        class="img_jumbo"
-        :src="categories[category_active].cover_image"
-        alt=""
-      />
-      <img v-else class="img_jumbo" :src="categories[0].cover_image" alt="" /> -->
-
-      <!-- <img class="img_jumbo" src="https://i.ibb.co/Br5rsmW/Aggiungi-un-intestazione-1.png" alt="jumbotron"> -->
-
       <div
         id="carouselExampleFade"
         class="carousel slide carousel-fade"
@@ -172,6 +162,7 @@
         </button>
       </div>
     </div>
+   
     <section class="category container">
       <vue-glide v-if="categories">
         <vue-glide-slide v-for="category in categories" :key="category.id">
@@ -249,7 +240,7 @@
     <section
       class="restaurant container"
       data-aos="zoom-in"
-      data-aos-duration="1500"
+      data-aos-duration="1000"
       v-if="restaurants"
     >
       <div
@@ -289,10 +280,10 @@
                 </p>
                 <p>
                   <span class="orange">Chiude alle</span>
-                  {{ restaurant.closing_hours }}
+                  {{ restaurant.closing_hours.slice(0, 5) }}
                 </p>
                 <p>
-                  <span class="orange">Spedizione:</span>
+                  <span class="orange"><strong>Spedizione:</strong></span>
                   {{ restaurant.delivery_cost }}€
                 </p>
               </div>
@@ -333,12 +324,14 @@
                 </p>
                 <p>
                   <span class="orange">Chiude alle</span>
-                  {{ restaurant.closing_hours }}
+                  {{ restaurant.closing_hours.slice(0, 5) }}
                 </p>
-                <p>
-                  <span class="orange">Spedizione:</span>
-                  {{ restaurant.delivery_cost }}€
-                </p>
+                <div class="badge_delivery badge bg_orange">
+                  <p>
+                    <span class="orange"><strong>Spedizione:</strong></span>
+                    {{ restaurant.delivery_cost }}€
+                  </p>
+                </div>
               </div>
             </div>
           </router-link>
@@ -346,7 +339,9 @@
       </div>
 
       <div class="not_restaurant" v-if="filtered_restaurants == 0">
-        <h1>Non ci sono ristoranti con le categorie selezionate.</h1>
+        <h1 class="orange py-5">
+          Non ci sono ristoranti con le categorie selezionate.
+        </h1>
       </div>
     </section>
     <!-- /.restaurant -->
@@ -473,6 +468,7 @@ export default {
 
 <style lang="scss">
 .home {
+  
   .jumbotron {
     z-index: 0;
     .img_jumbo {
@@ -486,7 +482,7 @@ export default {
   .category {
     z-index: 10;
     position: relative;
-    bottom: 150px;
+    bottom: 100px;
     background-color: rgba(255, 255, 255, 0.671);
     box-shadow: 0 0 10px grey;
     border-radius: 0.3rem;
@@ -537,6 +533,7 @@ export default {
   }
 
   .restaurant {
+    position: relative;
     a {
       text-decoration: none;
       color: black;
@@ -545,23 +542,40 @@ export default {
       margin: 0;
     }
     .card {
+      position: relative;
       height: 100%;
       border-radius: 0.5rem;
-      box-shadow: 0 0 10px grey;
       transition: all 0.7s;
+      box-shadow: 0 0 8px grey;
+
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
+        box-shadow: 0px 11px 20px 2px grey;
       }
 
       .card_image {
         height: 160px;
         overflow: hidden;
-
         img {
-          //height: 100%;
           width: 100%;
-          //object-fit: fill;
-          //object-fit: contain;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      .badge_delivery {
+        position: absolute;
+        right: -15px;
+        top: -10px;
+        background-color: #ff7f31;
+        padding: 0.5rem;
+        /* box-shadow: 0 0 10px gray; */
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+          rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        strong {
+          font-size: 0.75rem;
+          color: #43423e;
         }
       }
     }

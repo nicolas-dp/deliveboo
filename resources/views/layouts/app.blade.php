@@ -21,14 +21,20 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- font m plus c1 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Raleway:wght@300;400;500;600;700;900&family=Square+Peg&family=Vidaloka&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
-    
-        <main >
-            @yield('content')
-        </main>
-        
+
+    <main>
+        @yield('content')
+    </main>
+
 </body>
 
 </html>
