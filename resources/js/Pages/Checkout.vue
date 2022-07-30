@@ -15,9 +15,9 @@
         </li>
       </ul>
 
-      <h3><strong>Totale: </strong>{{ myCart.total_amount }} €</h3>
+      <h3 class="mb-4"><strong>Totale: </strong>{{ myCart.total_amount }} €</h3>
 
-      <vue-form method="post" action="/order-received">
+      <vue-form method="post" action="/order-received" class="bg-white px-5 pb-4">
         <!-- ID ristorante -->
         <div class="mb-3 d-none" v-if="restaurant">
           <label for="restaurant_id" class="form-label">Ristorante ID:</label>
@@ -167,8 +167,8 @@
 
       </vue-form>
     </div>
-    <div v-else>
-      <p>Non hai aggiunto alcun prodotto al carrello</p>
+    <div class="pt-5 pb-4" v-else>
+      <h1 class="not_products orange text-center py-5">Non hai aggiunto alcun prodotto al carrello</h1>
     </div>
   </div>
 </template>
@@ -176,24 +176,8 @@
 <script>
 import state from "../state";
 import VueForm from "../components/VueForm.vue";
-//import PaymentComponent from "../components/PaymentComponent.vue";
 import axios from "axios";
 
-/* const button = document.querySelector("#submit-button");
-
-braintree.dropin.create(
-  {
-    authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
-    selector: "#dropin-container",
-  },
-  function (err, instance) {
-    button.addEventListener("click", function () {
-      instance.requestPaymentMethod(function (err, payload) {
-        // Submit payload.nonce to your server
-      });
-    });
-  }
-); */
 
 export default {
   name: "Checkout",
@@ -207,11 +191,8 @@ export default {
       loading: true,
       myCart: state.cart,
       tokenApi: "",
-      //list_parsed: JSON.parse(myCart.list_dishes),
       list_parsed: null,
-      /* CODICE NICOLAS */
-      /*       tokenApi: "",
-      errors: [], */
+   
     };
   },
   mounted() {
@@ -236,21 +217,6 @@ export default {
     //console.log(this.myCart.list_dishes);
     //console.log(this.myCart);
 
-    /*     braintree.dropin.create(
-      {
-        authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
-        //authorization:
-          //"eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSXNJbWx6Y3lJNkltaDBkSEJ6T2k4dllYQnBMbk5oYm1SaWIzZ3VZbkpoYVc1MGNtVmxaMkYwWlhkaGVTNWpiMjBpZlEuZXlKbGVIQWlPakUyTlRrd01ETXpOVFlzSW1wMGFTSTZJbU5qWW1FeU56RXlMV1JpTW1FdE5EazRaaTFpTnpZMExUVXhOak5pT1dWaE9ERTNaU0lzSW5OMVlpSTZJalkwWjIxeFpIbG9hR1ptTmpodU1tMGlMQ0pwYzNNaU9pSm9kSFJ3Y3pvdkwyRndhUzV6WVc1a1ltOTRMbUp5WVdsdWRISmxaV2RoZEdWM1lYa3VZMjl0SWl3aWJXVnlZMmhoYm5RaU9uc2ljSFZpYkdsalgybGtJam9pTmpSbmJYRmtlV2hvWm1ZMk9HNHliU0lzSW5abGNtbG1lVjlqWVhKa1gySjVYMlJsWm1GMWJIUWlPbVpoYkhObGZTd2ljbWxuYUhSeklqcGJJbTFoYm1GblpWOTJZWFZzZENKZExDSnpZMjl3WlNJNld5SkNjbUZwYm5SeVpXVTZWbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LmJQdXZuQWNaM3JubDJxZzY0T0lTRnc3d3lERUpaajVqNmNDYzZ5NlhEMmNZY2ZBODRUZ1U2SmZ4UnpCRkpXREdwMnctRl9EdFF0Q21oQUtsdHIya0h3IiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzY0Z21xZHloaGZmNjhuMm0vY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4IiwiZmVhdHVyZXMiOlsidG9rZW5pemVfY3JlZGl0X2NhcmRzIl19LCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvNjRnbXFkeWhoZmY2OG4ybS9jbGllbnRfYXBpIiwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwibWVyY2hhbnRJZCI6IjY0Z21xZHloaGZmNjhuMm0iLCJhc3NldHNVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImF1dGhVcmwiOiJodHRwczovL2F1dGgudmVubW8uc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbSIsInZlbm1vIjoib2ZmIiwiY2hhbGxlbmdlcyI6W10sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsImFuYWx5dGljcyI6eyJ1cmwiOiJodHRwczovL29yaWdpbi1hbmFseXRpY3Mtc2FuZC5zYW5kYm94LmJyYWludHJlZS1hcGkuY29tLzY0Z21xZHloaGZmNjhuMm0ifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImJpbGxpbmdBZ3JlZW1lbnRzRW5hYmxlZCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOnRydWUsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJhbGxvd0h0dHAiOnRydWUsImRpc3BsYXlOYW1lIjoiVGVhbSA1IERlbGl2ZUJvb2wiLCJjbGllbnRJZCI6bnVsbCwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiZW52aXJvbm1lbnQiOiJvZmZsaW5lIiwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJ0ZWFtNWRlbGl2ZWJvb2wiLCJjdXJyZW5jeUlzb0NvZGUiOiJFVVIifX0=",
-        selector: "#dropin-container",
-      },
-      function (err, instance) {
-        this.button.addEventListener("click", function () {
-          instance.requestPaymentMethod(function (err, payload) {
-            // Submit payload.nonce to your server
-          });
-        });
-      }
-    ); */
   },
   methods: {
     getRestaurant() {
@@ -327,13 +293,6 @@ export default {
                 console.log("Errore, il pagamento non è riuscito", err);
                 return;
               }
-              // Send payload.nonce to your server
-              /*               document.querySelector("#nonce").value = payload.nonce;
-              document.querySelector("#guest_user_email").value =
-                document.getElementById("guest_email").value;
-              console.log(document.querySelector("#guest_user_email").value);
-              form.submit(); */
-
               //sblocco il pulsante del form 'paga ora'
               document
                 .getElementById("my-submit-button")
@@ -375,5 +334,11 @@ export default {
   .bg_orange {
     background-color: #ff7f31;
     color: white;
+  }
+
+  .not_products{
+    margin-top: 3rem;
+    background-color: rgba(245, 245, 245, 0.689);
+    box-shadow: 0 0 8px grey;
   }
 </style>

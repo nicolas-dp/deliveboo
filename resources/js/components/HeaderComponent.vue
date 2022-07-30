@@ -120,7 +120,7 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   background-color: #ff7f31;
-
+  padding-bottom: 0.6rem;
   a {
     color: white !important;
     font-weight: bold;

@@ -7,14 +7,11 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-/* Google Font Import - Poppins */
-/* Google Font Link */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 .sidebar {
     position: fixed;
@@ -340,6 +337,12 @@
     padding-top: 2rem !important;
 }
 
+@media (min-width: 768px) {
+    .card_dish {
+        width: 50%;
+    }
+}
+
 @media (max-width: 576px) {
     .admin-card,
     .admin-card-order {
@@ -655,16 +658,16 @@ $borderW: 2px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.my_yellow{
+.my_yellow {
     color: #ffc312;
 }
 
-.bg_black_trasparent{
+.bg_black_trasparent {
     background-color: #353536d9;
 }
 
-.bx-log-out{
-    &:hover{
-        color:#f7be12 !important;
+.bx-log-out {
+    &:hover {
+        color: #f7be12 !important;
     }
 }
