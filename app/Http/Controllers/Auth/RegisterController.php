@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -60,10 +60,15 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
+        //qui creo il cookie che mi servirà a visualizzare il nome utente in guest home
+        $cookie_name = "user_logged";
+        $cookie_value = $data['name'];
+        setcookie($cookie_name, $cookie_value, time()+10800);;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

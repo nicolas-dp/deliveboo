@@ -1,0 +1,673 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: #11101d;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+}
+.sidebar.open {
+    width: 250px;
+}
+.sidebar .logo-details {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.sidebar .logo-details .icon {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name {
+    opacity: 1;
+}
+.sidebar .logo-details #btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: all 0.4s ease;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn {
+    text-align: right;
+}
+.sidebar i {
+    color: #fff;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
+.sidebar .nav-list {
+    margin-top: 20px;
+    height: 100%;
+    margin-left: -2rem;
+}
+.sidebar li {
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+}
+.sidebar li .tooltip {
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+}
+.sidebar li:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.sidebar.open li .tooltip {
+    display: none;
+}
+.sidebar input {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    width: 50px;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    background: #1d1b31;
+}
+.sidebar.open input {
+    padding: 0 20px 0 50px;
+    width: 100%;
+}
+.sidebar .bx-search {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    background: #1d1b31;
+    color: #fff;
+}
+.sidebar.open .bx-search:hover {
+    background: #1d1b31;
+    color: #fff;
+}
+.sidebar .bx-search:hover {
+    background: #fff;
+    color: #11101d;
+}
+.sidebar li a {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #11101d;
+}
+.sidebar li a:hover {
+    background: #fff;
+}
+.sidebar li a .links_name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+}
+.sidebar.open li a .links_name {
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+    transition: all 0.5s ease;
+    color: #11101d;
+}
+.sidebar li i {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+}
+.sidebar li.profile {
+    position: fixed;
+    height: 60px;
+    width: 78px;
+    left: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    background: #1d1b31;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+.sidebar.open li.profile {
+    width: 250px;
+}
+.sidebar li .profile-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.sidebar li img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job {
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+}
+.sidebar li.profile .job {
+    font-size: 12px;
+}
+.sidebar .profile #log_out {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #1d1b31;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 0px;
+    transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out {
+    width: 50px;
+    background: none;
+}
+.home-section {
+    position: relative;
+    background: #e4e9f7;
+    min-height: 100vh;
+    top: 0;
+    // left: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    // width: 100%;
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+.sidebar.open ~ .home-section {
+    // left: 250px;
+    // width: calc(100% - 250px);
+    width: 100%;
+}
+.home-section .text {
+    display: inline-block;
+    color: #11101d;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px;
+}
+
+.modal-backdrop {
+    z-index: 1 !important;
+}
+
+.input_error {
+    border: 1px solid red;
+}
+
+.input_correct {
+    border: 1px solid rgb(53, 230, 53);
+}
+
+// Admin\Home without restaaurant
+// .bg-admin{
+//     height: 100vh;
+//     background-image: url("https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000");
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center;
+
+// }
+
+.bg-admin,
+.img_opacity {
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+    object-fit: cover;
+    // object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.65;
+}
+
+.img_opacity {
+    opacity: 0.45 !important;
+}
+
+.admin-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.admin-card,
+.admin-card-order,
+.admin-cards {
+    width: 450px;
+    height: 138px;
+    display: flex;
+    margin-top: -7.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 7px;
+    border: transparent 3px solid;
+    transition: 0.66s;
+
+    -webkit-box-shadow: 2px 2px 6px 0px #000000;
+    -moz-box-shadow: 2px 2px 6px 0px #000000;
+    -o-box-shadow: 2px 2px 6px 0px #000000;
+    box-shadow: 2px 2px 6px 0px #000000;
+
+    &:hover {
+        -webkit-box-shadow: 6px 6px 12px 0px #000000;
+        -moz-box-shadow: 6px 6px 12px 0px #000000;
+        -o-box-shadow: 6px 6px 12px 0px #000000;
+        box-shadow: 6px 6px 12px 0px #000000;
+        transform: scale(1.011);
+    }
+}
+.p-orders {
+    padding: 3.4rem !important;
+}
+.p-admin {
+    padding-top: 2rem !important;
+}
+
+@media (min-width: 768px) {
+    .card_dish {
+        width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-card,
+    .admin-card-order {
+        width: 350px;
+        height: 130px;
+    }
+    .admin-cards {
+        width: 350px;
+        height: 135px !important;
+    }
+    .p-orders {
+        padding-top: 2.45rem !important;
+    }
+    .p-admin {
+        padding-top: 1.8rem !important;
+    }
+    .buttons {
+        margin-top: 1.25rem !important;
+    }
+    .blob-btn {
+        padding: 13px 31px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 425px) {
+    .admin-card,
+    .admin-card-order {
+        width: 270px;
+        height: 101px;
+    }
+    .p-orders {
+        padding-top: 1.45rem !important;
+    }
+    .p-admin {
+        padding-top: 0.8rem !important;
+    }
+    .admin-cards {
+        width: 270px;
+        height: 130px !important;
+    }
+    .sidebar li .tooltip {
+        display: none;
+    }
+    .buttons {
+        margin-top: 1rem !important;
+    }
+    .blob-btn {
+        padding: 11px 28px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .admin-card,
+    .admin-card-order {
+        width: 225px;
+        height: 75px;
+        h3 {
+            font-size: 1rem;
+        }
+    }
+    .p-orders {
+        padding-top: 0.5rem !important;
+    }
+    .p-admin {
+        padding-top: 0.25rem !important;
+    }
+    .admin-cards {
+        width: 225px;
+        height: 100px !important;
+        h3 {
+            font-size: 1rem;
+        }
+    }
+    .buttons {
+        margin-top: 0.75rem !important;
+    }
+    .blob-btn {
+        padding: 9px 23px !important;
+        font-size: 0.6rem !important;
+    }
+}
+
+.admin-card h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #11101d;
+    margin-bottom: 15px;
+}
+
+.admin-card .btn {
+    text-align: center;
+}
+
+// Botton Create Restaurant
+
+.button,
+.button-order {
+    display: inline-block;
+    padding: 0.44rem 1.25rem;
+    border-radius: 0.25rem;
+    color: rgb(51, 43, 36);
+    // text-transform: uppercase;
+    font-size: 0.9rem;
+    // letter-spacing: 0.15rem;
+    text-decoration: none;
+    transition: all 0.44s;
+    position: relative;
+    overflow: hidden;
+
+    z-index: 1;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color;
+        border-radius: 0.33rem;
+        z-index: -2;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: darken(#ff7f31, 15%);
+        transition: all 0.44s;
+        border-radius: 0.55rem;
+        z-index: -1;
+    }
+    &:hover {
+        color: #fff;
+        &:before {
+            width: 100%;
+        }
+    }
+}
+
+// Card Restaurant Admin without orders
+.admin-card-order,
+.admin-cards {
+    display: inline-block;
+    padding: 0.44rem 1.25rem;
+    border-radius: 0.25rem;
+    color: rgb(51, 43, 36);
+    text-align: center;
+    // text-transform: uppercase;
+    font-size: 0.9rem;
+    // letter-spacing: 0.15rem;
+    text-decoration: none;
+    transition: all 0.44s;
+    position: relative;
+    overflow: hidden;
+
+    z-index: 1;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: darken(#ff7f31, 15%);
+        border-radius: 0.33rem;
+        z-index: -2;
+    }
+    // &:before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 0%;
+    //     height: 100%;
+    //     background-color: darken(#ff7f31, 15%);
+    //     transition: all 0.44s;
+    //     border-radius: 0.55rem;
+    //     z-index: -1;
+    // }
+    &:hover {
+        color: #fff;
+        &:before {
+            width: 100%;
+        }
+    }
+}
+
+// Blob Button
+
+.buttons {
+    margin-top: 1.5rem;
+    text-align: center;
+    border-radius: 30px;
+}
+
+$main_orange: #ff7f31;
+$dark: #ffffff;
+$borderW: 2px;
+
+.blob-btn {
+    $numOfBlobs: 4;
+    z-index: 1;
+    position: relative;
+    padding: 14px 46px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $main_orange;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: color 0.5s;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:before {
+        content: "";
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: $borderW solid $main_orange;
+        border-radius: 30px;
+    }
+
+    &:after {
+        content: "";
+        z-index: -2;
+        position: absolute;
+        left: $borderW * 1.5;
+        top: $borderW * 1.5;
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.3s 0.2s;
+        border-radius: 30px;
+    }
+
+    &:hover {
+        color: $dark;
+        border-radius: 30px;
+
+        &:after {
+            transition: all 0.3s;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+    }
+
+    &__inner {
+        z-index: -1;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+        background: #ffffff;
+    }
+
+    // additional container created, because in FF blobs are breaking overflow:hidden of element with svg gooey filter
+    &__blobs {
+        position: relative;
+        display: block;
+        height: 100%;
+        filter: url("#goo");
+    }
+
+    &__blob {
+        position: absolute;
+        top: $borderW;
+        width: 100% / $numOfBlobs;
+        height: 100%;
+        background: #f7be12;
+        border-radius: 100%;
+        transform: translate3d(0, 150%, 0) scale(1.7);
+        transition: transform 0.45s;
+
+        @supports (filter: url("#goo")) {
+            transform: translate3d(0, 150%, 0) scale(1.4);
+        }
+
+        @for $i from 1 through $numOfBlobs {
+            &:nth-child(#{$i}) {
+                left: ($i - 1) * (120% / $numOfBlobs);
+                transition-delay: ($i - 1) * 0.08s;
+            }
+        }
+
+        .blob-btn:hover & {
+            transform: translateZ(0) scale(1.7);
+
+            @supports (filter: url("#goo")) {
+                transform: translateZ(0) scale(1.4);
+            }
+        }
+    }
+}
+
+.my_shadow {
+    //box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.my_yellow {
+    color: #ffc312;
+}
+
+.bg_black_trasparent {
+    background-color: #353536d9;
+}
+
+.bx-log-out {
+    &:hover {
+        color: #f7be12 !important;
+    }
+}
