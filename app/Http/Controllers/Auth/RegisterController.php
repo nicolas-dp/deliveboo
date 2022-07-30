@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //qui creo il cookie che mi servirà a visualizzare il nome utente in guest home
         $cookie_name = "user_logged";
         $cookie_value = $data['name'];
         setcookie($cookie_name, $cookie_value, time()+10800);;
