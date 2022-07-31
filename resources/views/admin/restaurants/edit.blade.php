@@ -71,10 +71,16 @@
                 @include('partials.single_error',['variable' => 'description'])
             </div>
 
-            <div class="mb-3">
-                <label class='my_yellow' for="cover_image">Immagine di copertina</label>
-                <input type="file" name="cover_image" id="cover_image" class="form-control" aria-describedby="cover_imageHelper">
-                <small id="cover_imageHelper" class="text-white">Carica la tua immagine</small>
+
+            <div class="d-flex mb-3 align-items-center">
+                <div class="edit_img me-3">
+                    <img width="170" src="{{ substr($restaurant->cover_image, 0, 4) == 'http' ? $restaurant->cover_image  :  asset('storage/' . $restaurant->cover_image)}}" alt="">
+                </div>
+                <div>
+                    <label class='my_yellow' for="cover_image">Immagine di copertina</label>
+                    <input type="file" name="cover_image" id="cover_image" class="form-control" aria-describedby="cover_imageHelper">
+                    <small id="cover_imageHelper" class="text-white">Carica la tua immagine</small>
+                </div>
             </div>
 
             <div class="mb-3">
