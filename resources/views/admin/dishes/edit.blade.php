@@ -46,11 +46,18 @@
                 @include('partials.single_error',['variable' => 'is_available'])
             </div>
 
-            <div class="mb-3">
-                <label class='my_yellow' for="cover_image">Immagine</label>
-                <input type="file" class="form-control-file my_yellow" id="cover_image" name="cover_image">
-                @include('partials.single_error',['variable' => 'cover_image'])
+            <div class="d-flex mb-3 align-items-center">
+                <div class="edit_img me-3">
+                    <img width="170" src="{{ substr($dish->cover_image, 0, 4) == 'http' ? $dish->cover_image  :  asset('storage/' . $dish->cover_image)}}" alt="">
+                </div>
+
+                <div class="">
+                    <label class='my_yellow' for="cover_image">Immagine</label>
+                    <input type="file" class="form-control-file my_yellow" id="cover_image" name="cover_image">
+                    @include('partials.single_error',['variable' => 'cover_image'])
+                </div>
             </div>
+
 
             <button type="submit" class="btn btn-primary text-light">Aggiorna</button>
         </form>
