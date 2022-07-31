@@ -12,7 +12,7 @@
 <body>
 
     <div class="navbar" style="background-color: orange; text-align: center;">
-        <img height="50" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-3.png" alt="logo deliveroo" />
+        <img style="filter: brightness(4.5);" height="50" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-3.png" alt="logo deliveroo" />
     </div>
 
     <div class="container" style="margin-left:3rem; margin-right:3rem;">
@@ -39,11 +39,11 @@
         </div>
 
 
-        
+
     </div>
 
     <div style="background-color: orange; text-align: center;">
-    <span style="color: white;">Grazie da Deliveroo</span> 
+        <span style="color: white;">Grazie da Deliveroo</span>
     </div>
 
 </body>
