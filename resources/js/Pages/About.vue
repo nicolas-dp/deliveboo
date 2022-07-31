@@ -2,74 +2,74 @@
   <div class="about container">
     <section data-aos="fade-right"
       data-aos-duration="3000" class="story mb-2">
-      <h2 class="pt-5 pb-3 text-center">The Story of Deliveroo</h2>
+      <h2 class="pt-5 pb-3 text-center">La storia di Deliveroo</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/74c3e651-99b6-4cb1-906e-e409380f1bf5_about_us_will.jpg?auto=compress,format"
         alt="img-story"
       />
       <p class="lead mt-4">
-        When Deliveroo's founder and CEO Will Shu moved to London in 2013 he
-        discovered a city full of great restaurants, but he was amazed that so
-        few of them delivered food. He made it his personal mission to bring the
-        best local restaurants direct to people’s doors. Today, Deliveroo
-        operates a hyperlocal three-sided marketplace, connecting local
-        consumers, restaurants and grocers, and riders to fulfill a mission
-        critical, emotional purchase in under 30 minutes. By offering fast and
-        reliable delivery which consumers can track online, Deliveroo has grown
-        rapidly. Deliveroo now operates in 11 markets worldwide, working with
-        thousands of restaurants and grocers, thousands of riders, and serving
-        millions of consumers. For our latest news visit the newsroom
+        Quando il fondatore e CEO di Deliveroo, Will Shu, si è trasferito a Londra nel 2013, lui
+        scoprì una città piena di ottimi ristoranti, ma ne rimase stupito
+        pochi di loro consegnavano cibo. Ha fatto della sua missione personale quella di portare il
+        i migliori ristoranti locali diretti alle porte della gente. Oggi Deliveroo
+        gestisce un mercato iperlocale a tre lati, che collega il locale
+        consumatori, ristoranti e negozi di alimentari e motociclisti per compiere una missione
+        acquisto critico ed emotivo in meno di 30 minuti. Offrendo veloce e
+        consegna affidabile che i consumatori possono tracciare online, Deliveroo è cresciuto
+        rapidamente. Deliveroo ora opera in 11 mercati in tutto il mondo, collaborando con
+        migliaia di ristoranti e negozi di alimentari, migliaia di motociclisti e che servono
+        milioni di consumatori.
       </p>
     </section>
     <!-- /.story -->
 
     <section data-aos="fade-left"
       data-aos-duration="3000" class="consumers mb-2">
-      <h2 class="pt-5 pb-3 text-center">Consumers</h2>
+      <h2 class="pt-5 pb-3 text-center">Consumatori</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/25750b97-a215-403e-bcbb-72f9f0853d87_BUCK_Deliveroo_Library-57.jpg?auto=compress,format"
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        Food delivery is a hyperlocal business. We think about our offer to
-        consumers on a neighbourhood-by-neighbourhood level. We have spent years
-        working to understand what consumers want and establishing a proposition
-        that can be adapted to appeal to every neighbourhood and consumer – from
-        students, to professionals or families, and from city centres to
-        suburbs, commuter belts and small towns. Everyone eats and Deliveroo has
-        an offer that reflects what people across every neighbourhood want. Our
-        proposition to consumers aims to always provide the best availability,
-        selection, experience and value, whilst also building an emotional
-        connection with our brand.
+        Il food delivery è un affare iperlocale. Pensiamo alla nostra offerta a
+        consumatori a livello di quartiere per quartiere. Abbiamo passato anni
+        lavorare per capire cosa vogliono i consumatori e stabilire una proposta
+        che può essere adattato per attrarre ogni quartiere e consumatore – da
+        studenti, a professionisti o famiglie, e dai centri cittadini a
+        periferie, cinture di pendolari e piccoli centri. Tutti mangiano e Deliveroo ha
+        un'offerta che riflette ciò che vogliono le persone in ogni quartiere. Nostro
+        proposta ai consumatori mira a fornire sempre la migliore disponibilità,
+        selezione, esperienza e valore, costruendo anche un'emozione
+        collegamento con il nostro marchio.
       </p>
     </section>
     <!-- /.consumers -->
 
     <section data-aos="fade-right"
       data-aos-duration="3000" class="restaurants mb-2">
-      <h2 class="pt-5 pb-3 text-center">Consumers</h2>
+      <h2 class="pt-5 pb-3 text-center">Ristoranti e alimentari</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/3130e8b2-4ef1-4011-beb0-375baee1f3c7_Japanese_NL_3.jpg?auto=compress,format"
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        Since 2013, we have grown to now work with 160,000 restaurant and
-        grocery partners. We started as a restaurant food-delivery service,
-        working with national dining chains as well as local, independent
-        favourites. Our service unlocked delivery for over 90% of the partners
-        on our platform – businesses that never previously offered delivery. Our
-        model has dramatically expanded the number of restaurants that can offer
-        delivery and as a result it has opened up new food options for consumers
-        around the world. In 2018, given our ambition to build the definitive
-        online food company, we started adding grocery partners to our platform
-        with an on-demand grocery service built on the same technology that
-        drives our core logistics-enabled restaurants marketplace. Today, we
-        work with some of the largest grocery retailers in the world, including
+        Dal 2013 siamo cresciuti fino a lavorare con 160.000 ristoranti e
+        partner di alimentari. Abbiamo iniziato come servizio di ristorazione a domicilio,
+        collaborando con catene di ristorazione nazionali e locali, indipendenti
+        preferiti. Il nostro servizio ha sbloccato la consegna per oltre il 90% dei partner
+        sulla nostra piattaforma: aziende che non hanno mai offerto la consegna in precedenza. Nostro
+        modello ha notevolmente ampliato il numero di ristoranti che possono offrire
+        consegna e di conseguenza ha aperto nuove opzioni alimentari per i consumatori
+        Intorno al mondo. Nel 2018, vista la nostra ambizione di costruire il definitivo
+        azienda alimentare online, abbiamo iniziato ad aggiungere partner di generi alimentari alla nostra piattaforma
+        con un servizio di generi alimentari su richiesta basato sulla stessa tecnologia che
+        guida il nostro mercato principale dei ristoranti abilitati alla logistica. Oggi noi
+        lavorare con alcuni dei più grandi rivenditori di generi alimentari del mondo, tra cui
         Co-op, Conad, Carrefour, Casino, Marks and Spencer, Picard, Waitrose,
-        and Whole Foods Market.
+        e mercato degli alimenti integrali.
       </p>
     </section>
     <!-- /.restaurants -->
@@ -83,91 +83,91 @@
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        We build our proposition for riders based on the things they tell us
-        they value most. This understanding of what riders care about most has
-        helped us to develop an offer that prioritises the things they value:
-        flexible work, good earnings and security. Deliveroo was amongst the
-        first food delivery platforms to provide free personal accident and
-        third-party liability insurance to all self-employed riders globally.
-        This cover is provided free of charge and protects riders from their
-        very first order with Deliveroo. Our founder and CEO, Will, was the very
-        first rider and worked doing deliveries full time for the first year of
-        running the business. Along with team members right across Deliveroo, he
-        still completes deliveries regularly today.
+        Costruiamo la nostra proposta per i ciclisti in base alle cose che ci dicono
+        apprezzano di più. Questa comprensione di ciò che interessa di più ai motociclisti ha
+        ci ha aiutato a sviluppare un'offerta che dia la priorità alle cose che apprezzano:
+        lavoro flessibile, buoni guadagni e sicurezza. Deliveroo era tra i
+        prime piattaforme di consegna di cibo per fornire incidenti personali gratuiti e
+        assicurazione di responsabilità civile verso tutti i motociclisti autonomi a livello globale.
+        Questa copertura è fornita gratuitamente e protegge i motociclisti dai loro
+        primissimo ordine con Deliveroo. Il nostro fondatore e CEO, Will, era il vero
+        primo pilota e ha lavorato facendo consegne a tempo pieno per il primo anno di
+        gestire l'attività. Insieme ai membri del team in tutto Deliveroo, lui
+        ancora oggi completa le consegne regolarmente.
       </p>
     </section>
     <!-- /.riders -->
 
     <section data-aos="fade-right"
       data-aos-duration="3000" class="innovation mb-2">
-      <h2 class="pt-5 pb-3 text-center">Driven by technology</h2>
+      <h2 class="pt-5 pb-3 text-center">Spinto dalla tecnologia</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/69024920-1e35-43d7-994f-266250abd9ab_78_france.jpg?auto=compress,format"
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        Deliveroo has built technology to enable us to simultaneously complete
-        hundreds of thousands of orders right across the globe – in a way that
-        is intuitive and reliable for riders, restaurants and grocers. Our
-        technology has opened up new opportunities for restaurant and grocery
-        partners to grow their businesses through delivery, often for the first
-        time; for riders to access flexible work opportunities; and to
-        ultimately deliver a great experience for consumers. Deliveroo's
-        pioneering logistics technology is based on intelligent machine learning
-        which allows us to continually improve the nuances of delivering
-        neighbourhood by neighbourhood. Deliveroo deploys technology, such as
-        our Frank algorithm, to find the best way of connecting riders,
-        restaurants, and customers to deliver a best-in-class logistics service.
-        Frank is continuously improving its knowledge-learning capabilities,
-        such as how long it takes a restaurant to prepare a meal to the time it
-        takes to travel a certain route at different times of the day, to make
-        the service even more efficient.
+        Deliveroo ha costruito la tecnologia per consentirci di completare contemporaneamente
+        centinaia di migliaia di ordini in tutto il mondo, in un certo senso
+        è intuitivo e affidabile per motociclisti, ristoranti e negozi di alimentari. Nostro
+        la tecnologia ha aperto nuove opportunità per ristoranti e alimentari
+        partner per far crescere le loro attività attraverso la consegna, spesso per la prima volta
+        volta; per i motociclisti di accedere a opportunità di lavoro flessibili; e a
+        in definitiva offrono un'esperienza eccezionale per i consumatori. di Deliveroo
+        la tecnologia logistica all'avanguardia si basa sull'apprendimento automatico intelligente
+        che ci consente di migliorare continuamente le sfumature della consegna
+        quartiere per quartiere. Deliveroo implementa la tecnologia, come
+        il nostro algoritmo Frank, per trovare il modo migliore per connettere i motociclisti,
+        ristoranti e clienti per fornire un servizio logistico best-in-class.
+        Frank migliora continuamente le sue capacità di apprendimento delle conoscenze,
+        ad esempio quanto tempo impiega un ristorante per preparare un pasto al momento
+        ci vuole per percorrere un certo percorso in diversi momenti della giornata, per fare
+        il servizio ancora più efficiente.
       </p>
     </section>
     <!-- /.driven -->
 
     <section data-aos="fade-left"
       data-aos-duration="3000" class="driven mb-2">
-      <h2 class="pt-5 pb-3 text-center">Innovation, delivered</h2>
+      <h2 class="pt-5 pb-3 text-center">Innovazione, consegne</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/ea3f8553-95e4-4ad8-9fda-f0fa44e43511_Deliveroo_Editions3.jpg?auto=compress,format"
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        Deliveroo is passionate about food and bringing people evermore choice.
-        But Deliveroo’s mission is not only to make sure that the restaurants
-        and grocers in your area are available to you when and where you want
-        them - we want to go further and bring new restaurants to your area so
-        you have even more choice of amazing food. Deliveroo’s delivery-only
-        kitchens concept, ‘Editions’, is an innovation we pioneered that helps
-        restaurants expand to new areas at lower cost and with lower risk. We
-        help restaurants to set up delivery-only kitchens in new areas without
-        the upfront costs of a high-street premise. Deliveroo provides
-        restaurants with data insights so that they know which cuisines will be
-        popular in specific local areas - meaning restaurants grow faster and
-        customers have wider choice. Deliveroo is also investing in expanding
-        our on-demand grocery service, offering delivery from national
-        supermarkets as well as providing rapid delivery from our own network of
-        delivery-only sites, called Deliveroo ‘Hop’, which is being rolled out
-        in several markets
+        Deliveroo è appassionato di cibo e offre alle persone una scelta sempre più ampia.
+        Ma la missione di Deliveroo non è solo quella di fare in modo che i ristoranti
+        e i negozi di alimentari della tua zona sono a tua disposizione quando e dove vuoi
+        loro - vogliamo andare oltre e portare nuovi ristoranti nella tua zona così
+        hai ancora più scelta di cibo straordinario. Solo consegna di Deliveroo
+        Il concetto di cucine, "Edizioni", è un'innovazione che abbiamo sperimentato e aiuta
+        i ristoranti si espandono in nuove aree a costi inferiori e con rischi inferiori. Noi
+        aiutare i ristoranti a creare cucine di sola consegna in nuove aree senza
+        i costi iniziali di un locale in una strada principale. Deliveroo fornisce
+        ristoranti con informazioni dettagliate sui dati in modo che sappiano quali cucine saranno
+        popolare in aree locali specifiche, il che significa che i ristoranti crescono più velocemente e
+        i clienti hanno una scelta più ampia. Deliveroo sta anche investendo nell'espansione
+        il nostro servizio di generi alimentari a richiesta, che offre la consegna da nazionale
+        supermercati oltre a fornire consegne rapide dalla nostra rete di
+        siti di sola consegna, chiamati Deliveroo "Hop", che è in fase di lancio
+        in diversi mercati.
       </p>
     </section>
     <!-- /.innovation -->
 
     <section data-aos="fade-right"
       data-aos-duration="3000" class="values mb-2">
-      <h2 class="pt-5 pb-3 text-center">Our Values</h2>
+      <h2 class="pt-5 pb-3 text-center">I nostri valori</h2>
       <img
         class="img-fluid"
         src="https://images.prismic.io/deliveroo/a7f87eb0-c8b2-455f-b6c2-9397460cdd5b_values-en.jpg?auto=compress,format"
         alt="img-consumers"
       />
       <p class="lead mt-4">
-        At Deliveroo, our values are at the core of everything we do. They guide
-        how we work together and make decisions, whether it be recruitment or
-        the evolution and development of our people, teams and products.
+        In Deliveroo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano
+        come lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o
+        l'evoluzione e lo sviluppo delle nostre persone, team e prodotti.
       </p>
     </section>
     <!-- /.values -->

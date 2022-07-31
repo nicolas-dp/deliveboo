@@ -13,7 +13,7 @@
             @if($dish->is_available)
             <div class="text-white"><strong class="my_yellow">Disponibilità:</strong> Disponibile</div>
             @else
-            <div class="text-white"><strong class="my_yellow">Disponibilità:</strong> non disponibile</div>
+            <div class="text-white"><strong class="my_yellow">Disponibilità:</strong> Non disponibile</div>
             @endif
             <div class="text-white"><strong class="my_yellow">Ingredienti: </strong> {{$dish->ingredients}}</div>
             <div class="text-white"><strong class="my_yellow">Descrizione: </strong>{{$dish->description}}</div>

@@ -23,6 +23,11 @@ export default {
     HeaderComponent,
     FooterComponent,
   },
+  mounted(){
+    $(document).ready(function () {
+      $(window).scrollTop(0);
+    });
+  },
 };
 </script>
 

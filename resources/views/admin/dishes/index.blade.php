@@ -9,7 +9,7 @@
                 <h3>Aggiungi un nuovo piatto!</h3>
                 <div class="buttons">
                     <a href="{{route('admin.dishes.create')}}" class="blob-btn">
-                        Create New Dish
+                        Crea nuovo piatto
                         <span class="blob-btn__inner">
                             <span class="blob-btn__blobs">
                                 <span class="blob-btn__blob"></span>
@@ -39,7 +39,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Dishes</h3>
+                        <h3>Piatti</h3>
                     </div>
 
                     <div class="card-body">
@@ -48,13 +48,13 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th class="d-none d-md-table-cell">Description</th>
-                                            <th class="d-none d-sm-table-cell">cover_image</th>
-                                            <th class="d-none d-sm-table-cell">Price</th>
-                                            <th class="d-none d-md-table-cell">Restaurant</th>
-                                            <th>Availability</th>
-                                            <th>Actions</th>
+                                            <th>Nome</th>
+                                            <th class="d-none d-md-table-cell">Descrizione</th>
+                                            <th class="d-none d-sm-table-cell">Immagine</th>
+                                            <th class="d-none d-sm-table-cell">Prezzo</th>
+                                            <th class="d-none d-md-table-cell">Ristorante</th>
+                                            <th>Disponibile</th>
+                                            <th>Azioni</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,14 +67,14 @@
                                             </td>
                                             <td class="d-none d-sm-table-cell">{{ $dish->price }} €</td>
                                             <td class="d-none d-md-table-cell">{{ $dish->restaurant->name }}</td>
-                                            <td>{{ $dish->is_available == 1 ? 'Available' : 'Not Available' }}</td>
+                                            <td>{{ $dish->is_available == 1 ? 'Disponibile' : 'Non Disponibile' }}</td>
                                             <td>
-                                                <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary mb-2 mb-xl-0 text-light">Show</a>
-                                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success mb-2 mb-xl-0 text-light">Edit</a>
+                                                <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary mb-2 mb-xl-0 text-light">Dettagli</a>
+                                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success mb-2 mb-xl-0 text-light">Modifica</a>
 
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
-                                                    Delete
+                                                    Elimina
                                                 </button>
 
                                                 <!-- Modal -->
@@ -86,7 +86,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Are you sure you want to delete this dish {{$dish->name}}?</p>
+                                                                <p>Sei sicur di voler eliminare {{$dish->name}}?</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -114,7 +114,7 @@
         </div>
         @else
         <h1>Welcome vatti a fare un ristorante</h1>
-        <a href="{{route('admin.restaurants.create')}}">Create New Restaurant</a>
+        <a href="{{route('admin.restaurants.create')}}">Crea un nuovo Ristorante</a>
         @endif
 </div>
 

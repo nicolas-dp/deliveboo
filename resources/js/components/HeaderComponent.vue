@@ -54,7 +54,7 @@
                 </router-link>
               </li>
               <li class="nav-item" v-if="user_name">
-                <a class="nav-link" href="/admin" ><i class="fa-solid fa-user-ninja"></i> {{user_name}} </a>
+                <a class="nav-link" href="/admin" ><i class="fa-solid fa-user pe-2"></i> {{user_name}} </a>
               </li>
               <li class="nav-item" v-else>
                 <a class="nav-link" href="/admin" >Accedi</a>

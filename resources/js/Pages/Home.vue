@@ -162,7 +162,7 @@
         </button>
       </div>
     </div>
-   
+
     <section class="category container">
       <vue-glide v-if="categories">
         <vue-glide-slide v-for="category in categories" :key="category.id">
@@ -288,7 +288,6 @@
                     {{ restaurant.delivery_cost }}€
                   </p>
                 </div>
-                
               </div>
             </div>
           </router-link>
@@ -472,14 +471,13 @@ export default {
 
 <style lang="scss">
 .home {
-  
   .jumbotron {
     z-index: 0;
     .img_jumbo {
       width: 100%;
       height: 500px;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
     }
   }
 

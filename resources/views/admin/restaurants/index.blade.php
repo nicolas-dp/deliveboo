@@ -25,7 +25,7 @@
                             <p><strong>Orario di chiusura:</strong> {{$restaurant->closing_hours}}</p>
                             <p><strong>Prezzo consegne:</strong> {{$restaurant->delivery_cost}}€</p>
                             <p><strong>Partita iva:</strong> {{$restaurant->PIVA}}</p>
-                            <a class="btn btn-success text-light" href="{{route('admin.restaurants.edit', $restaurant->slug)}}">Edit</a>
+                            <a class="btn btn-success text-light" href="{{route('admin.restaurants.edit', $restaurant->slug)}}">Modifica</a>
                         </div>
                     </div>
                 </div>

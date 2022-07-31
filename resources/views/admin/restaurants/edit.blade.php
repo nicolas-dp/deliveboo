@@ -66,7 +66,7 @@
             </div>
 
             <div class="mb-3">
-                <label class='my_yellow' for="description">Description</label>
+                <label class='my_yellow' for="description">Descrizione</label>
                 <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $restaurant->description) }}</textarea>
                 @include('partials.single_error',['variable' => 'description'])
             </div>
@@ -94,7 +94,7 @@
 
             <label class="d-block mb-3 text-white">I campi contrassegnati con <strong>*</strong> sono obbligatori.</label>
 
-            <button type="submit" class="btn btn-primary text-white mt-4">Update Restaurant</button>
+            <button type="submit" class="btn btn-primary text-white mt-4">Aggiorna</button>
 
         </form>
 

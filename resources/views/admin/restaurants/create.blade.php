@@ -69,7 +69,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="my_yellow" for="description">Description</label>
+                <label class="my_yellow" for="description">Descrizione</label>
                 <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
                 @include('partials.single_error',['variable' => 'description'])
             </div>

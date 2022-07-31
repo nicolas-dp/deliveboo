@@ -29,12 +29,12 @@
                 <ul style="list-style: none;">
                     <li><strong>Nome: </strong> {{ $dish['name'] }}</li>
                     <li><strong>Ingredienti: </strong> {{ $dish['ingredients'] }}</li>
-                    <li><strong>Prezzo Unitario: </strong> {{ $dish['price'] }}</li>
+                    <li><strong>Prezzo Unitario: </strong> {{ $dish['price'] }}€</li>
                     <li><strong>Quantità: </strong> x {{ $dish['amount'] }}</li>
 
                 </ul>
                 @endforeach
-                <strong>Totale pagato: {{ $order->total_price }}</strong>
+                <strong>Totale pagato: {{ $order->total_price }}€</strong>
             </div>
         </div>
 
