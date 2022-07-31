@@ -28,7 +28,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text pb-3"><i class="fas fa-user mt-1"></i></span>
                                 </div>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name')}}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name')}}*">
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text pb-3"><i class="fas fa-at"></i></span>
                                 </div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail') }}">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail') }}*">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text pb-3"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" v-model="password" v-on:keyup="checkPassword" :class="{'input_correct': password_check == 1, 'input_error': password_check == 2}" placeholder="{{__('Password') }}">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" v-model="password" v-on:keyup="checkPassword" :class="{'input_correct': password_check == 1, 'input_error': password_check == 2}" placeholder="{{__('Password') }}*">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text pb-3"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" v-model="password_confirm" v-on:keyup="checkPassword" :class="{'input_correct': password_check == 1, 'input_error': password_check == 2}" placeholder="{{__('ConfirmPassword') }}">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" v-model="password_confirm" v-on:keyup="checkPassword" :class="{'input_correct': password_check == 1, 'input_error': password_check == 2}" placeholder="{{__('ConfirmPassword') }}*">
                             </div>
 
                             <div class="my-3 d-flex justify-content-center">
