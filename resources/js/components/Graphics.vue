@@ -1,14 +1,21 @@
 <template>
   <div class="chart-container">
-    <div class="wrapper">
-
-      <h1 class="text-center p-3">Incassi per Anno</h1>
-      <canvas id="myChart" width="400" height="400"></canvas>
-
+    <img
+      class="img_opacity"
+      src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000"
+      alt=""
+    />
+    <div class="wrapper pt-5">
+      <div class="card pt-2 pb-4 px-4 rounded my_shadow">
+        <h1 class="text-center p-3 my_yellow">Incassi per Anno</h1>
+        <canvas id="myChart" width="500" height="400"></canvas>
+      </div>
     </div>
-    <div class="wrapper">
-      <h1 class="text-center p-3">Incassi per Mese</h1>
-      <canvas id="myChart_2" width="400" height="400"></canvas>
+    <div class="wrapper pt-5">
+      <div class="card pt-2 pb-4 px-4 rounded my_shadow">
+        <h1 class="text-center p-3 my_yellow">Incassi per Mese</h1>
+        <canvas id="myChart_2" width="600" height="400"></canvas>
+      </div>
     </div>
   </div>
 </template>
@@ -83,7 +90,7 @@ export default {
               labels: labelx_years,
               datasets: [
                 {
-                  label: "€ amount",
+                  label: " amount €",
                   data: labely_years,
                   backgroundColor: this.randomColor(labelx_years.length),
                   borderColor: this.randomColor(labelx_years.length),
@@ -102,7 +109,20 @@ export default {
           //FINE GRAFICO ANNI
 
           //GRAFICO MESI
-          const labelx_months = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+          const labelx_months = [
+            "Gen",
+            "Feb",
+            "Mar",
+            "Apr",
+            "Mag",
+            "Giu",
+            "Lug",
+            "Ago",
+            "Set",
+            "Ott",
+            "Nov",
+            "Dic",
+          ];
           const labely_months = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
           this.xlabel.forEach((element, index) => {
             const month = parseInt(element.slice(5, 7));
@@ -144,8 +164,6 @@ export default {
               case month == 12:
                 labely_months[11] += parseInt(this.ylabel[index]);
                 break;
-
-
             }
           });
 
@@ -190,7 +208,7 @@ export default {
         output.push(
           `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
             Math.random() * 256
-          )}, ${Math.floor(Math.random() * 256)}, 0.2)`
+          )}, ${Math.floor(Math.random() * 256)}, 0.5)`
         );
       }
       return output;
@@ -215,30 +233,72 @@ export default {
   flex-wrap: wrap;
   align-items: center;
 }
-
-.wrapper {
+.my_yellow {
+  color: #ffc312;
+}
+/* .wrapper {
   max-width: 600px;
   max-height: 600px;
+} */
+
+.bg-admin,
+.img_opacity {
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.65;
 }
 
-/* @media (max-width: 768px) {
-  .graphic {
-    width: 600px;
-    height: 700px;
+.img_opacity {
+  opacity: 0.45 !important;
+}
+
+.my_shadow {
+  box-shadow: rgb(17 17 26 / 10%) 0px 0px 16px;
+}
+#myChart_2 {
+  width: 600px;
+  height: 400px;
+}
+#myChart {
+  width: 500px;
+  height: 400px;
+}
+
+@media (max-width: 320px) {
+  #myChart_2 {
+    width: 80%;
+    height: 400px;
+  }
+  #myChart {
+    width: 80%;
+    height: 400px;
   }
 }
 
 @media (max-width: 425px) {
-  .graphic {
-    width: 400px;
-    height: 500px;
+  #myChart_2 {
+    width: 80% ;
+    height: 400px ;
+  }
+  #myChart {
+    width: 80% ;
+    height: 400px ;
   }
 }
 
-@media (max-width: 320px) {
-  .graphic {
-    width: 200px !important;
-    height: 400px !important;
+@media (max-width: 576px) {
+  #myChart_2 {
+    width: 100%;
+    height: 400px;
   }
-} */
+  #myChart {
+    width: 100%;
+    height: 400px;
+  }
+}
 </style>

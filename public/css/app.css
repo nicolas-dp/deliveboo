@@ -12309,7 +12309,6 @@ input:focus {
 .login_btn:hover {
   color: rgb(255, 252, 252);
   background-color: #ff7f31;
-  font-weight: 500;
 }
 
 .links {

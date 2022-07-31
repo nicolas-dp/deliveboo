@@ -12159,6 +12159,7 @@ fieldset:disabled .btn {
   padding: 0;
   box-sizing: border-box;
   font-family: "M PLUS Rounded 1c", sans-serif;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -12574,6 +12575,14 @@ fieldset:disabled .btn {
     padding: 11px 28px !important;
     font-size: 0.7rem !important;
   }
+
+  .index-restaurant {
+    padding: 0 !important;
+  }
+
+  .index-restaurant .container {
+    padding: 0 !important;
+  }
 }
 
 @media (max-width: 320px) {
@@ -12615,6 +12624,14 @@ fieldset:disabled .btn {
   .blob-btn {
     padding: 9px 23px !important;
     font-size: 0.6rem !important;
+  }
+
+  .index-restaurant {
+    padding: 0 !important;
+  }
+
+  .index-restaurant .container {
+    padding: 0 !important;
   }
 }
 
@@ -12860,5 +12877,11 @@ fieldset:disabled .btn {
 
 .bx-log-out:hover {
   color: #f7be12 !important;
+}
+
+.dish_container {
+  width: 80%;
+  height: 100%;
+  margin: auto;
 }
 
