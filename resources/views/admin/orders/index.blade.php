@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Orders</h3>
+                    <h3>Ordini</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -16,13 +16,12 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Customer Name</th>
-                                        <th class="d-none d-sm-table-cell">Customer Address</th>
-                                        <th class="d-none d-md-table-cell">Customer Email</th>
-                                        <th>Customer Phone</th>
-                                        <th class="d-none d-md-table-cell">Restaurant name</th>
-                                        <th class="d-none d-md-table-cell">Order Date</th>
-                                        <th>Total Price</th>
+                                        <th>Nome Cliente</th>
+                                        <th class="d-none d-sm-table-cell">Indirizzo</th>
+                                        <th class="d-none d-md-table-cell">Email</th>
+                                        <th>Telefono</th>
+                                        <th class="d-none d-md-table-cell">Data Ordine</th>
+                                        <th>Prezzo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,12 +32,10 @@
                                         <td class="d-none d-md-table-cell">{{ $order->customer_email }}</td>
                                         <td>{{ $order->customer_phone }}</td>
 
-                                        <td class="d-none d-md-table-cell">{{ $order->restaurant->name }}</td>
                                         <td class="d-none d-md-table-cell">{{ $order->order_date }}</td>
                                         <td>{{ $order->total_price }} €</td>
                                         <td>
-                                            <a href="{{route('admin.orders.show', $order->slug )}}" class="btn btn-primary text-light">Show</a>
-
+                                            <a href="{{route('admin.orders.show', $order->slug )}}" class="btn btn-primary text-light btn-sm">Dettagli</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -11,7 +11,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    overflow: hidden;
 }
 .sidebar {
     position: fixed;
@@ -394,6 +395,13 @@
         padding: 11px 28px !important;
         font-size: 0.7rem !important;
     }
+    .index-restaurant {
+        padding: 0 !important;
+
+        .container {
+            padding: 0 !important;
+        }
+    }
 }
 
 @media (max-width: 320px) {
@@ -424,6 +432,13 @@
     .blob-btn {
         padding: 9px 23px !important;
         font-size: 0.6rem !important;
+    }
+    .index-restaurant {
+        padding: 0 !important;
+
+        .container {
+            padding: 0 !important;
+        }
     }
 }
 
@@ -625,7 +640,7 @@ $borderW: 2px;
     &__blob {
         position: absolute;
         top: $borderW;
-        width: 100% / $numOfBlobs;
+        width: calc(100% / $numOfBlobs);
         height: 100%;
         background: #f7be12;
         border-radius: 100%;
@@ -638,7 +653,7 @@ $borderW: 2px;
 
         @for $i from 1 through $numOfBlobs {
             &:nth-child(#{$i}) {
-                left: ($i - 1) * (120% / $numOfBlobs);
+                left: calc(($i - 1) * (120% / $numOfBlobs));
                 transition-delay: ($i - 1) * 0.08s;
             }
         }
@@ -671,3 +686,11 @@ $borderW: 2px;
         color: #f7be12 !important;
     }
 }
+
+.dish_container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+

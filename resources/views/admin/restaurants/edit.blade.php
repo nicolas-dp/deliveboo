@@ -38,15 +38,15 @@
 
             <div class="mb-3">
                 <label class='my_yellow' for="opening_hours">Orario di Apertura</label>
-                <input type="time" required min="05:00" max="13:00" name="opening_hours" id="opening_hours" class="form-control" aria-describedby="opening_hoursHelper" value="{{ old('opening_hours', $restaurant->opening_hours) }}">
+                <input type="time" required v-model="opening_hours" v-on:keyup="checkOpeningClosingHours" :class="{'input_correct': check_hours == 1, 'input_error': check_hours == 2}" name="opening_hours" id="opening_hours" class="form-control" aria-describedby="opening_hoursHelper" value="{{ old('opening_hours', $restaurant->opening_hours) }}">
                 <small id="opening_hoursHelper" class="text-white">Inserisci l'orario di apertura</small>
                 @include('partials.single_error', ['variable' => 'opening_hours'])
             </div>
 
             <div class="mb-3">
                 <label class='my_yellow' for="closing_hours">Orario di Chiusura</label>
-                <input type="time" required min="13:00" max="23:59" name="closing_hours" id="closing_hours" class="form-control" aria-describedby="closing_hoursHelper" value="{{ old('closing_hours', $restaurant->closing_hours) }}">
-                <small id="closing_hoursHelper" class="text-white">Inserisci l'orario di chiusura</small>
+                <input type="time" required min="13:00" max="23:59" name="closing_hours" id="closing_hours" class="form-control" aria-describedby="closing_hoursHelper" value="{{ old('closing_hours', $restaurant->closing_hours) }}"  v-model=" closing_hours" v-on:keyup="checkOpeningClosingHours" :class="{'input_correct': check_hours == 1, 'input_error': check_hours == 2}">
+                <small id=" closing_hoursHelper" class="text-white">Inserisci l'orario di chiusura</small>
                 @include('partials.single_error', ['variable' => 'closing_hours'])
             </div>
 

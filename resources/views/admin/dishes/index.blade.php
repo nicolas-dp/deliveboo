@@ -2,44 +2,49 @@
 
 @section('content')
 
-<div class="container-fluid ">
-    @if(Auth::check() && $restaurant && count($dishes) <= 0) <img class="bg-admin" src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000" alt="">
-        <div class="admin-wrapper">
-            <div class="admin-cards  p-admin">
-                <h3>Aggiungi un nuovo piatto!</h3>
-                <div class="buttons">
-                    <a href="{{route('admin.dishes.create')}}" class="blob-btn">
-                        Crea nuovo piatto
-                        <span class="blob-btn__inner">
-                            <span class="blob-btn__blobs">
-                                <span class="blob-btn__blob"></span>
-                                <span class="blob-btn__blob"></span>
-                                <span class="blob-btn__blob"></span>
-                                <span class="blob-btn__blob"></span>
-                            </span>
-                        </span>
-                    </a>
-                    <br />
 
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                        <defs>
-                            <filter id="goo">
-                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
-                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                            </filter>
-                        </defs>
-                    </svg>
-                </div>
+@if(Auth::check() && $restaurant && count($dishes) <= 0) <div class="container-fluid ">
+    <img class="bg-admin" src="https://img.freepik.com/premium-vector/food-doodle-set_160308-239.jpg?w=2000" alt="">
+    <div class="admin-wrapper">
+        <div class="admin-cards  p-admin">
+            <h3>Aggiungi un nuovo piatto!</h3>
+            <div class="buttons">
+                <a href="{{route('admin.dishes.create')}}" class="blob-btn">
+                    Crea nuovo piatto
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
+                    </span>
+                </a>
+                <br />
+
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                    <defs>
+                        <filter id="goo">
+                            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+                            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                        </filter>
+                    </defs>
+                </svg>
             </div>
         </div>
-
-        @elseif(Auth::check() && $restaurant)
-        <div class="row">
+    </div>
+    </div>
+    @elseif(Auth::check() && $restaurant)
+    <div class="dish_container pt-5">
+        <div class="row ">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between p-3">
                         <h3>Piatti</h3>
+                        <div>
+                            <a href="{{route('admin.dishes.create')}}" class="btn btn-info text-light">Crea Piatto</a>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -69,11 +74,11 @@
                                             <td class="d-none d-md-table-cell">{{ $dish->restaurant->name }}</td>
                                             <td>{{ $dish->is_available == 1 ? 'Disponibile' : 'Non Disponibile' }}</td>
                                             <td>
-                                                <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary mb-2 mb-xl-0 text-light">Dettagli</a>
-                                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success mb-2 mb-xl-0 text-light">Modifica</a>
+                                                <a href="{{route('admin.dishes.show', $dish->slug )}}" class="btn btn-primary mb-2 mb-xl-0 text-light btn-sm">Dettagli</a>
+                                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" class="btn btn-success mb-2 mb-xl-0 text-light btn-sm" >Modifica</a>
 
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
+                                                <button type="button" class="btn btn-danger text-light btn-sm" data-bs-toggle="modal" data-bs-target="#delete-dish-{{$dish->id}}">
                                                     Elimina
                                                 </button>
 
@@ -112,11 +117,12 @@
                 </div>
             </div>
         </div>
-        @else
-        <h1>Welcome vatti a fare un ristorante</h1>
-        <a href="{{route('admin.restaurants.create')}}">Crea un nuovo Ristorante</a>
-        @endif
-</div>
+    </div>
+    @else
+    <h1>Welcome vatti a fare un ristorante</h1>
+    <a href="{{route('admin.restaurants.create')}}">Crea un nuovo Ristorante</a>
+    @endif
 
 
-@endsection
+
+    @endsection

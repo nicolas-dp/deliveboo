@@ -39,10 +39,10 @@
 
         <div class="sidebar">
             <div class="logo-details">
-                <i class='bx bxl-c-plus-plus icon'></i>
                 <a class="text-decoration-none" href="/">
-                    <div class="logo_name">Deliveboo</div>
-
+                    <div class="logo_name">
+                        <img class="m-3 mt-4" width="130" src="{{asset('img/logo-deliveroo.png')}}" alt="">
+                    </div>
                 </a> <i class='bx bx-menu' id="btn"></i>
             </div>
             <ul class="nav-list">
