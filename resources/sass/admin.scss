@@ -12,7 +12,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "M PLUS Rounded 1c", sans-serif;
-    overflow: hidden;
 }
 .sidebar {
     position: fixed;
@@ -244,9 +243,9 @@
     z-index: 2;
 }
 .sidebar.open ~ .home-section {
-    // left: 250px;
-    // width: calc(100% - 250px);
-    width: 100%;
+     left: 250px;
+     width: calc(100% - 250px);
+    /* width: 100%; */
 }
 .home-section .text {
     display: inline-block;
