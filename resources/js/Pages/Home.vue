@@ -340,7 +340,7 @@
         </div>
       </div>
 
-      <div class="not_restaurant" v-if="filtered_restaurants == 0">
+      <div class="not_restaurant text-center" v-if="filtered_restaurants == 0">
         <h1 class="orange py-5">
           Non ci sono ristoranti con le categorie selezionate.
         </h1>

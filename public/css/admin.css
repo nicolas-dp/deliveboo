@@ -12159,7 +12159,6 @@ fieldset:disabled .btn {
   padding: 0;
   box-sizing: border-box;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  overflow: hidden;
 }
 
 .sidebar {
@@ -12425,7 +12424,9 @@ fieldset:disabled .btn {
 }
 
 .sidebar.open ~ .home-section {
-  width: 100%;
+  left: 250px;
+  width: calc(100% - 250px);
+  /* width: 100%; */
 }
 
 .home-section .text {
@@ -12504,7 +12505,7 @@ fieldset:disabled .btn {
 }
 
 .p-admin {
-  padding-top: 2rem !important;
+  padding-top: 1.33rem !important;
 }
 
 @media (min-width: 768px) {

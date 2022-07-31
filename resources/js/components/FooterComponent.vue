@@ -159,10 +159,10 @@ export default {
   }
 
   .footer_copyright {
-    background-color: #d0ceccbf;
+    background-color: #ff7f31;
     text-align: center;
     small {
-      color: rgb(0 0 0 / 50%);
+      color: white;
       font-weight: bold;
     }
   }
