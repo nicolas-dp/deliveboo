@@ -31,9 +31,9 @@ class RestaurantSeeder extends Seeder
                 $new_restaurant->delivery_cost = rand(1,5);
                 $new_restaurant->opening_hours = '08:00:00';
                 $new_restaurant->closing_hours = '23:00:00';
-                $new_restaurant->phone_number = $faker->phoneNumber;
+                $new_restaurant->phone_number = '347' . $faker->numberBetween(1000000, 9999999);
                 $new_restaurant->cover_image = $value;
-                $new_restaurant->PIVA = substr($faker ->unique() ->iban('IT'), 0, 11);
+                $new_restaurant->PIVA = $faker ->unique()->numberBetween(10000000000, 99999999999);
                 $new_restaurant->slug = Str::slug($new_restaurant->name) . '-' . rand(1, 1000000);
 
                 $new_restaurant->save();
